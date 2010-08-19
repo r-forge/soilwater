@@ -1,0 +1,125 @@
+<a href="http://r-forge.r-project.org"><img style="border: 0px solid ; width: 210px; height: 54px;" alt="r-forge" src="http://r-forge.r-project.org/themes/rforge/imagesrf/logo.png"></a><br>
+
+
+
+
+
+
+
+<h2>Welcome to the Soil Water project!</h2>
+
+
+
+
+
+
+
+<a href="figurecode.r"><img style="border: 0px solid ; width: 600px; height: 600px;" alt="van Genuchten (1980) water retention function" src="vg.theta.h.png"></a><br>
+
+
+
+
+<span style="font-weight: bold;">Soil Water</span> provides soil <a href="http://en.wikipedia.org/wiki/Water_retention_curve" target="_blank">water retention functions</a> and <a href="http://en.wikipedia.org/wiki/Hydraulic_conductivity" target="_blank">soil hydraulic conductivity functions</a> and <a href="http://en.wikipedia.org/wiki/Pedotransfer_function" target="_blank">pedotransfer functions</a> to estimate their parameter from easily available soil properties.<br><h3><span style="font-weight: bold;">Description</span></h3><span style="font-weight: bold;">Soil Water</span> provides (1) the package "soilwaterfun", a collection of widely used soil water retention functions (van Genuchten, Brooks &amp; Corey, Campbell) and soil hydraulic conductivity functions (Mualem-van Genuchten, Brooks &amp; Corey, Campbell) and (2) the package "soilwaterptf", a collection of so called "pedotransfer functions" (PTFs) for estimating the parameters of soil water retention and hydraulic conductivity functions from easily available soil properties (typically the texture, organic carbon content and bulk density).<br><h3>Where to find the package<br></h3><ul>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  <li>The <a target="_blank" style="font-weight: bold;" href="http://r-forge.r-project.org/R/?group_id=740">package binaries</a> should be&nbsp;available on r-forge soon.</li>
+
+
+
+
+
+
+
+  <li>The <span style="font-weight: bold;">package source</span> are available on the <a target="_blank" href="http://r-forge.r-project.org/scm/?group_id=740">project SCM page</a>.</li>
+
+
+
+
+
+
+
+  <li>The <strong>project summary page</strong> you can find <a href="http://r-forge.r-project.org/projects/soiltexture/" target="_blank">here</a>.<a href="http://r-forge.r-project.org/projects/soiltexture/"><strong></strong></a></li>
+
+
+
+
+  
+
+  <li>The <span style="font-weight: bold;">logfile of changes made to the package</span> can be found <a href="http://r-forge.r-project.org/scm/viewvc.php/*checkout*/SoilTexture_changelog.txt?root=soiltexture" target="_blank">here</a>.</li><li>About the <a href="http://julienmoeys.free.fr" target="_blank">author</a>.<br></li>
+
+
+
+
+
+
+
+</ul><h3>Related projects</h3>Soil Water is part of a <span style="font-style: italic;">collective</span> effort made by a few pedometricians to implement into R a set of useful soil-related functions (toolbox). Other projects include:<br><ul><li><a href="http://aqp.r-forge.r-project.org/" target="_blank">aqp</a>. 'Algorithms for Quantitative Pedology';<br></li><li><a href="http://soiltexture.r-forge.r-project.org/" target="_blank">soiltexture</a>. a set of R functions designed to produce texture triangle plots and classify soil texture data according to texture classification systems (and much more);</li></ul>Other packages that may interest soil scientists are:<br><ul><li><a href="http://cran.r-project.org/web/packages/soil.spec/index.html" target="_blank">soil.spec</a>. Soil spectral data exploration and regression functions;</li><li><a href="http://cran.r-project.org/web/packages/HydroMe/" target="_blank">HydroMe</a><span style="text-decoration: underline;">.</span> Estimation of Soil Hydraulic Parameters from Experimental Data;</li><li><a href="http://cran.r-project.org/web/packages/SoPhy/index.html" target="_blank">SoPhy</a>. A <span style="font-style: italic;">defunct</span> package that implemented a 2D water infiltration model into R;<br></li></ul><h3>Help wanted!</h3>If you have some R functions implementing soil water retention functions or soil hydraulic conductivity functions or pedotransfer functions for estimating their parameters (published in peer-reviewed journals), please make them available to the R-soil-science community! (either in this package or in a dedicated package you may create). The only things needed are (1) the function's R code (2) some definition and units of the input parameters, (3) a working example, (4) one reference article and&nbsp; (5) eventual dependences on other R packages.<br><h3>Disclaimer</h3>The packages are provided with <span style="font-weight: bold;">no guarantees</span> of any king by the author. The packages have not yet been&nbsp; used and tested extensively by external users, so if you use it for important work, please <span style="font-style: italic;">check the code of the functions</span> (most of them are short and easy to understand). Please help me to make this package better by reporting any problem in the functions or their documentation.<br><h3>Installation</h3>For <span style="font-weight: bold;">installing the package</span>, try first:<br>
+
+<br>
+
+<span style="font-family: monospace;"></span><code>&nbsp;&nbsp;&nbsp; install.packages("soilwaterfun", repos = "http://R-Forge.R-project.org")<br></code><code>&nbsp;&nbsp;&nbsp; install.packages("soilwaterptf", repos = "http://R-Forge.R-project.org")</code><br><br class="">
+
+If it doesn't work, or if you don't have the latest release of R, try instead:<br class="">
+
+<code><br>
+
+</code><span style="font-family: monospace;"></span><code>&nbsp;&nbsp;&nbsp; install.packages("soilwaterfun", repos = "http://R-Forge.R-project.org", type = "source")<br></code><code>&nbsp;&nbsp;&nbsp; install.packages("soilwaterptf", repos = "http://R-Forge.R-project.org", type = "source")</code><code></code><span style="font-family: monospace;"></span><span style="font-family: monospace;"><br>
+
+
+
+
+</span>
+
+
+<h3><span style="font-weight: bold;">Road map</span></h3>(suceptible to changes):<br>
+
+
+
+
+
+
+
+<ul><li>[write something here]<br></li>
+
+
+
+
+
+
+
+</ul>
+
+
+
+<span style="font-weight: bold;">
+
+
+
+Feedbacks</span> on the package are&nbsp;welcome (<a href="http://r-forge.r-project.org/users/jmoeys/" target="_blank">contact details here</a>).<br>
+
+<br>
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width: 0pt;" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png"></a><br>
+
+This webpage is licenced under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Licence</a>.<br>
+
+
+
+<br>
+
+
+
+<a title="Document made with KompoZer" href="http://kompozer.net/"><img style="border: 0px solid ; width: 80px; height: 15px;" alt="Document made with KompoZer" src="http://r-forge.r-project.org/scm/viewvc.php/*checkout*/www/kompozer_80x15.png?root=soiltexture"></a>
