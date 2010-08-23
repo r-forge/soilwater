@@ -1,3 +1,0 @@
-- Add Schapp Rosetta class pedotransfer functions (see Rosetta help).
-- Create an 'all in one' function for Wosten PTFs
-- Add some Australian PTFs 
