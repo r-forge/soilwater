@@ -1,6 +1,6 @@
 rm(list=ls(all=TRUE)) 
-wrapper.path <- "C:/_SOILWATER/pkg/soilwaterfun/trunk/R_CMD_wrapper.R"
-pkg.dir      <- "C:/_SOILWATER/pkg/soilwaterfun/trunk" 
+wrapper.path <- "C:/_SOILWATER/R_CMD_wrapper.R"
+pkg.dir      <- "C:/_SOILWATER/pkg" 
 pkg.name     <- "soilwaterfun" 
 code.files   <- "soilwaterfun.R" 
 pkg.version  <- "1.0" 
