@@ -13,9 +13,9 @@
 
 fun.brooks.corey.theta.h <- function(# Brooks & Corey 1964 function for water retension, theta(h) 
 ### Brooks and Corey 1964 model for soil water retension. 
-### The model is: theta.e = (h/h.a)^-lambda with 
-### theta.e = (theta - theta.r) / (theta.s - theta.r) when h < h.a 
-### and theta = theta.s when h.a <= h < 0
+### The model is: theta.e = (h/hA)^-lambda with 
+### theta.e = (theta - thetaR) / (thetaS - thetaR) when h < hA 
+### and theta = thetaS when hA <= h < 0
 ##references<<Brooks & Corey, 1964. Hydraulic properties of porous 
 ## media. Colorado State University, Fort Collins, USA. Hydrology 
 ## paper, 3; 
@@ -26,14 +26,14 @@ fun.brooks.corey.theta.h <- function(# Brooks & Corey 1964 function for water re
 ### Vector of numerical. Matrix potential of the soil, in [m]. 
 ### Values should be negative (suction).
 
- h.a,
+ hA,
 ### Single numerical. Matrix potential at the air entry point [m], 
 ### negative.
 
- theta.s,
+ thetaS,
 ### Single numerical. Soil saturated water content [m3.m-3].
 
- theta.r,
+ thetaR,
 ### Single numerical. Soil residual water content [m3.m-3].
 
  lambda
@@ -41,11 +41,11 @@ fun.brooks.corey.theta.h <- function(# Brooks & Corey 1964 function for water re
 ### (pore size distribution index, approx. from 2 to 5). 
 
 ){  #
-    theta.e <- ( h / h.a )^-lambda 
+    theta.e <- ( h / hA )^-lambda 
     #
-    theta <- theta.e * (theta.s - theta.r) + theta.r 
+    theta <- theta.e * (thetaS - thetaR) + thetaR 
     #
-    theta[ h >= h.a ] <- theta.s 
+    theta[ h >= hA ] <- thetaS 
     #
     return( theta ) 
 ### Returns a vector of numericals, theta [m3.m-3] for each h 
@@ -59,8 +59,8 @@ fun.brooks.corey.theta.h <- function(# Brooks & Corey 1964 function for water re
 
 fun.brooks.corey.K.h <- function(# Brooks & Corey 1964 function for hydraulic conductivity, K(h) 
 ### Brooks and Corey 1964 model for soil hydraulic conductivity. 
-### The model is: K / Ks = (h/h.a)^-m when h < h.a 
-### and K = Ks when h.a <= h < 0
+### The model is: K / Ks = (h/hA)^-m when h < hA 
+### and K = Ks when hA <= h < 0
 ##references<<Brooks & Corey, 1964. Hydraulic properties of porous 
 ## media. Colorado State University, Fort Collins, USA. Hydrology 
 ## paper, 3; 
@@ -71,7 +71,7 @@ fun.brooks.corey.K.h <- function(# Brooks & Corey 1964 function for hydraulic co
 ### Vector of numerical. Matrix potential of the soil, in [m]. 
 ### Values should be negative (suction).
 
- h.a,
+ hA,
 ### Single numerical. Matrix potential at the air entry point [m3.m-3]
 
  Ks,
@@ -84,9 +84,9 @@ fun.brooks.corey.K.h <- function(# Brooks & Corey 1964 function for hydraulic co
 ### (depend on the pore size distribution. approx. from 3 to 11). 
 
 ){  #
-    K <- Ks * (( h / h.a )^-m) 
+    K <- Ks * (( h / hA )^-m) 
     #
-    K[ h >= h.a ] <- Ks 
+    K[ h >= hA ] <- Ks 
     #
     return( K ) 
 ### Returns a vector of numericals, K values [L.T-1] (same unit as 

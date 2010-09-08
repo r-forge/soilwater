@@ -2,7 +2,7 @@ require("soilwaterfun")
 
 fun.brooks.corey.K.h( 
     h       = seq(from=0,to=-10,by=-0.1), 
-    h.a     = -0.01, 
+    hA      = -0.01, 
     Ks      = 10, 
     m       = 6 
 )   #
@@ -10,7 +10,7 @@ fun.brooks.corey.K.h(
 curve( 
     fun.brooks.corey.K.h( 
         h       = -x, 
-        h.a     = -0.01, 
+        hA      = -0.01, 
         Ks      = 10, 
         m       = 6 
     ),  #

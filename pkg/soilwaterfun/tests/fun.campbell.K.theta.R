@@ -2,17 +2,17 @@ require("soilwaterfun")
 
 fun.campbell.K.theta( 
     theta   = seq(from=0,to=0.5,by=0.1), 
-    theta.s = 0.5, 
+    thetaS  = 0.5, 
     Ks      = 10, 
-    b.par   = 1/3 
+    bPar    = 1/3 
 )   #
 
 curve( 
     fun.campbell.K.theta( 
         theta   = x, 
-        theta.s = 0.5, 
+        thetaS  = 0.5, 
         Ks      = 10, 
-        b.par   = 1/3 
+        bPar    = 1/3 
     ),  #
     xlim = c(0.01,0.5), 
     col  = "red", 
