@@ -6,8 +6,8 @@ fun.vangenuchten.theta.h(
     h       = -c(0,0.01,0.1,1,10,100,158), 
     alpha   = 3.561099, 
     n       = 1.212074, 
-    theta.s = 0.4162380, 
-    theta.r = 0  
+    thetaS  = 0.4162380, 
+    thetaR  = 0  
 )   #
 
 curve( 
@@ -15,8 +15,8 @@ curve(
         h       = -x, 
         alpha   = 3.561099, 
         n       = 1.212074, 
-        theta.s = 0.4162380, 
-        theta.r = 0  
+        thetaS  = 0.4162380, 
+        thetaR  = 0  
     ),  #
     xlim = c(0.001,158), 
     col  = "red", 

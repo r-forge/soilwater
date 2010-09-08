@@ -4,7 +4,7 @@
 \description{Calculate the relative saturation Se of a soil at a given 
 tension h with the Van Genuchten water retention function.}
 \usage{
-fun.vangenuchten.se.h(h, alpha, n, c.par = 1)
+fun.vangenuchten.se.h(h, alpha, n, cPar = 1)
 }
 \arguments{
   \item{h}{Vector of numerical. Matrix potential of the soil, in [m]. 
@@ -12,12 +12,12 @@ Values should be negative (suction).}
   \item{alpha}{Single numerical. alpha (shape) parameter of the Van Genuchten 
 water retention function, in [m-1] (inverse length unit of h).}
   \item{n}{Single numerical. n shape parameter of the Van Genuchten water 
-retention function, dimensionless [-]. See also the 'c.par' 
+retention function, dimensionless [-]. See also the 'cPar' 
 parameter that, along with 'n', is used to calculate van Genuchten's 
 m parameter.}
-  \item{c.par}{Single numerical. Value of the c parameter of the Van Genuchten 
+  \item{cPar}{Single numerical. Value of the c parameter of the Van Genuchten 
 water retention function, that allows to calculate the m parameter 
-so m = (1 - c.par/n). Dimensionless [-]. Usually fixed / constant.}
+so m = (1 - cPar/n). Dimensionless [-]. Usually fixed / constant.}
 }
 
 \value{The function returns the relative water content (degree of 

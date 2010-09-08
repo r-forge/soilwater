@@ -4,7 +4,7 @@
 \description{Calculate soil hydraulic conductivity at a given tension h 
 with the Mualem - Van Genuchten function.}
 \usage{
-fun.mualem.vangenuchten.K.h(h, Ks, alpha, n, a = 2, b = 0.5, c.par = 1)
+fun.mualem.vangenuchten.K.h(h, Ks, alpha, n, a = 2, b = 0.5, cPar = 1)
 }
 \arguments{
   \item{h}{Vector of numerical. Matrix potential of the soil, in [m]. 
@@ -17,7 +17,7 @@ should / may be considered as K(h=0).}
   \item{alpha}{Single numerical. alpha (shape) parameter of the Van Genuchten 
 water retention function, in [m-1] (inverse length unit of h).}
   \item{n}{Single numerical. n shape parameter of the Van Genuchten water 
-retention function, dimensionless [-]. See also the 'c.par' 
+retention function, dimensionless [-]. See also the 'cPar' 
 parameter that, along with 'n', is used to calculate van Genuchten's 
 m parameter.}
   \item{a}{Single numerical. Value of the a parameter of the Mualem - Van 
@@ -30,9 +30,9 @@ parameter }
   \item{b}{Single numerical. Value of the b parameter of the Mualem - Van 
 Genuchten hydraulic conductivity function. Dimensionless [-]??. 
 b = 0.5 in the Mualem formulation, and 2 in the Burdine formulation.}
-  \item{c.par}{Single numerical. Value of the c parameter of the Van Genuchten 
+  \item{cPar}{Single numerical. Value of the c parameter of the Van Genuchten 
 water retention function, that allows to calculate the m parameter 
-so that m = (1 - c.par/n). Dimensionless [-]. c.par = 1 in the 
+so that m = (1 - cPar/n). Dimensionless [-]. cPar = 1 in the 
 Mualem formulation, and 2 in the Burdine formulation.}
 }
 
