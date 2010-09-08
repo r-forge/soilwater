@@ -20,33 +20,33 @@ ptf.wosten.theta.s <- function(# Wosten et al. 1999 PTF for soil's saturated wat
 ## Le Bas C., 1999. Development and use of a database of hydraulic 
 ## properties of European soils. Geoderma 90:169-185.
 
- CLAY,
+ clay,
 ### Vector of numericals. Clay content [%] of each soil layer / 
 ### horizon. 0-2 micrometers. 
 
- BULKD,
+ bulkD,
 ### Vector of numericals. Bulk density [kg.dm-3] of each soil 
 ### layer / horizon (unit not given in the article!). 
 
- SILT,
+ silt,
 ### Vector of numericals. Silt content [%] of each soil layer / 
 ### horizon. 2-50 micrometers. 
 
- OM,
+ om,
 ### Vector of numericals. Organic matter content [%] of each soil layer / 
 ### horizon. 
 
- topsoil 
+ topSoil 
 ### Vector of 0 or 1 integers. Set to 1 if the layer is a topsoil, 
 ### and to 0 if it is a subsoil, for each layer / horizon.
 
 ){  #
-    theta.s <- 0.7919 + 0.001691 * CLAY - 0.29619 * BULKD - 
-               0.000001491 * (SILT^2) + 0.0000821 * (OM^2) + 
-               0.02427 * (CLAY^-1) + 0.01113 * (SILT^-1) + 
-               0.01472 * logb(SILT, base = exp(1)) - 
-               0.0000733 * OM * CLAY - 0.000619 * BULKD * CLAY - 
-               0.001183 * BULKD * OM - 0.0001664 * topsoil * SILT 
+    theta.s <- 0.7919 + 0.001691 * clay - 0.29619 * bulkD - 
+               0.000001491 * (silt^2) + 0.0000821 * (om^2) + 
+               0.02427 * (clay^-1) + 0.01113 * (silt^-1) + 
+               0.01472 * logb(silt, base = exp(1)) - 
+               0.0000733 * om * clay - 0.000619 * bulkD * clay - 
+               0.001183 * bulkD * om - 0.0001664 * topSoil * silt 
     #
     return( theta.s ) 
 ### The function returns a vector of theta_s values of the same 
@@ -68,34 +68,34 @@ ptf.wosten.alpha <- function(# Wosten et al. 1999 PTF for van Genuchten 1980 alp
 ## Le Bas C., 1999. Development and use of a database of hydraulic 
 ## properties of European soils. Geoderma 90:169-185.
 
- CLAY,
+ clay,
 ### Vector of numericals. Clay content [%] of each soil layer / 
 ### horizon. 0-2 micrometers.
 
- BULKD,
+ bulkD,
 ### Vector of numericals. Bulk density [kg.dm-3] of each soil 
 ### layer / horizon (unit not given in the article!). 
 
- SILT,
+ silt,
 ### Vector of numericals. Silt content [%] of each soil layer / 
 ### horizon. 2-50 micrometers. 
 
- OM,
+ om,
 ### Vector of numericals. Organic matter content [%] of each soil layer / 
 ### horizon. 
 
- topsoil 
+ topSoil 
 ### Vector of 0 or 1 integers. Set to 1 if the layer is a topsoil, 
 ### and to 0 if it is a subsoil, for each layer / horizon.
 
 ){  #
     alpha.star <- 
-        -14.96 + 0.03135 * CLAY + 0.0351 * SILT + 0.646 * OM + 
-        15.29 * BULKD - 0.192 * topsoil - 4.671 * (BULKD^2) - 
-        0.000781 * (CLAY^2) - 0.00687 * (OM^2) + 0.0449 * (OM^-1) + 
-        0.0663 * log( SILT, base = exp(1) ) + 0.1482 * log( OM, base = exp(1) ) - 
-        0.04546 * BULKD * SILT - 0.4852 * BULKD * OM + 
-        0.00673 * topsoil * CLAY 
+        -14.96 + 0.03135 * clay + 0.0351 * silt + 0.646 * om + 
+        15.29 * bulkD - 0.192 * topSoil - 4.671 * (bulkD^2) - 
+        0.000781 * (clay^2) - 0.00687 * (om^2) + 0.0449 * (om^-1) + 
+        0.0663 * log( silt, base = exp(1) ) + 0.1482 * log( om, base = exp(1) ) - 
+        0.04546 * bulkD * silt - 0.4852 * bulkD * om + 
+        0.00673 * topSoil * clay 
     #
     alpha <- exp( alpha.star ) 
     #
@@ -119,33 +119,33 @@ ptf.wosten.n <- function(# Wosten et al. 1999 PTF for van Genuchten 1980 n param
 ## Le Bas C., 1999. Development and use of a database of hydraulic 
 ## properties of European soils. Geoderma 90:169-185.
 
- CLAY,
+ clay,
 ### Vector of numericals. Clay content [%] of each soil layer / 
 ### horizon. 0-2 micrometers.
 
- BULKD,
+ bulkD,
 ### Vector of numericals. Bulk density [kg.dm-3] of each soil 
 ### layer / horizon (unit not given in the article!). 
 
- SILT,
+ silt,
 ### Vector of numericals. Silt content [%] of each soil layer / 
 ### horizon. 2-50 micrometers. 
 
- OM,
+ om,
 ### Vector of numericals. Organic matter content [%] of each soil layer / 
 ### horizon. 
 
- topsoil 
+ topSoil 
 ### Vector of 0 or 1 integers. Set to 1 if the layer is a topsoil, 
 ### and to 0 if it is a subsoil, for each layer / horizon.
 
 ){  #
     n.star <- 
-        -25.23 - 0.02195 * CLAY + 0.0074 * SILT - 0.1940 * OM + 45.5 * BULKD - 
-        7.24 * (BULKD^2) + 0.0003658 * (CLAY^2) + 0.002885 * (OM^2) - 12.81 * (BULKD^-1) - 
-        0.1524 * (SILT^-1) - 0.01958 * (OM^-1) - 0.2876 * log( SILT, base = exp(1) ) - 
-        0.0709 * log( OM, base = exp(1) ) - 44.6 * log( BULKD, base = exp(1) ) - 
-        0.02264 * BULKD * CLAY + 0.0896 * BULKD * OM + 0.00718 * topsoil * CLAY  
+        -25.23 - 0.02195 * clay + 0.0074 * silt - 0.1940 * om + 45.5 * bulkD - 
+        7.24 * (bulkD^2) + 0.0003658 * (clay^2) + 0.002885 * (om^2) - 12.81 * (bulkD^-1) - 
+        0.1524 * (silt^-1) - 0.01958 * (om^-1) - 0.2876 * log( silt, base = exp(1) ) - 
+        0.0709 * log( om, base = exp(1) ) - 44.6 * log( bulkD, base = exp(1) ) - 
+        0.02264 * bulkD * clay + 0.0896 * bulkD * om + 0.00718 * topSoil * clay  
     #
     n <- exp( n.star ) + 1 
     #
@@ -169,27 +169,27 @@ ptf.wosten.l <- function(# Wosten et al. 1999 PTF for van Genuchten 1980 l param
 ## Le Bas C., 1999. Development and use of a database of hydraulic 
 ## properties of European soils. Geoderma 90:169-185.
 
- CLAY,
+ clay,
 ### Vector of numericals. Clay content [%] of each soil layer / 
 ### horizon. 0-2 micrometers.
 
- BULKD,
+ bulkD,
 ### Vector of numericals. Bulk density [kg.dm-3] of each soil 
 ### layer / horizon (unit not given in the article!). 
 
- SILT,
+ silt,
 ### Vector of numericals. Silt content [%] of each soil layer / 
 ### horizon. 2-50 micrometers. 
 
- OM
+ om
 ### Vector of numericals. Organic matter content [%] of each soil layer / 
 ### horizon. 
 
 ){  #
     l.star <- 
-        0.0202 + 0.0006193 * (CLAY^2) - 0.001136 * (OM^2) - 
-        0.2316 * log( OM, base = exp(1) ) - 0.03544 * BULKD * CLAY + 
-        0.00283 * BULKD * SILT + 0.0488 * BULKD * OM 
+        0.0202 + 0.0006193 * (clay^2) - 0.001136 * (om^2) - 
+        0.2316 * log( om, base = exp(1) ) - 0.03544 * bulkD * clay + 
+        0.00283 * bulkD * silt + 0.0488 * bulkD * om 
     #
     l <- ( 10*( exp(l.star) - 1 ) )/( 1 + exp(l.star) ) 
     #
@@ -214,33 +214,33 @@ ptf.wosten.ksat <- function(# Wosten et al. 1999 PTF for soil's saturated hydrau
 ## Le Bas C., 1999. Development and use of a database of hydraulic 
 ## properties of European soils. Geoderma 90:169-185.
 
- CLAY,
+ clay,
 ### Vector of numericals. Clay content [%] of each soil layer / 
 ### horizon. 0-2 micrometers.
 
- BULKD,
+ bulkD,
 ### Vector of numericals. Bulk density [kg.dm-3] of each soil 
 ### layer / horizon (unit not given in the article!). 
 
- SILT,
+ silt,
 ### Vector of numericals. Silt content [%] of each soil layer / 
 ### horizon. 2-50 micrometers. 
 
- OM,
+ om,
 ### Vector of numericals. Organic matter content [%] of each soil layer / 
 ### horizon. 
 
- topsoil 
+ topSoil 
 ### Vector of 0 or 1 integers. Set to 1 if the layer is a topsoil, 
 ### and to 0 if it is a subsoil, for each layer / horizon.
 
 ){  #
     k.sat.star <- 
-        7.755 + 0.0352 * SILT + 0.93 * topsoil - 0.967 * (BULKD^2) - 
-        0.000484 * (CLAY^2) - 0.000322 * (SILT^2) + 0.001 * (SILT^-1) - 
-        0.0748 * (OM^-1) - 0.643 * log( SILT, base = exp(1) ) - 
-        0.01398 * BULKD * CLAY - 0.1673 * BULKD * OM + 
-        0.02986 * topsoil * CLAY - 0.03305 * topsoil * SILT 
+        7.755 + 0.0352 * silt + 0.93 * topSoil - 0.967 * (bulkD^2) - 
+        0.000484 * (clay^2) - 0.000322 * (silt^2) + 0.001 * (silt^-1) - 
+        0.0748 * (om^-1) - 0.643 * log( silt, base = exp(1) ) - 
+        0.01398 * bulkD * clay - 0.1673 * bulkD * om + 
+        0.02986 * topSoil * clay - 0.03305 * topSoil * silt 
     #
     k.sat <- exp( k.sat.star ) 
     #

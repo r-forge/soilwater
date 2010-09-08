@@ -31,17 +31,17 @@ fun.vangenuchten.se.h <- function(# van Genuchten 1980's function for soil relat
 
  n,
 ### Single numerical. n shape parameter of the Van Genuchten water 
-### retention function, dimensionless [-]. See also the 'c.par' 
+### retention function, dimensionless [-]. See also the 'cPar' 
 ### parameter that, along with 'n', is used to calculate van Genuchten's 
 ### m parameter.
 
- c.par=1
+ cPar=1
 ### Single numerical. Value of the c parameter of the Van Genuchten 
 ### water retention function, that allows to calculate the m parameter 
-### so m = (1 - c.par/n). Dimensionless [-]. Usually fixed / constant.
+### so m = (1 - cPar/n). Dimensionless [-]. Usually fixed / constant.
 
 ){  #
-    m <- (1 - (c.par / n)) 
+    m <- (1 - (cPar / n)) 
     #
     return( 1 / ( ( 1 + ( alpha * -h )^n )^m ) ) 
 ### The function returns the relative water content (degree of 
@@ -73,20 +73,20 @@ fun.vangenuchten.theta.h <- function(# van Genuchten 1980's function theta(h) (w
 
  n,
 ### Single numerical. n shape parameter of the Van Genuchten water 
-### retention function, dimensionless [-]. See also the 'c.par' 
+### retention function, dimensionless [-]. See also the 'cPar' 
 ### parameter that, along with 'n', is used to calculate van Genuchten's 
 ### m parameter.
 
- c.par=1, 
+ cPar=1, 
 ### Single numerical. Value of the c parameter of the Van Genuchten 
 ### water retention function, that allows to calculate the m parameter 
-### so m = (1 - c.par/n). Dimensionless [-].
+### so m = (1 - cPar/n). Dimensionless [-].
 
- theta.s, 
+ thetaS, 
 ### Single numerical. Saturated water content of the soil, in [-] 
 ### or [m3 of water.m-3 of bulk soil].
 
- theta.r
+ thetaR
 ### Single numerical. Residual water content of the soil, in [-] 
 ### or [m3 of water.m-3 of bulk soil].
 
@@ -95,10 +95,10 @@ fun.vangenuchten.theta.h <- function(# van Genuchten 1980's function theta(h) (w
         h     = h, 
         alpha = alpha, 
         n     = n,
-        c.par = c.par  
+        cPar  = cPar  
     )   #
     #
-    return( Se * ( theta.s - theta.r ) + theta.r ) 
+    return( Se * ( thetaS - thetaR ) + thetaR ) 
 ### The function returns the water content [m3.m-3] at the given 
 ### tension h.
 }   #
@@ -122,16 +122,16 @@ fun.vangenuchten.se.theta <- function(# van Genuchten 1980's function for soil r
  theta,
 ### Vector of numerical. Water of the soil, in [m3.m-3]. 
 
- theta.r,
+ thetaR,
 ### Vector of numerical. Residual water content of the soil for 
 ### the Van Genuchten water retension function, in [m3.m-3]. 
 
- theta.s 
+ thetaS 
 ### Vector of numerical. Saturated water content of the soil for 
 ### the Van Genuchten water retension function, in [m3.m-3]. 
 
 ){  #
-    return( (theta - theta.r)/(theta.s - theta.r) ) 
+    return( (theta - thetaR)/(thetaS - thetaR) ) 
 ### The function returns the relative water content (degree of 
 ### saturation, Se, [-]).
 }   #
@@ -160,31 +160,31 @@ fun.vangenuchten.h.theta <- function(# van Genuchten 1980's function h(theta) (w
 
  n,
 ### Single numerical. n shape parameter of the Van Genuchten water 
-### retention function, dimensionless [-]. See also the 'c.par' 
+### retention function, dimensionless [-]. See also the 'cPar' 
 ### parameter that, along with 'n', is used to calculate van Genuchten's 
 ### m parameter.
 
- c.par=1, 
+ cPar=1, 
 ### Single numerical. Value of the c parameter of the Van Genuchten 
 ### water retention function, that allows to calculate the m parameter 
-### so m = (1 - c.par/n). Dimensionless [-].
+### so m = (1 - cPar/n). Dimensionless [-].
 
- theta.s, 
+ thetaS, 
 ### Single numerical. Saturated water content of the soil, in [-] 
 ### or [m3 of water.m-3 of bulk soil].
 
- theta.r
+ thetaR
 ### Single numerical. Residual water content of the soil, in [-] 
 ### or [m3 of water.m-3 of bulk soil].
 
 ){  #
     Se <- fun.vangenuchten.se.theta( 
         theta   = theta, 
-        theta.s = theta.s, 
-        theta.r = theta.r  
+        thetaS  = thetaS, 
+        thetaR  = thetaR  
     )   #
     #
-    m <- (1 - (c.par / n)) 
+    m <- (1 - (cPar / n)) 
     #
     return( (1/alpha) * ( ( Se^(-1/m) - 1 )^(1/n) ) ) 
 ### Returns a vector of soil water tension h, negative values 
@@ -227,7 +227,7 @@ fun.mualem.vangenuchten.K.h <- function(# Mualem (1976) & van Genuchten (1980)'s
 
  n,
 ### Single numerical. n shape parameter of the Van Genuchten water 
-### retention function, dimensionless [-]. See also the 'c.par' 
+### retention function, dimensionless [-]. See also the 'cPar' 
 ### parameter that, along with 'n', is used to calculate van Genuchten's 
 ### m parameter.
 
@@ -245,10 +245,10 @@ fun.mualem.vangenuchten.K.h <- function(# Mualem (1976) & van Genuchten (1980)'s
 ### Genuchten hydraulic conductivity function. Dimensionless [-]??. 
 ### b = 0.5 in the Mualem formulation, and 2 in the Burdine formulation.
 
- c.par=1
+ cPar=1
 ### Single numerical. Value of the c parameter of the Van Genuchten 
 ### water retention function, that allows to calculate the m parameter 
-### so that m = (1 - c.par/n). Dimensionless [-]. c.par = 1 in the 
+### so that m = (1 - cPar/n). Dimensionless [-]. cPar = 1 in the 
 ### Mualem formulation, and 2 in the Burdine formulation.
 
 ){  #
@@ -256,10 +256,10 @@ fun.mualem.vangenuchten.K.h <- function(# Mualem (1976) & van Genuchten (1980)'s
         h     = h, 
         alpha = alpha, 
         n     = n,
-        c.par = c.par  
+        cPar = cPar  
     )   #
     #
-    m  <- (1 - (c.par / n)) 
+    m  <- (1 - (cPar / n)) 
     #
     Kr <- (Se^b) * ( ( 1 - ( 1 - Se^(1/m) )^m )^a )
     #

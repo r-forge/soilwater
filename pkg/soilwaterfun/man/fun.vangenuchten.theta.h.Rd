@@ -4,7 +4,7 @@
 \description{Calculate the water content theta at a given tension h with 
 the Van Genuchten water retention function.}
 \usage{
-fun.vangenuchten.theta.h(h, alpha, n, c.par = 1, theta.s, theta.r)
+fun.vangenuchten.theta.h(h, alpha, n, cPar = 1, thetaS, thetaR)
 }
 \arguments{
   \item{h}{Vector of numerical. Matrix potential of the soil, in [m]. 
@@ -12,15 +12,15 @@ Values should be negative (suction).}
   \item{alpha}{Single numerical. alpha (shape) parameter of the Van Genuchten 
 water retention function, in [m-1] (inverse length unit of h).}
   \item{n}{Single numerical. n shape parameter of the Van Genuchten water 
-retention function, dimensionless [-]. See also the 'c.par' 
+retention function, dimensionless [-]. See also the 'cPar' 
 parameter that, along with 'n', is used to calculate van Genuchten's 
 m parameter.}
-  \item{c.par}{Single numerical. Value of the c parameter of the Van Genuchten 
+  \item{cPar}{Single numerical. Value of the c parameter of the Van Genuchten 
 water retention function, that allows to calculate the m parameter 
-so m = (1 - c.par/n). Dimensionless [-].}
-  \item{theta.s}{Single numerical. Saturated water content of the soil, in [-] 
+so m = (1 - cPar/n). Dimensionless [-].}
+  \item{thetaS}{Single numerical. Saturated water content of the soil, in [-] 
 or [m3 of water.m-3 of bulk soil].}
-  \item{theta.r}{Single numerical. Residual water content of the soil, in [-] 
+  \item{thetaR}{Single numerical. Residual water content of the soil, in [-] 
 or [m3 of water.m-3 of bulk soil].}
 }
 
@@ -45,8 +45,8 @@ fun.vangenuchten.theta.h(
     h       = -c(0,0.01,0.1,1,10,100,158), 
     alpha   = 3.561099, 
     n       = 1.212074, 
-    theta.s = 0.4162380, 
-    theta.r = 0  
+    thetaS  = 0.4162380, 
+    thetaR  = 0  
 )   #
 
 curve( 
@@ -54,8 +54,8 @@ curve(
         h       = -x, 
         alpha   = 3.561099, 
         n       = 1.212074, 
-        theta.s = 0.4162380, 
-        theta.r = 0  
+        thetaS  = 0.4162380, 
+        thetaR  = 0  
     ),  #
     xlim = c(0.001,158), 
     col  = "red", 

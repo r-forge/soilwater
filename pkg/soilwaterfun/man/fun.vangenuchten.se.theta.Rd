@@ -5,13 +5,13 @@
 water content theta with the Van Genuchten water retention 
 function.}
 \usage{
-fun.vangenuchten.se.theta(theta, theta.r, theta.s)
+fun.vangenuchten.se.theta(theta, thetaR, thetaS)
 }
 \arguments{
   \item{theta}{Vector of numerical. Water of the soil, in [m3.m-3]. }
-  \item{theta.r}{Vector of numerical. Residual water content of the soil for 
+  \item{thetaR}{Vector of numerical. Residual water content of the soil for 
 the Van Genuchten water retension function, in [m3.m-3]. }
-  \item{theta.s}{Vector of numerical. Saturated water content of the soil for 
+  \item{thetaS}{Vector of numerical. Saturated water content of the soil for 
 the Van Genuchten water retension function, in [m3.m-3]. }
 }
 
@@ -34,6 +34,6 @@ Catena-Verlag, GeoEcology textbook, Germany. ISBN:
 # 3rd layer:
 fun.vangenuchten.se.theta( 
     theta   = c(0.4162380,0.4149725,0.3983120,0.3073250,0.1946693,0.1197170,0.1086555), 
-    theta.s = 0.4162380, 
-    theta.r = 0 
+    thetaS  = 0.4162380, 
+    thetaR  = 0 
 )   #}
