@@ -16,10 +16,10 @@ fun.campbell.theta.h <- function(# Campbell 1974 function for water retension, t
 ### Campbell 1974 equation, a simplification of Brooks and Corey 
 ### 1964 equation used in fun.brooks.corey.theta.h(), with theta.r 
 ### fixed to 0.
-### The model is: theta / theta.s = (h/h.a)^-(1/b.par) when h < h.a 
-### and theta = theta.s when h.a <= h < 0
+### The model is: theta / thetaS = (h/hA)^-(1/bPar) when h < hA 
+### and theta = thetaS when hA <= h < 0
 ### The advantage of Campbell's model is that it uses the same 
-### b.par parameter for both the water retention curve and 
+### bPar parameter for both the water retention curve and 
 ### the hydraulic conductivity.
 ##references<<Brooks & Corey, 1964. Hydraulic properties of porous 
 ## media. Colorado State University, Fort Collins, USA. Hydrology 
@@ -34,13 +34,13 @@ fun.campbell.theta.h <- function(# Campbell 1974 function for water retension, t
 ### Vector of numerical. Matrix potential of the soil, in [m]. 
 ### Values should be negative (suction).
 
- h.a,
+ hA,
 ### Single numerical. Matrix potential at the air entry point [m3.m-3]
 
- theta.s,
+ thetaS,
 ### Single numerical. Soil saturated water content [m3.m-3].
 
- b.par
+ bPar
 ### Single numerical. Campbell 'b' (shape) parameter (corresponds 
 ### to 1/lambda, where lambda is Brooks & Corey pore size 
 ### distribution index). 
@@ -48,10 +48,10 @@ fun.campbell.theta.h <- function(# Campbell 1974 function for water retension, t
 ){  #
     theta <- fun.brooks.corey.theta.h( 
         h       = h,
-        h.a     = h.a,
-        theta.s = theta.s,
+        hA      = hA,
+        thetaS  = thetaS,
         theta.r = 0,
-        lambda  = 1/b.par
+        lambda  = 1/bPar
     )   #
     #
     return( theta ) 
@@ -67,9 +67,9 @@ fun.campbell.theta.h <- function(# Campbell 1974 function for water retension, t
 fun.campbell.K.theta <- function(# Campbell 1974 function for hydraulic conductivity, K(theta) 
 ### Function that calculates soil hydraulic conductivity K after 
 ### Campbell 1974 equation, as a function of theta.
-### The model is: K = Ks * ((theta/theta.s)^(2*b.par + 3)) 
+### The model is: K = Ks * ((theta/thetaS)^(2*bPar + 3)) 
 ### The advantage of Campbell's model is that it uses the same 
-### b.par parameter for both the water retention curve and 
+### bPar parameter for both the water retention curve and 
 ### the hydraulic conductivity.
 ##references<<Brooks & Corey, 1964. Hydraulic properties of porous 
 ## media. Colorado State University, Fort Collins, USA. Hydrology 
@@ -83,7 +83,7 @@ fun.campbell.K.theta <- function(# Campbell 1974 function for hydraulic conducti
  theta,
 ### Vector of numerical. Soil water content(s) in [m3.m-3].
 
- theta.s,
+ thetaS,
 ### Single numerical. Soil saturated water content [m3.m-3].
 
  Ks,
@@ -91,12 +91,12 @@ fun.campbell.K.theta <- function(# Campbell 1974 function for hydraulic conducti
 ### length unit per unit of time [L.T-1] (the unit in which K is 
 ### resturned is the same as the unit in which Ks is given). 
 
- b.par
+ bPar
 ### Single numerical. Campbell 'b' (shape) parameter, same as in 
 ### fun.campbell.theta.h().
 
 ){  #
-    K <- Ks * ( ( theta / theta.s )^( 2 * b.par + 3 ) ) 
+    K <- Ks * ( ( theta / thetaS )^( 2 * bPar + 3 ) ) 
     #
     return( K ) 
 ### Returns a vector of numericals, K [L.T-1] for each theta 
@@ -114,11 +114,11 @@ fun.campbell.K.h <- function(# Campbell 1974 function for hydraulic conductivity
 ### This uses Campbell K(theta) equation presented in fun.campbell.K.theta(), 
 ### but theta is here replaced by h, using Campbell simplification 
 ### of Brooks & Corey water retention's curve.
-### The model is: K = Ks * ((h/h.a)^-(2+3/b.par)) 
+### The model is: K = Ks * ((h/hA)^-(2+3/bPar)) 
 ### The advantage of Campbell's model is that it uses the same 
-### b.par parameter for both the water retention curve and 
+### bPar parameter for both the water retention curve and 
 ### the hydraulic conductivity. 'm' parameter in Brooks & Corey's 
-### model is equal to 2+3/b.par.
+### model is equal to 2+3/bPar.
 ##references<<Brooks & Corey, 1964. Hydraulic properties of porous 
 ## media. Colorado State University, Fort Collins, USA. Hydrology 
 ## paper, 3; 
@@ -132,7 +132,7 @@ fun.campbell.K.h <- function(# Campbell 1974 function for hydraulic conductivity
 ### Vector of numerical. Matrix potential of the soil, in [m]. 
 ### Values should be negative (suction).
 
- h.a,
+ hA,
 ### Single numerical. Matrix potential at the air entry point [m3.m-3]
 
  Ks,
@@ -140,14 +140,14 @@ fun.campbell.K.h <- function(# Campbell 1974 function for hydraulic conductivity
 ### length unit per unit of time [L.T-1] (the unit in which K is 
 ### resturned is the same as the unit in which Ks is given). 
 
- b.par
+ bPar
 ### Single numerical. Campbell 'b' (shape) parameter, same as in 
 ### fun.campbell.theta.h().
 
 ){  #
-    K <- Ks * ( ( h / h.a )^-( 2 + 3 / b.par ) ) 
+    K <- Ks * ( ( h / hA )^-( 2 + 3 / bPar ) ) 
     #
-    K[ h >= h.a ] <- Ks 
+    K[ h >= hA ] <- Ks 
     #
     return( K ) 
 ### Returns a vector of numericals, K [L.T-1] for each h 
