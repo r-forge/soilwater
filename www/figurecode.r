@@ -1,7 +1,7 @@
 require( "soilwaterfun" ) 
 
 png( 
-    filename  = "C:/_MACRO_SE/pedometrics/www/vg.theta.h.png", 
+    filename  = "C:/_SOILWATER/www/vg.theta.h.png", 
     height    = 600, 
     width     = 600, 
     pointsize = 16  
@@ -12,8 +12,8 @@ curve(
         h       = -x, 
         alpha   = 3.561099, 
         n       = 1.212074, 
-        theta.s = 0.4162380, 
-        theta.r = 0  
+        thetaS  = 0.4162380, 
+        thetaR  = 0  
     ),  #
     xlim = c(0.01,1000), 
     ylim = c(0,0.5), 
