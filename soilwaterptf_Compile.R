@@ -3,7 +3,7 @@ wrapper.path <- "C:/_SOILWATER/R_CMD_wrapper.R"
 pkg.dir      <- "C:/_SOILWATER/pkg" 
 pkg.name     <- "soilwaterptf" 
 code.files   <- "soilwaterptf.R" 
-pkg.version  <- "1.0" 
+pkg.version  <- "1.01" 
 pkg.depends  <- "MASS" 
 
 

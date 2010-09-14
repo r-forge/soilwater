@@ -11,8 +11,8 @@ Mualem (1976) water retention and hydraulic conductivity functions (valid for Eu
 soils).}
 \details{
 \tabular{ll}{Package: \tab soilwaterptf\cr
-Version: \tab 1.0\cr
-Date: \tab 2010-09-08\cr
+Version: \tab 1.01\cr
+Date: \tab 2010-09-14\cr
 Title: \tab Wosten et al. 1999 pedotransfer functions for soil hydraulic properties.\cr
 Author: \tab Julien MOEYS <jules_m78-soiltexture@yahoo.fr>\cr
 Maintainer: \tab Julien MOEYS <jules_m78-soiltexture@yahoo.fr>\cr
