@@ -249,3 +249,146 @@ ptf.wosten.ksat <- function(# Wosten et al. 1999 PTF for soil's saturated hydrau
 ### length as the vector of value provided to each parameter. 
 ### Unit of K sat is [mm.h-1] [Length.Time-1] 
 }   #
+
+
+
+
+
+
+ptf.wosten <- function(
+### Function that calculates all the parameters of the van Genuchten 
+### and Mualem - vam Genuchten water retention and hydraulic 
+### conductivity functions using the complete set of PTFs created 
+### by Woesten et al. 1999. The code uses either R code or Fortran 
+### code to do the calculations, and is vectorised (works on several 
+### soil samples at a time) 
+
+ soilprop,
+### matrix or data.frame, with 5 columns: "clay", "bulkD", "silt", 
+### "om" and "topSoil". See soilwaterptf for the units.
+
+ fortran.c=TRUE,
+### Single logical. If TRUE uses fortran code instead od R code 
+### (presumably faster).
+
+ fortran.lib="soilwaterptf.dll",
+### Single character string. Internal. Name of the dll that contains 
+### the .Fortran sub-routine.
+
+ package="soilwaterptf"
+### Single character string. Internal. Name of the package that 
+### contains the dll.
+
+){  #
+    cnm <- c("clay", "bulkD", "silt", "om", "topSoil") 
+    #
+    if( !all(colnames( soilprop ) %in% cnm) )
+    {   #
+        stop( 
+            paste( 
+                sep = "", 
+                "colnames( soilprop ) must contain: ", 
+                paste( cnm, collapse = "," ), 
+                ". Now contains: ", 
+                paste( colnames( soilprop ), collapse = "," )  
+            )   #
+        )   #
+    }   #
+    #
+    soilprop <- soilprop[,cnm] 
+    #
+    soilprop <- as.matrix( soilprop ) 
+    storage.mode( soilprop ) <- "double" 
+    #
+    #Store the number of rows
+    nr <- as.integer( nrow( soilprop ) ) 
+    #
+    # Make a "returned" matrix of doubles
+    soilphy <- matrix( 
+        data = 0, 
+        nrow = nr, 
+        ncol = 5
+    )   #
+    #
+    storage.mode( soilphy ) <- "double" 
+    #
+    if( fortran.c )
+    {   #
+        # If the library hasn't been loaded yet, load it 
+        if( !is.loaded( fortran.lib ) ) 
+        {   #
+            lib.path <- file.path( 
+                .Library, 
+                package, 
+                "libs", 
+                fortran.lib 
+            )   #
+            #
+            dyn.load( lib.path, PACKAGE = package ) 
+        }   #
+        #
+        # empt <- as.double(0)
+        #
+        #Call Fortran
+        res = .Fortran( 
+            name      = "ptfWosten", 
+            nbrow     = nr, 
+            soilprop  = soilprop, 
+            soilphy   = soilphy, 
+            PACKAGE   = package  
+        )   #
+        #
+        #Unload dll
+        dyn.unload( lib.path ) 
+        #
+        #Return the resulting matrix
+        soilphy <- res[["soilphy"]] 
+    }else{ 
+        soilphy[,1] <- ptf.wosten.theta.s( 
+            clay    = soilprop[,"clay"],  # using index insteda of name
+            bulkD   = soilprop[,"bulkD"], #   only marginally improve 
+            silt    = soilprop[,"silt"],  #   the speed
+            om      = soilprop[,"om"], 
+            topSoil = soilprop[,"topSoil"]  
+        )   #
+        #
+        soilphy[,2] <- ptf.wosten.alpha( 
+            clay    = soilprop[,"clay"], 
+            bulkD   = soilprop[,"bulkD"], 
+            silt    = soilprop[,"silt"], 
+            om      = soilprop[,"om"], 
+            topSoil = soilprop[,"topSoil"]  
+        )   #
+        #
+        soilphy[,3] <- ptf.wosten.n( 
+            clay    = soilprop[,"clay"], 
+            bulkD   = soilprop[,"bulkD"], 
+            silt    = soilprop[,"silt"], 
+            om      = soilprop[,"om"], 
+            topSoil = soilprop[,"topSoil"]  
+        )   #
+        #
+        soilphy[,4] <- ptf.wosten.l( 
+            clay    = soilprop[,"clay"], 
+            bulkD   = soilprop[,"bulkD"], 
+            silt    = soilprop[,"silt"], 
+            om      = soilprop[,"om"]  
+        )   #
+        #
+        soilphy[,5] <- ptf.wosten.ksat( 
+            clay    = soilprop[,"clay"], 
+            bulkD   = soilprop[,"bulkD"], 
+            silt    = soilprop[,"silt"], 
+            om      = soilprop[,"om"], 
+            topSoil = soilprop[,"topSoil"]  
+        )   #
+    }   #
+    #
+    colnames( soilphy ) <- c( "thetaS", "alpha", "n", "l", "kSat" ) 
+    #
+    # print( class( soilphy ) ) 
+    # print( storage.mode( soilphy ) ) 
+    #
+    return( soilphy ) 
+### Returns a matrix with estimated soil physical properties.
+}   #
