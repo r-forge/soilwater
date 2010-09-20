@@ -21,7 +21,8 @@ horizon. }
 
 \value{The function returns a vector of l values of the same 
 length as the vector of value provided to each parameter. 
-Unit of l is ... }
+Unit of l is [-].
+l (validation / calibration?) R2 is 12\%.}
 \references{Wosten J.H.M., Lilly A., Nemes A., 
 Le Bas C., 1999. Development and use of a database of hydraulic 
 properties of European soils. Geoderma 90:169-185.}

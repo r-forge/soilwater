@@ -6,22 +6,22 @@ Campbell 1974 equation, as a function of h.
 This uses Campbell K(theta) equation presented in fun.campbell.K.theta(), 
 but theta is here replaced by h, using Campbell simplification 
 of Brooks & Corey water retention's curve.
-The model is: K = Ks * ((h/h.a)^-(2+3/b.par)) 
+The model is: K = Ks * ((h/hA)^-(2+3/bPar)) 
 The advantage of Campbell's model is that it uses the same 
-b.par parameter for both the water retention curve and 
+bPar parameter for both the water retention curve and 
 the hydraulic conductivity. 'm' parameter in Brooks & Corey's 
-model is equal to 2+3/b.par.}
+model is equal to 2+3/bPar.}
 \usage{
-fun.campbell.K.h(h, h.a, Ks, b.par)
+fun.campbell.K.h(h, hA, Ks, bPar)
 }
 \arguments{
   \item{h}{Vector of numerical. Matrix potential of the soil, in [m]. 
 Values should be negative (suction).}
-  \item{h.a}{Single numerical. Matrix potential at the air entry point [m3.m-3]}
+  \item{hA}{Single numerical. Matrix potential at the air entry point [m3.m-3]}
   \item{Ks}{Single numerical. Soil saturated hydraulic conductivity. In 
 length unit per unit of time [L.T-1] (the unit in which K is 
 resturned is the same as the unit in which Ks is given). }
-  \item{b.par}{Single numerical. Campbell 'b' (shape) parameter, same as in 
+  \item{bPar}{Single numerical. Campbell 'b' (shape) parameter, same as in 
 fun.campbell.theta.h().}
 }
 
@@ -44,17 +44,17 @@ Soil Science 117:6. pp. 311-314 }
 
 fun.campbell.K.h( 
     h       = seq(from=0,to=-10,by=-0.1), 
-    h.a     = -0.01, 
+    hA      = -0.01, 
     Ks      = 10, 
-    b.par   = 1/3 
+    bPar    = 1/3 
 )   #
 
 curve( 
     fun.campbell.K.h( 
         h       = -x, 
-        h.a     = -0.01, 
+        hA      = -0.01, 
         Ks      = 10, 
-        b.par   = 1/3 
+        bPar    = 1/3 
     ),  #
     xlim = c(0.001,10), 
     col  = "red", 

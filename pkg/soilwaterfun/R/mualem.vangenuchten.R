@@ -235,15 +235,14 @@ fun.mualem.vangenuchten.K.h <- function(# Mualem (1976) & van Genuchten (1980)'s
 ### Single numerical. Value of the a parameter of the Mualem - Van 
 ### Genuchten hydraulic conductivity function. Dimensionless [-]??. 
 ### a = 2 in the Mualem formulation, and 1 in the Burdine formulation.
-### Notice that in Rosetta 1.2 help, Schaap precise use the symbol 
-### L instead of a (and L is part of the parameters estimated by 
-### Rosetta pedotransfer functions). 'a' is a tortuosity or connectivity 
-### parameter 
 
  b=0.5,
 ### Single numerical. Value of the b parameter of the Mualem - Van 
 ### Genuchten hydraulic conductivity function. Dimensionless [-]??. 
 ### b = 0.5 in the Mualem formulation, and 2 in the Burdine formulation.
+### Notice that Schaaps et al.'s Rosetta 1.2 and Wosten et al. 1999 
+### are using the symbol 'L' (or 'l') instead of 'b'. 'b' is a 
+### tortuosity or connectivity parameter (Rosetta 1.2). 
 
  cPar=1
 ### Single numerical. Value of the c parameter of the Van Genuchten 

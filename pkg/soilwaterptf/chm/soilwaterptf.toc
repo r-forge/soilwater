@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HEAD></HEAD><HTML><BODY>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Package soilwaterptf:  Contents">
+<param name="Local" value="00Index.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Package soilwaterptf:  R objects">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="soilwaterptf-package">
+<param name="Local" value="soilwaterptf-package.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ptf.wosten">
+<param name="Local" value="ptf.wosten.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ptf.wosten.alpha">
+<param name="Local" value="ptf.wosten.alpha.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ptf.wosten.ksat">
+<param name="Local" value="ptf.wosten.ksat.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ptf.wosten.l">
+<param name="Local" value="ptf.wosten.l.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ptf.wosten.n">
+<param name="Local" value="ptf.wosten.n.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ptf.wosten.theta.s">
+<param name="Local" value="ptf.wosten.theta.s.html">
+</OBJECT>
+</UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Package soilwaterptf:  Titles">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ptf wosten">
+<param name="Local" value="ptf.wosten.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Wosten et al. 1999 pedotransfer functions for soil hydraulic properties.">
+<param name="Local" value="soilwaterptf-package.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Wosten et al. 1999 PTF for soil's saturated hydraulic conductivity.">
+<param name="Local" value="ptf.wosten.ksat.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Wosten et al. 1999 PTF for soil's saturated water content.">
+<param name="Local" value="ptf.wosten.theta.s.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Wosten et al. 1999 PTF for van Genuchten 1980 alpha parameter.">
+<param name="Local" value="ptf.wosten.alpha.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Wosten et al. 1999 PTF for van Genuchten 1980 l parameter.">
+<param name="Local" value="ptf.wosten.l.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Wosten et al. 1999 PTF for van Genuchten 1980 n parameter.">
+<param name="Local" value="ptf.wosten.n.html">
+</OBJECT>
+</UL>
+</UL>
+</BODY></HTML>

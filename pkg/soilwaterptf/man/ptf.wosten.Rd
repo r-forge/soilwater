@@ -12,7 +12,9 @@ ptf.wosten(soilprop, fortran.c = TRUE, fortran.lib = "soilwaterptf.dll", package
 }
 \arguments{
   \item{soilprop}{matrix or data.frame, with 5 columns: "clay", "bulkD", "silt", 
-"om" and "topSoil". See soilwaterptf for the units.}
+"om" and "topSoil". See soilwaterptf for more details. clay, 
+silt and om are expressed in [\%], bulkD is expressed in [kg.dm-3] 
+and topSoil should be 0 (= subsoil) or 1 (= topsoil).}
   \item{fortran.c}{Single logical. If TRUE uses fortran code instead od R code 
 (presumably faster).}
   \item{fortran.lib}{Single character string. Internal. Name of the dll that contains 
@@ -21,8 +23,14 @@ the .Fortran sub-routine.}
 contains the dll.}
 }
 
-\value{Returns a matrix with estimated soil physical properties.}
-
+\value{Returns a matrix with estimated soil physical properties, 
+"thetaS", "alpha", "n", "l" and "kSat", espressed in [m3.m-3], 
+[m-1], [-], [-] and [mm.h-1] respectively. thetaS, alpha, n, 
+l and ksat (validation / calibration?) R2 are 76\%, 20\%, 54\%, 
+12\% and 19\% respectively.}
+\references{Wosten J.H.M., Lilly A., Nemes A., 
+Le Bas C., 1999. Development and use of a database of hydraulic 
+properties of European soils. Geoderma 90:169-185.}
 \author{Julien MOEYS <jules_m78-soiltexture@yahoo.fr>}
 
 

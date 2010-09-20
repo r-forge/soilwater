@@ -16,6 +16,7 @@ ptf.wosten.theta.s <- function(# Wosten et al. 1999 PTF for soil's saturated wat
 ### water content (THETA_S) of a soil after its clay and silt 
 ### content, bulk density, organic matter content and topsoil or 
 ### subsoil qualifier. 
+## 
 ##references<< Wosten J.H.M., Lilly A., Nemes A., 
 ## Le Bas C., 1999. Development and use of a database of hydraulic 
 ## properties of European soils. Geoderma 90:169-185.
@@ -52,6 +53,7 @@ ptf.wosten.theta.s <- function(# Wosten et al. 1999 PTF for soil's saturated wat
 ### The function returns a vector of theta_s values of the same 
 ### length as the vector of value provided to each parameter. 
 ### Unit of theta_s is [-] or [m3 of water.m-3 of bulk soil].
+### thetaS (validation / calibration?) R2 is 76%.
 }   #
 
 
@@ -64,6 +66,7 @@ ptf.wosten.alpha <- function(# Wosten et al. 1999 PTF for van Genuchten 1980 alp
 ### of the Van Genuchten water retention function 
 ### of a soil after its clay and silt content, bulk density, 
 ### organic matter content and topsoil or subsoil qualifier. 
+## 
 ##references<< Wosten J.H.M., Lilly A., Nemes A., 
 ## Le Bas C., 1999. Development and use of a database of hydraulic 
 ## properties of European soils. Geoderma 90:169-185.
@@ -103,6 +106,7 @@ ptf.wosten.alpha <- function(# Wosten et al. 1999 PTF for van Genuchten 1980 alp
 ### The function returns a vector of alpha values of the same 
 ### length as the vector of value provided to each parameter. 
 ### Unit of alpha is [Length-1] (here [m-1])
+### alpha (validation / calibration?) R2 is 20%.
 }   #
 
 
@@ -115,6 +119,7 @@ ptf.wosten.n <- function(# Wosten et al. 1999 PTF for van Genuchten 1980 n param
 ### of the Van Genuchten water retention function 
 ### of a soil after its clay and silt content, bulk density, 
 ### organic matter content and topsoil or subsoil qualifier. 
+## 
 ##references<< Wosten J.H.M., Lilly A., Nemes A., 
 ## Le Bas C., 1999. Development and use of a database of hydraulic 
 ## properties of European soils. Geoderma 90:169-185.
@@ -153,6 +158,7 @@ ptf.wosten.n <- function(# Wosten et al. 1999 PTF for van Genuchten 1980 n param
 ### The function returns a vector of n values of the same 
 ### length as the vector of value provided to each parameter. 
 ### Unit of n is [-] dimensionless. 
+### n (validation / calibration?) R2 is 54%.
 }   #
 
 
@@ -165,6 +171,7 @@ ptf.wosten.l <- function(# Wosten et al. 1999 PTF for van Genuchten 1980 l param
 ### of the Van Genuchten water retention function 
 ### of a soil after its clay and silt content, bulk density and 
 ### organic matter content.
+## 
 ##references<< Wosten J.H.M., Lilly A., Nemes A., 
 ## Le Bas C., 1999. Development and use of a database of hydraulic 
 ## properties of European soils. Geoderma 90:169-185.
@@ -196,7 +203,8 @@ ptf.wosten.l <- function(# Wosten et al. 1999 PTF for van Genuchten 1980 l param
     return( l ) 
 ### The function returns a vector of l values of the same 
 ### length as the vector of value provided to each parameter. 
-### Unit of l is ... 
+### Unit of l is [-].
+### l (validation / calibration?) R2 is 12%.
 }   #
 
 
@@ -210,6 +218,7 @@ ptf.wosten.ksat <- function(# Wosten et al. 1999 PTF for soil's saturated hydrau
 ### Genuchten (1980) water retention function of a soil after its 
 ### clay and silt content, bulk density, organic matter content 
 ### and topsoil or subsoil qualifier. 
+## 
 ##references<< Wosten J.H.M., Lilly A., Nemes A., 
 ## Le Bas C., 1999. Development and use of a database of hydraulic 
 ## properties of European soils. Geoderma 90:169-185.
@@ -248,6 +257,7 @@ ptf.wosten.ksat <- function(# Wosten et al. 1999 PTF for soil's saturated hydrau
 ### The function returns a vector of K sat values of the same 
 ### length as the vector of value provided to each parameter. 
 ### Unit of K sat is [mm.h-1] [Length.Time-1] 
+### ksat (validation / calibration?) R2 is 19%.
 }   #
 
 
@@ -262,10 +272,16 @@ ptf.wosten <- function(
 ### by Woesten et al. 1999. The code uses either R code or Fortran 
 ### code to do the calculations, and is vectorised (works on several 
 ### soil samples at a time) 
+## 
+##references<< Wosten J.H.M., Lilly A., Nemes A., 
+## Le Bas C., 1999. Development and use of a database of hydraulic 
+## properties of European soils. Geoderma 90:169-185.
 
  soilprop,
 ### matrix or data.frame, with 5 columns: "clay", "bulkD", "silt", 
-### "om" and "topSoil". See soilwaterptf for the units.
+### "om" and "topSoil". See soilwaterptf for more details. clay, 
+### silt and om are expressed in [%], bulkD is expressed in [kg.dm-3] 
+### and topSoil should be 0 (= subsoil) or 1 (= topsoil).
 
  fortran.c=TRUE,
 ### Single logical. If TRUE uses fortran code instead od R code 
@@ -324,7 +340,7 @@ ptf.wosten <- function(
                 fortran.lib 
             )   #
             #
-            dyn.load( lib.path, PACKAGE = package ) 
+            dyn.load( lib.path) # , PACKAGE = package 
         }   #
         #
         # empt <- as.double(0)
@@ -390,5 +406,9 @@ ptf.wosten <- function(
     # print( storage.mode( soilphy ) ) 
     #
     return( soilphy ) 
-### Returns a matrix with estimated soil physical properties.
+### Returns a matrix with estimated soil physical properties, 
+### "thetaS", "alpha", "n", "l" and "kSat", espressed in [m3.m-3], 
+### [m-1], [-], [-] and [mm.h-1] respectively. thetaS, alpha, n, 
+### l and ksat (validation / calibration?) R2 are 76%, 20%, 54%, 
+### 12% and 19% respectively.
 }   #

@@ -2,15 +2,15 @@
 \alias{fun.brooks.corey.K.h}
 \title{Brooks & Corey 1964 function for hydraulic conductivity, K(h) }
 \description{Brooks and Corey 1964 model for soil hydraulic conductivity. 
-The model is: K / Ks = (h/h.a)^-m when h < h.a 
-and K = Ks when h.a <= h < 0}
+The model is: K / Ks = (h/hA)^-m when h < hA 
+and K = Ks when hA <= h < 0}
 \usage{
-fun.brooks.corey.K.h(h, h.a, Ks, m)
+fun.brooks.corey.K.h(h, hA, Ks, m)
 }
 \arguments{
   \item{h}{Vector of numerical. Matrix potential of the soil, in [m]. 
 Values should be negative (suction).}
-  \item{h.a}{Single numerical. Matrix potential at the air entry point [m3.m-3]}
+  \item{hA}{Single numerical. Matrix potential at the air entry point [m3.m-3]}
   \item{Ks}{Single numerical. Soil saturated hydraulic conductivity. In 
 length unit per unit of time [L.T-1] (the unit in which K is 
 resturned is the same as the unit in which Ks is given). }
@@ -34,7 +34,7 @@ GeoEcology textbook, Germany. ISBN : 9-923381-26-3., 370 p.}
 
 fun.brooks.corey.K.h( 
     h       = seq(from=0,to=-10,by=-0.1), 
-    h.a     = -0.01, 
+    hA      = -0.01, 
     Ks      = 10, 
     m       = 6 
 )   #
@@ -42,7 +42,7 @@ fun.brooks.corey.K.h(
 curve( 
     fun.brooks.corey.K.h( 
         h       = -x, 
-        h.a     = -0.01, 
+        hA      = -0.01, 
         Ks      = 10, 
         m       = 6 
     ),  #
