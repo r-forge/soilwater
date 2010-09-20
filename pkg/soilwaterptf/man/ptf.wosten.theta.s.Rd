@@ -23,7 +23,8 @@ and to 0 if it is a subsoil, for each layer / horizon.}
 
 \value{The function returns a vector of theta_s values of the same 
 length as the vector of value provided to each parameter. 
-Unit of theta_s is [-] or [m3 of water.m-3 of bulk soil].}
+Unit of theta_s is [-] or [m3 of water.m-3 of bulk soil].
+thetaS (validation / calibration?) R2 is 76\%.}
 \references{Wosten J.H.M., Lilly A., Nemes A., 
 Le Bas C., 1999. Development and use of a database of hydraulic 
 properties of European soils. Geoderma 90:169-185.}

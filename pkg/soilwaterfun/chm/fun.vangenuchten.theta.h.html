@@ -1,0 +1,121 @@
+<html><head><title>van Genuchten 1980's function theta(h) (water retension).</title>
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>fun.vangenuchten.theta.h(soilwaterfun)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   fun.vangenuchten.theta.h">
+<param name="keyword" value=" van Genuchten 1980's function theta(h) (water retension).">
+</object>
+
+
+<h2>van Genuchten 1980's function theta(h) (water retension).</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Calculate the water content theta at a given tension h with 
+the Van Genuchten water retention function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+fun.vangenuchten.theta.h(h, alpha, n, cPar = 1, thetaS, thetaR)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>h</code></td>
+<td>
+Vector of numerical. Matrix potential of the soil, in [m]. 
+Values should be negative (suction).</td></tr>
+<tr valign="top"><td><code>alpha</code></td>
+<td>
+Single numerical. alpha (shape) parameter of the Van Genuchten 
+water retention function, in [m-1] (inverse length unit of h).</td></tr>
+<tr valign="top"><td><code>n</code></td>
+<td>
+Single numerical. n shape parameter of the Van Genuchten water 
+retention function, dimensionless [-]. See also the 'cPar' 
+parameter that, along with 'n', is used to calculate van Genuchten's 
+m parameter.</td></tr>
+<tr valign="top"><td><code>cPar</code></td>
+<td>
+Single numerical. Value of the c parameter of the Van Genuchten 
+water retention function, that allows to calculate the m parameter 
+so m = (1 - cPar/n). Dimensionless [-].</td></tr>
+<tr valign="top"><td><code>thetaS</code></td>
+<td>
+Single numerical. Saturated water content of the soil, in [-] 
+or [m3 of water.m-3 of bulk soil].</td></tr>
+<tr valign="top"><td><code>thetaR</code></td>
+<td>
+Single numerical. Residual water content of the soil, in [-] 
+or [m3 of water.m-3 of bulk soil].</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+The function returns the water content [m3.m-3] at the given 
+tension h.</p>
+
+<h3>Author(s)</h3>
+
+<p>
+Julien MOEYS &lt;jules_m78-soiltexture@yahoo.fr&gt;
+</p>
+
+
+<h3>References</h3>
+
+<p>
+van Genuchten M. Th., 1980. A closed form equation 
+for predicting the hydraulic conductivity of unsaturated soils. 
+Soil Science Society of America Journal, 44:892-898.
+Kutilek M. &amp; Nielsen D.R., 1994. Soil hydrology. 
+Catena-Verlag, GeoEcology textbook, Germany. ISBN: 
+9-923381-26-3., 370 p.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>require( "soilwaterfun" ) 
+
+# Example with the properties of the Footprint soil type P22i, 
+# 3rd layer:
+fun.vangenuchten.theta.h( 
+    h       = -c(0,0.01,0.1,1,10,100,158), 
+    alpha   = 3.561099, 
+    n       = 1.212074, 
+    thetaS  = 0.4162380, 
+    thetaR  = 0  
+)   #
+
+curve( 
+    fun.vangenuchten.theta.h( 
+        h       = -x, 
+        alpha   = 3.561099, 
+        n       = 1.212074, 
+        thetaS  = 0.4162380, 
+        thetaR  = 0  
+    ),  #
+    xlim = c(0.001,158), 
+    col  = "red", 
+    log  = "x", 
+    xlab = "-h", 
+    ylab = expression( theta ) 
+)   #
+</pre>
+
+
+
+<hr><div align="center">[Package <em>soilwaterfun</em> version 1.0 <a href="00Index.html">Index]</a></div>
+
+</body></html>

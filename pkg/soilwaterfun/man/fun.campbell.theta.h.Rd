@@ -3,22 +3,22 @@
 \title{Campbell 1974 function for water retension, theta(h) }
 \description{Function that calculates soil water content theta after 
 Campbell 1974 equation, a simplification of Brooks and Corey 
-1964 equation used in fun.brooks.corey.theta.h(), with theta.r 
+1964 equation used in fun.brooks.corey.theta.h(), with thetaR 
 fixed to 0.
-The model is: theta / theta.s = (h/h.a)^-(1/b.par) when h < h.a 
-and theta = theta.s when h.a <= h < 0
+The model is: theta / thetaS = (h/hA)^-(1/bPar) when h < hA 
+and theta = thetaS when hA <= h < 0
 The advantage of Campbell's model is that it uses the same 
-b.par parameter for both the water retention curve and 
+bPar parameter for both the water retention curve and 
 the hydraulic conductivity.}
 \usage{
-fun.campbell.theta.h(h, h.a, theta.s, b.par)
+fun.campbell.theta.h(h, hA, thetaS, bPar)
 }
 \arguments{
   \item{h}{Vector of numerical. Matrix potential of the soil, in [m]. 
 Values should be negative (suction).}
-  \item{h.a}{Single numerical. Matrix potential at the air entry point [m3.m-3]}
-  \item{theta.s}{Single numerical. Soil saturated water content [m3.m-3].}
-  \item{b.par}{Single numerical. Campbell 'b' (shape) parameter (corresponds 
+  \item{hA}{Single numerical. Matrix potential at the air entry point [m3.m-3]}
+  \item{thetaS}{Single numerical. Soil saturated water content [m3.m-3].}
+  \item{bPar}{Single numerical. Campbell 'b' (shape) parameter (corresponds 
 to 1/lambda, where lambda is Brooks & Corey pore size 
 distribution index). }
 }
@@ -42,17 +42,17 @@ Soil Science 117:6. pp. 311-314 }
 
 fun.campbell.theta.h( 
     h       = seq(from=0,to=-10,by=-0.1), 
-    h.a     = -0.01, 
-    theta.s = 0.5, 
-    b.par   = 1/3 
+    hA      = -0.01, 
+    thetaS  = 0.5, 
+    bPar    = 1/3 
 )   #
 
 curve( 
     fun.campbell.theta.h( 
         h       = -x, 
-        h.a     = -0.01, 
-        theta.s = 0.5, 
-        b.par   = 1/3 
+        hA      = -0.01, 
+        thetaS  = 0.5, 
+        bPar    = 1/3 
     ), 
     xlim = c(0.001,10), 
     col  = "red", 

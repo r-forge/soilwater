@@ -1,0 +1,95 @@
+<html><head><title>van Genuchten 1980's function for soil relative saturation.</title>
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>fun.vangenuchten.se.h(soilwaterfun)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   fun.vangenuchten.se.h">
+<param name="keyword" value=" van Genuchten 1980's function for soil relative saturation.">
+</object>
+
+
+<h2>van Genuchten 1980's function for soil relative saturation.</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Calculate the relative saturation Se of a soil at a given 
+tension h with the Van Genuchten water retention function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+fun.vangenuchten.se.h(h, alpha, n, cPar = 1)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>h</code></td>
+<td>
+Vector of numerical. Matrix potential of the soil, in [m]. 
+Values should be negative (suction).</td></tr>
+<tr valign="top"><td><code>alpha</code></td>
+<td>
+Single numerical. alpha (shape) parameter of the Van Genuchten 
+water retention function, in [m-1] (inverse length unit of h).</td></tr>
+<tr valign="top"><td><code>n</code></td>
+<td>
+Single numerical. n shape parameter of the Van Genuchten water 
+retention function, dimensionless [-]. See also the 'cPar' 
+parameter that, along with 'n', is used to calculate van Genuchten's 
+m parameter.</td></tr>
+<tr valign="top"><td><code>cPar</code></td>
+<td>
+Single numerical. Value of the c parameter of the Van Genuchten 
+water retention function, that allows to calculate the m parameter 
+so m = (1 - cPar/n). Dimensionless [-]. Usually fixed / constant.</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+The function returns the relative water content (degree of 
+saturation, Se, [-]).</p>
+
+<h3>Author(s)</h3>
+
+<p>
+Julien MOEYS &lt;jules_m78-soiltexture@yahoo.fr&gt;
+</p>
+
+
+<h3>References</h3>
+
+<p>
+van Genuchten M. Th., 1980. A closed form equation 
+for predicting the hydraulic conductivity of unsaturated soils. 
+Soil Science Society of America Journal, 44:892-898.
+Kutilek M. &amp; Nielsen D.R., 1994. Soil hydrology. 
+Catena-Verlag, GeoEcology textbook, Germany. ISBN: 
+9-923381-26-3., 370 p.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>require( "soilwaterfun" ) 
+
+# Example with the properties of the Footprint soil type P22i, 
+# 3rd layer:
+fun.vangenuchten.se.h( 
+    h       = -c(0,0.01,0.1,1,10,100,158), 
+    alpha   = 3.561099, 
+    n       = 1.212074  
+)   #</pre>
+
+
+
+<hr><div align="center">[Package <em>soilwaterfun</em> version 1.0 <a href="00Index.html">Index]</a></div>
+
+</body></html>

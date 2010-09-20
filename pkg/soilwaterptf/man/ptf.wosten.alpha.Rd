@@ -23,7 +23,8 @@ and to 0 if it is a subsoil, for each layer / horizon.}
 
 \value{The function returns a vector of alpha values of the same 
 length as the vector of value provided to each parameter. 
-Unit of alpha is [Length-1] (here [m-1])}
+Unit of alpha is [Length-1] (here [m-1])
+alpha (validation / calibration?) R2 is 20\%.}
 \references{Wosten J.H.M., Lilly A., Nemes A., 
 Le Bas C., 1999. Development and use of a database of hydraulic 
 properties of European soils. Geoderma 90:169-185.}

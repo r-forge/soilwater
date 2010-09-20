@@ -14,7 +14,7 @@
 fun.campbell.theta.h <- function(# Campbell 1974 function for water retension, theta(h) 
 ### Function that calculates soil water content theta after 
 ### Campbell 1974 equation, a simplification of Brooks and Corey 
-### 1964 equation used in fun.brooks.corey.theta.h(), with theta.r 
+### 1964 equation used in fun.brooks.corey.theta.h(), with thetaR 
 ### fixed to 0.
 ### The model is: theta / thetaS = (h/hA)^-(1/bPar) when h < hA 
 ### and theta = thetaS when hA <= h < 0
@@ -50,7 +50,7 @@ fun.campbell.theta.h <- function(# Campbell 1974 function for water retension, t
         h       = h,
         hA      = hA,
         thetaS  = thetaS,
-        theta.r = 0,
+        thetaR  = 0,
         lambda  = 1/bPar
     )   #
     #

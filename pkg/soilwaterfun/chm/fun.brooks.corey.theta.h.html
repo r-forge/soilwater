@@ -1,0 +1,111 @@
+<html><head><title>Brooks & Corey 1964 function for water retension, theta(h)</title>
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>fun.brooks.corey.theta.h(soilwaterfun)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   fun.brooks.corey.theta.h">
+<param name="keyword" value=" Brooks & Corey 1964 function for water retension theta(h)">
+</object>
+
+
+<h2>Brooks & Corey 1964 function for water retension theta(h)</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Brooks and Corey 1964 model for soil water retension. 
+The model is: theta.e = (h/hA)^-lambda with 
+theta.e = (theta - thetaR) / (thetaS - thetaR) when h &lt; hA 
+and theta = thetaS when hA &lt;= h &lt; 0
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+fun.brooks.corey.theta.h(h, hA, thetaS, thetaR, lambda)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>h</code></td>
+<td>
+Vector of numerical. Matrix potential of the soil, in [m]. 
+Values should be negative (suction).</td></tr>
+<tr valign="top"><td><code>hA</code></td>
+<td>
+Single numerical. Matrix potential at the air entry point [m], 
+negative.</td></tr>
+<tr valign="top"><td><code>thetaS</code></td>
+<td>
+Single numerical. Soil saturated water content [m3.m-3].</td></tr>
+<tr valign="top"><td><code>thetaR</code></td>
+<td>
+Single numerical. Soil residual water content [m3.m-3].</td></tr>
+<tr valign="top"><td><code>lambda</code></td>
+<td>
+Single numerical. Brook &amp; Corey lambda (shape) parameter [-] 
+(pore size distribution index, approx. from 2 to 5). </td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+Returns a vector of numericals, theta [m3.m-3] for each h 
+values provided.</p>
+
+<h3>Author(s)</h3>
+
+<p>
+Julien MOEYS &lt;jules_m78-soiltexture@yahoo.fr&gt;
+</p>
+
+
+<h3>References</h3>
+
+<p>
+Brooks &amp; Corey, 1964. Hydraulic properties of porous 
+media. Colorado State University, Fort Collins, USA. Hydrology 
+paper, 3; 
+Kutilek M. &amp; Nielsen D.R., 1994. Soil hydrology. Catena-Verlag, 
+GeoEcology textbook, Germany. ISBN : 9-923381-26-3., 370 p.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>require( "soilwaterfun" ) 
+
+fun.brooks.corey.theta.h( 
+    h       = seq( from = 0, to = -10, by = -0.1 ), 
+    hA      = -0.01, 
+    thetaS  = 0.5, 
+    thetaR  = 0.1, 
+    lambda  = 3 
+)   #
+
+curve( 
+    fun.brooks.corey.theta.h( 
+        h       = -x, 
+        hA      = -0.01, 
+        thetaS  = 0.5, 
+        thetaR  = 0.1, 
+        lambda  = 3 
+    ), 
+    xlim = c(0.001,10), 
+    col  = "red", 
+    log  = "x", 
+    xlab = "-h", 
+    ylab = expression( theta )
+)   #
+abline( v = 0.01 )</pre>
+
+
+
+<hr><div align="center">[Package <em>soilwaterfun</em> version 1.0 <a href="00Index.html">Index]</a></div>
+
+</body></html>

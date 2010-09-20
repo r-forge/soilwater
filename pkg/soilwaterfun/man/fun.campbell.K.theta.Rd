@@ -3,20 +3,20 @@
 \title{Campbell 1974 function for hydraulic conductivity, K(theta) }
 \description{Function that calculates soil hydraulic conductivity K after 
 Campbell 1974 equation, as a function of theta.
-The model is: K = Ks * ((theta/theta.s)^(2*b.par + 3)) 
+The model is: K = Ks * ((theta/thetaS)^(2*bPar + 3)) 
 The advantage of Campbell's model is that it uses the same 
-b.par parameter for both the water retention curve and 
+bPar parameter for both the water retention curve and 
 the hydraulic conductivity.}
 \usage{
-fun.campbell.K.theta(theta, theta.s, Ks, b.par)
+fun.campbell.K.theta(theta, thetaS, Ks, bPar)
 }
 \arguments{
   \item{theta}{Vector of numerical. Soil water content(s) in [m3.m-3].}
-  \item{theta.s}{Single numerical. Soil saturated water content [m3.m-3].}
+  \item{thetaS}{Single numerical. Soil saturated water content [m3.m-3].}
   \item{Ks}{Single numerical. Soil saturated hydraulic conductivity. In 
 length unit per unit of time [L.T-1] (the unit in which K is 
 resturned is the same as the unit in which Ks is given). }
-  \item{b.par}{Single numerical. Campbell 'b' (shape) parameter, same as in 
+  \item{bPar}{Single numerical. Campbell 'b' (shape) parameter, same as in 
 fun.campbell.theta.h().}
 }
 
@@ -39,17 +39,17 @@ Soil Science 117:6. pp. 311-314 }
 
 fun.campbell.K.theta( 
     theta   = seq(from=0,to=0.5,by=0.1), 
-    theta.s = 0.5, 
+    thetaS  = 0.5, 
     Ks      = 10, 
-    b.par   = 1/3 
+    bPar    = 1/3 
 )   #
 
 curve( 
     fun.campbell.K.theta( 
         theta   = x, 
-        theta.s = 0.5, 
+        thetaS  = 0.5, 
         Ks      = 10, 
-        b.par   = 1/3 
+        bPar    = 1/3 
     ),  #
     xlim = c(0.01,0.5), 
     col  = "red", 

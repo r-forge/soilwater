@@ -24,7 +24,8 @@ and to 0 if it is a subsoil, for each layer / horizon.}
 
 \value{The function returns a vector of K sat values of the same 
 length as the vector of value provided to each parameter. 
-Unit of K sat is [mm.h-1] [Length.Time-1] }
+Unit of K sat is [mm.h-1] [Length.Time-1] 
+ksat (validation / calibration?) R2 is 19\%.}
 \references{Wosten J.H.M., Lilly A., Nemes A., 
 Le Bas C., 1999. Development and use of a database of hydraulic 
 properties of European soils. Geoderma 90:169-185.}
