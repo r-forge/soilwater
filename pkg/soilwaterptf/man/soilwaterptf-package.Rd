@@ -12,7 +12,7 @@ soils).}
 \details{
 \tabular{ll}{Package: \tab soilwaterptf\cr
 Version: \tab 1.01\cr
-Date: \tab 2010-09-20\cr
+Date: \tab 2010-09-22\cr
 Title: \tab Wosten et al. 1999 pedotransfer functions for soil hydraulic properties.\cr
 Author: \tab Julien MOEYS <jules_m78-soiltexture@yahoo.fr>\cr
 Maintainer: \tab Julien MOEYS <jules_m78-soiltexture@yahoo.fr>\cr

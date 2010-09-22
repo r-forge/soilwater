@@ -1,4 +1,4 @@
-# source( "C:/_MACRO_SE/pedometrics/soilwaterptf/trunk/soilwaterptf/R/soilwaterptf.R" ) 
+# source( "C:/_SOILWATER/pkg/soilwaterptf/R/ptf.wosten.R" ) 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 # Language & Software environment: R. 
@@ -330,18 +330,24 @@ ptf.wosten <- function(
     #
     if( fortran.c )
     {   #
-        # If the library hasn't been loaded yet, load it 
-        if( !is.loaded( fortran.lib ) ) 
-        {   #
-            lib.path <- file.path( 
-                .Library, 
-                package, 
-                "libs", 
-                fortran.lib 
-            )   #
-            #
-            dyn.load( lib.path) # , PACKAGE = package 
-        }   #
+        # # If the library hasn't been loaded yet, load it 
+        # if( !is.loaded( fortran.lib ) ) 
+        # {   #
+        #     lib.path <- file.path( 
+        #         .Library, 
+        #         package, 
+        #         "libs", 
+        #         fortran.lib 
+        #     )   #
+        #     #
+        #     dyn.load( lib.path) # , PACKAGE = package 
+        # }   #
+        #
+        tmp <- library.dynam( 
+            chname  = fortran.lib, 
+            package = package 
+        )   #
+        tmp <- tmp[["path"]] 
         #
         # empt <- as.double(0)
         #
@@ -354,8 +360,29 @@ ptf.wosten <- function(
             PACKAGE   = package  
         )   #
         #
-        #Unload dll
-        dyn.unload( lib.path ) 
+        ## Unload dll
+        # dyn.unload( lib.path ) 
+        #
+        # Does not work for some reasons (only when compiling):
+        # pos <- which( # Copied / modified from library.dynam() code.
+        #     sapply( 
+        #         X   = .dynLibs(), 
+        #         FUN = function(X){
+        #             X[["path"]] == tmp 
+        #         }   #
+        #     )   #
+        # )   #
+        # #
+        # if( length(pos) != 0 )
+        # {   #
+        #     library.dynam.unload( 
+        #         chname  = fortran.lib,
+        #         libpath = file.path(
+        #             .Library, 
+        #             package 
+        #         )   #
+        #     )   #
+        # }   #
         #
         #Return the resulting matrix
         soilphy <- res[["soilphy"]] 
