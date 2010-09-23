@@ -1,3 +1,4 @@
+# source( "C:/_SOILWATER/soilwaterptf_Compile.R", echo = TRUE, verbose = FALSE ) 
 rm(list=ls(all=TRUE)) 
 pkg.dir      <- "C:/_SOILWATER/pkg" 
 pkg.name     <- "soilwaterptf" 

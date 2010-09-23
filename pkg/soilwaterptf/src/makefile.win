@@ -1,0 +1,8 @@
+soilwaterptf.o: soilwaterptf.f90 
+	gfortran -O3  -c  soilwaterptf.f90 -o soilwaterptf.o
+	gfortran -shared -s -static-libgcc -o soilwaterptf.dll soilwaterptf.o 
+	rm -f *.o 
+
+clean:
+	echo 'Using Makefile.win' 
+	rm -f *.o *.dll 
