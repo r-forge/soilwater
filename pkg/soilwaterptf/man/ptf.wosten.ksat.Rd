@@ -33,7 +33,7 @@ properties of European soils. Geoderma 90:169-185.}
 
 
 
-
+\seealso{\code{\link{ptf.wosten}}, }
 \examples{require( "soilwaterptf" ) 
 
 # Example with the properties of the Footprint soil type P22i:

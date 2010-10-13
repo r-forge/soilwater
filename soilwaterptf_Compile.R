@@ -3,7 +3,7 @@ rm(list=ls(all=TRUE))
 pkg.dir      <- "C:/_SOILWATER/pkg" 
 pkg.name     <- "soilwaterptf" 
 pkg.version  <- "1.01" 
-pkg.depends  <- "MASS" # or "MASS" or NULL 
+pkg.depends  <- "soiltexture" # or "MASS" or NULL 
 pkg.suggests <- NULL 
 RVersion     <- "R (>= 2.4.1)" 
 # r.path       <- "C:/Program Files/_SCIENCE/R_PROJECT_2-4-1/bin" 

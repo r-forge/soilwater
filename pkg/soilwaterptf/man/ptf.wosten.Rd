@@ -1,8 +1,8 @@
 \name{ptf.wosten}
 \alias{ptf.wosten}
-\title{ptf wosten}
+\title{Wosten et al. 1999 PTF for all Mualem - van Genuchten functions' parameters.}
 \description{Function that calculates all the parameters of the van Genuchten 
-and Mualem - vam Genuchten water retention and hydraulic 
+and Mualem - van Genuchten water retention and hydraulic 
 conductivity functions using the complete set of PTFs created 
 by Woesten et al. 1999. The code uses either R code or Fortran 
 code to do the calculations, and is vectorised (works on several 
@@ -11,10 +11,19 @@ soil samples at a time) }
 ptf.wosten(soilprop, fortran.c = TRUE, fortran.lib = "soilwaterptf.dll", package = "soilwaterptf")
 }
 \arguments{
-  \item{soilprop}{matrix or data.frame, with 5 columns: "clay", "bulkD", "silt", 
-"om" and "topSoil". See soilwaterptf for more details. clay, 
-silt and om are expressed in [\%], bulkD is expressed in [kg.dm-3] 
-and topSoil should be 0 (= subsoil) or 1 (= topsoil).}
+  \item{soilprop}{matrix or data.frame, with 5 columns: 
+\enumerate{ 
+  \item "clay", Clay content [\%] of each soil layer / horizon. 
+        0-2 micrometers.; 
+  \item "bulkD", Bulk density [kg.dm-3] of each soil layer / 
+        horizon;  
+  \item "silt", Silt content [\%] of each soil layer / horizon. 
+        2-50 micrometers; 
+  \item "om", Organic matter content [\%] of each soil layer / 
+        horizon; 
+  \item "topSoil", Set to 1 if the layer is a topsoil, and to 
+        0 if it is a subsoil, for each layer / horizon.
+} }
   \item{fortran.c}{Single logical. If TRUE uses fortran code instead od R code 
 (presumably faster).}
   \item{fortran.lib}{Single character string. Internal. Name of the dll that contains 
@@ -35,7 +44,9 @@ properties of European soils. Geoderma 90:169-185.}
 
 
 
-
+\seealso{The Mualem - van Genuchten functions functions are 
+implemented in the package \pkg{soilwaterfun}, 
+\url{https://r-forge.r-project.org/R/?group_id=863}. }
 \examples{require( "soilwaterptf" ) 
 
 

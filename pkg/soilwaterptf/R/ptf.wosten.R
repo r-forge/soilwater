@@ -16,7 +16,9 @@ ptf.wosten.theta.s <- function(# Wosten et al. 1999 PTF for soil's saturated wat
 ### water content (THETA_S) of a soil after its clay and silt 
 ### content, bulk density, organic matter content and topsoil or 
 ### subsoil qualifier. 
-## 
+
+##seealso<<\code{\link{ptf.wosten}}, 
+
 ##references<< Wosten J.H.M., Lilly A., Nemes A., 
 ## Le Bas C., 1999. Development and use of a database of hydraulic 
 ## properties of European soils. Geoderma 90:169-185.
@@ -66,7 +68,9 @@ ptf.wosten.alpha <- function(# Wosten et al. 1999 PTF for van Genuchten 1980 alp
 ### of the Van Genuchten water retention function 
 ### of a soil after its clay and silt content, bulk density, 
 ### organic matter content and topsoil or subsoil qualifier. 
-## 
+
+##seealso<<\code{\link{ptf.wosten}}, 
+
 ##references<< Wosten J.H.M., Lilly A., Nemes A., 
 ## Le Bas C., 1999. Development and use of a database of hydraulic 
 ## properties of European soils. Geoderma 90:169-185.
@@ -119,7 +123,9 @@ ptf.wosten.n <- function(# Wosten et al. 1999 PTF for van Genuchten 1980 n param
 ### of the Van Genuchten water retention function 
 ### of a soil after its clay and silt content, bulk density, 
 ### organic matter content and topsoil or subsoil qualifier. 
-## 
+
+##seealso<<\code{\link{ptf.wosten}}, 
+
 ##references<< Wosten J.H.M., Lilly A., Nemes A., 
 ## Le Bas C., 1999. Development and use of a database of hydraulic 
 ## properties of European soils. Geoderma 90:169-185.
@@ -171,7 +177,9 @@ ptf.wosten.l <- function(# Wosten et al. 1999 PTF for van Genuchten 1980 l param
 ### of the Van Genuchten water retention function 
 ### of a soil after its clay and silt content, bulk density and 
 ### organic matter content.
-## 
+
+##seealso<<\code{\link{ptf.wosten}}, 
+
 ##references<< Wosten J.H.M., Lilly A., Nemes A., 
 ## Le Bas C., 1999. Development and use of a database of hydraulic 
 ## properties of European soils. Geoderma 90:169-185.
@@ -218,7 +226,9 @@ ptf.wosten.ksat <- function(# Wosten et al. 1999 PTF for soil's saturated hydrau
 ### Genuchten (1980) water retention function of a soil after its 
 ### clay and silt content, bulk density, organic matter content 
 ### and topsoil or subsoil qualifier. 
-## 
+
+##seealso<<\code{\link{ptf.wosten}}, 
+
 ##references<< Wosten J.H.M., Lilly A., Nemes A., 
 ## Le Bas C., 1999. Development and use of a database of hydraulic 
 ## properties of European soils. Geoderma 90:169-185.
@@ -265,23 +275,36 @@ ptf.wosten.ksat <- function(# Wosten et al. 1999 PTF for soil's saturated hydrau
 
 
 
-ptf.wosten <- function(
+ptf.wosten <- function(# Wosten et al. 1999 PTF for all Mualem - van Genuchten functions' parameters.
 ### Function that calculates all the parameters of the van Genuchten 
-### and Mualem - vam Genuchten water retention and hydraulic 
+### and Mualem - van Genuchten water retention and hydraulic 
 ### conductivity functions using the complete set of PTFs created 
 ### by Woesten et al. 1999. The code uses either R code or Fortran 
 ### code to do the calculations, and is vectorised (works on several 
 ### soil samples at a time) 
-## 
+
+##seealso<<The Mualem - van Genuchten functions functions are 
+## implemented in the package \pkg{soilwaterfun}, 
+## \url{https://r-forge.r-project.org/R/?group_id=863}. 
+
 ##references<< Wosten J.H.M., Lilly A., Nemes A., 
 ## Le Bas C., 1999. Development and use of a database of hydraulic 
 ## properties of European soils. Geoderma 90:169-185.
 
  soilprop,
-### matrix or data.frame, with 5 columns: "clay", "bulkD", "silt", 
-### "om" and "topSoil". See soilwaterptf for more details. clay, 
-### silt and om are expressed in [%], bulkD is expressed in [kg.dm-3] 
-### and topSoil should be 0 (= subsoil) or 1 (= topsoil).
+### matrix or data.frame, with 5 columns: 
+### \enumerate{ 
+###   \item "clay", Clay content [%] of each soil layer / horizon. 
+###         0-2 micrometers.; 
+###   \item "bulkD", Bulk density [kg.dm-3] of each soil layer / 
+###         horizon;  
+###   \item "silt", Silt content [%] of each soil layer / horizon. 
+###         2-50 micrometers; 
+###   \item "om", Organic matter content [%] of each soil layer / 
+###         horizon; 
+###   \item "topSoil", Set to 1 if the layer is a topsoil, and to 
+###         0 if it is a subsoil, for each layer / horizon.
+### } 
 
  fortran.c=TRUE,
 ### Single logical. If TRUE uses fortran code instead od R code 
@@ -438,4 +461,192 @@ ptf.wosten <- function(
 ### [m-1], [-], [-] and [mm.h-1] respectively. thetaS, alpha, n, 
 ### l and ksat (validation / calibration?) R2 are 76%, 20%, 54%, 
 ### 12% and 19% respectively.
+}   #
+
+
+
+
+
+
+classPtf.wosten <- function(# Wosten et al. 1999 class PTF for all Mualem - van Genuchten functions' parameters.
+### Function that calculates all the parameters of the van Genuchten 
+### and Mualem - van Genuchten water retention and hydraulic 
+### conductivity functions using the complete set of _class_ PTFs 
+### created by Woesten et al. 1999. This version of the PTFs uses 
+### lookup values calculated for different texture classes of the 
+### FAO texture triangle. Texture classes abbreviation can either 
+### be provided directly by the user or calculated from the clay, 
+### silt and sand content. The code is vectorised (works on several 
+### soil samples at a time).
+
+##seealso<<The Mualem - van Genuchten functions functions are 
+## implemented in the package \pkg{soilwaterfun}, 
+## \url{https://r-forge.r-project.org/R/?group_id=863}. 
+
+##references<< Wosten J.H.M., Lilly A., Nemes A., 
+## Le Bas C., 1999. Development and use of a database of hydraulic 
+## properties of European soils. Geoderma 90:169-185.
+
+ soilprop,
+### matrix or data.frame, with 2 to 5 columns: 
+### \enumerate{ 
+###   \item "textureClass", abbreviation of the texture class according 
+###         to the FAO texture triangle (with silt-sand limit at 50
+###         micrometers). These abbreviations must be chosen according 
+###         to those used in the package \pkg{soiltexture}: "VF" 
+###         for very fine, "F" for fine, "MF" for medium fine, "M" 
+###         for medium and "C" for coarse. If _any_ of the "textureClass" 
+###         value is NA, then the function looks for columns "clay", 
+###         "silt" and "sand" in soilProp and calculates the textureClass 
+###         from them using the package \pkg{soiltexture}.
+###   \item "isOrganic", set to 1 if the layer is an organic layer, 
+###         like FAO "O" and "H" Master horizon designations, and 0 
+###         otherwise; 
+###   \item "clay", Clay content [%] of each soil layer / horizon. 
+###         0-2 micrometers. Not needed if the "textureClass" is 
+###         not NA; 
+###   \item "silt", Silt content [%] of each soil layer / horizon. 
+###         2-50 micrometersNot needed if the "textureClass" is 
+###         not NA; 
+###   \item "sand", Sand content [%] of each soil layer / horizon. 
+###         50-2000 micrometersNot needed if the "textureClass" is 
+###         not NA.
+### } 
+### Notice that if clay silt sand texture data are used to define 
+### textureClass and if a given sample lies precisely on the edge 
+### or on a vertice between 2 or more texture classes, then only 
+### one texture class will be chosen, according to the priority 
+### "VF" > "F" > "M" > "MF" > "C" (which is the order of the classes 
+### given by 
+### \code{names( soiltexture:::TT.get("FAO50.TT")[["tt.polygons"]] )}). 
+
+ dat.css.ps.lim=NULL,
+### Vector of 4 numericals. Set this and \code{css.transf} if 
+### your texture data are not in a particle size classes system with 
+### a silt-sand limit at 50 micrometers. See 
+### \code{\link[soiltexture]{TT.points.in.classes}} for details.
+
+ css.transf=FALSE,
+### Single logical. Set to TRUE of you want to transform the soil 
+### texture data into a system with a 50 micrometers limit between 
+### silt and sand. See \code{\link[soiltexture]{TT.points.in.classes}} 
+### for details.
+
+ text.transf.fun=NULL,
+### See \code{\link[soiltexture]{TT.points.in.classes}} for details.
+
+ trsf.add.opt1=NULL,
+### Non pre-defined format. See \code{\link[soiltexture]{TT.points.in.classes}} 
+### for details.
+
+ trsf.add.opt2=NULL,
+### Non pre-defined format. See \code{\link[soiltexture]{TT.points.in.classes}} 
+### for details.
+
+ text.tol=NULL,
+### Single numerical. See \code{\link[soiltexture]{TT.points.in.classes}} 
+### for details.
+
+ tri.sum.tst=NULL,
+### Single logical. See \code{\link[soiltexture]{TT.points.in.classes}} 
+### for details.
+
+ tri.pos.tst=NULL,
+### Single logical. See \code{\link[soiltexture]{TT.points.in.classes}} 
+### for details.
+
+ texture2xy=FALSE 
+### Single logical. See \code{\link[soiltexture]{TT.points.in.classes}} 
+### for details.
+
+){  #
+    cnm <- c("textureClass", "isOrganic") 
+    #
+    if( !all(colnames( soilprop ) %in% cnm) )
+    {   #
+        stop( 
+            paste( 
+                sep = "", 
+                "colnames( soilprop ) must contain: ", 
+                paste( cnm, collapse = "; " ), 
+                ". Now contains: ", 
+                paste( colnames( soilprop ), collapse = "; " )  
+            )   #
+        )   #
+    }   #
+    #
+    require( "soiltexture" ) 
+    #
+    if( any( is.na( soilProp[,"textureClass"] ) ) ) 
+    {   #
+        cnm <- c(cnn,"clay", "silt","sand") 
+        #
+        if( !all(colnames( soilprop ) %in% cnm) )
+        {   #
+            stop( 
+                paste( 
+                    sep = "", 
+                    "colnames( soilprop ) must contain: ", 
+                    paste( cnm, collapse = "; " ), 
+                    ". Now contains: ", 
+                    paste( colnames( soilprop ), collapse = "; " )  
+                )   #
+            )   #
+        }   #
+        #
+        textureClass <- TT.points.in.classes(
+            tri.data        = soilProp, 
+            class.sys       = "FAO50.TT", 
+            PiC.type        = "l", 
+            css.names       = c("clay","silt","sand"), 
+            text.sum        = 100, 
+            base.css.ps.lim = NULL, 
+            tri.css.ps.lim  = NULL, 
+            dat.css.ps.lim  = dat.css.ps.lim, 
+            css.transf      = css.transf, 
+            text.transf.fun = text.transf.fun, 
+            trsf.add.opt1   = trsf.add.opt1, 
+            trsf.add.opt2   = trsf.add.opt2, 
+            text.tol        = text.tol, 
+            tri.sum.tst     = tri.sum.tst, 
+            tri.pos.tst     = tri.pos.tst, 
+            texture2xy      = texture2xy  
+        )   #
+        #
+        soilprop[,"textureClass"] <- unique( 
+            unlist( 
+                apply( 
+                    X      = classif, 
+                    MARGIN = 1, 
+                    FUN    = function(X)
+                    {   #
+                        nm <- (names(X)[ X != 0 ])[ 1 ] 
+                    }   #
+                )   #
+            )   #
+        )   #
+    }else{ 
+        FAO.textureClass <- names( 
+            TT.get("FAO50.TT")[["tt.polygons"]] 
+        )   #
+        #
+        if( !all( soilprop[,"textureClass"] %in% FAO.textureClass ) ) 
+        {   #
+            stop( 
+                paste( 
+                    sep = "", 
+                    "soilprop[,'textureClass'] must take values in: ", 
+                    paste( FAO.textureClass, collapse = "; " ), 
+                    ". Now contains: ", 
+                    paste( soilprop[,"textureClass"], collapse = "; " )  
+                )   #
+            )   #
+        }   #
+    }   #
+    #
+    return( "This function is still under development." )
+### Returns a matrix with estimated soil physical properties, 
+### "thetaS", "alpha", "n", "l" and "kSat", espressed in [m3.m-3], 
+### [m-1], [-], [-] and [mm.h-1] respectively. thetaS, alpha, n, 
+### l and ksat.
 }   #
