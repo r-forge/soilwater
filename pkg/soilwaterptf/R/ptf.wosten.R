@@ -44,6 +44,11 @@ ptf.wosten.theta.s <- function(# Wosten et al. 1999 PTF for soil's saturated wat
 ### and to 0 if it is a subsoil, for each layer / horizon.
 
 ){  #
+    if( any( silt == 0 ) )
+    {   #
+        stop( "Some 'silt' values are 0. The PTF does not handle 0% silt content (ln(silt))." ) 
+    }   #
+    #
     theta.s <- 0.7919 + 0.001691 * clay - 0.29619 * bulkD - 
                0.000001491 * (silt^2) + 0.0000821 * (om^2) + 
                0.02427 * (clay^-1) + 0.01113 * (silt^-1) + 
@@ -96,6 +101,16 @@ ptf.wosten.alpha <- function(# Wosten et al. 1999 PTF for van Genuchten 1980 alp
 ### and to 0 if it is a subsoil, for each layer / horizon.
 
 ){  #
+    if( any( silt == 0 ) )
+    {   #
+        stop( "Some 'silt' values are 0. The PTF does not handle 0% silt content (ln(silt))." ) 
+    }   #
+    #
+    if( any( om == 0 ) )
+    {   #
+        stop( "Some 'om' values are 0. The PTF does not handle 0% organic matter content (ln(om))." ) 
+    }   #
+    #
     alpha.star <- 
         -14.96 + 0.03135 * clay + 0.0351 * silt + 0.646 * om + 
         15.29 * bulkD - 0.192 * topSoil - 4.671 * (bulkD^2) - 
@@ -151,6 +166,21 @@ ptf.wosten.n <- function(# Wosten et al. 1999 PTF for van Genuchten 1980 n param
 ### and to 0 if it is a subsoil, for each layer / horizon.
 
 ){  #
+    if( any( silt == 0 ) )
+    {   #
+        stop( "Some 'silt' values are 0. The PTF does not handle 0% silt content (ln(silt))." ) 
+    }   #
+    #
+    if( any( om == 0 ) )
+    {   #
+        stop( "Some 'om' values are 0. The PTF does not handle 0% om (ln(om))." ) 
+    }   #
+    #
+    if( any( bulkD == 0 ) )
+    {   #
+        stop( "Some 'bulkD' values are 0. The PTF does not handle zero bulkD content (ln(bulkD))." ) 
+    }   #
+    #
     n.star <- 
         -25.23 - 0.02195 * clay + 0.0074 * silt - 0.1940 * om + 45.5 * bulkD - 
         7.24 * (bulkD^2) + 0.0003658 * (clay^2) + 0.002885 * (om^2) - 12.81 * (bulkD^-1) - 
@@ -201,6 +231,11 @@ ptf.wosten.l <- function(# Wosten et al. 1999 PTF for van Genuchten 1980 l param
 ### horizon. 
 
 ){  #
+    if( any( om == 0 ) )
+    {   #
+        stop( "Some 'om' values are 0. The PTF does not handle 0% om (ln(om))." ) 
+    }   #
+    #
     l.star <- 
         0.0202 + 0.0006193 * (clay^2) - 0.001136 * (om^2) - 
         0.2316 * log( om, base = exp(1) ) - 0.03544 * bulkD * clay + 
@@ -270,6 +305,11 @@ ptf.wosten.ksat <- function(# Wosten et al. 1999 PTF for soil's saturated hydrau
 ### unit output in [mm.h-1], while its real unit is [cm.day-1].
 
 ){  #
+    if( any( silt == 0 ) )
+    {   #
+        stop( "Some 'silt' values are 0. The PTF does not handle 0% silt content (ln(silt))." ) 
+    }   #
+    #
     k.sat.star <- 
         7.755 + 0.0352 * silt + 0.93 * topSoil - 0.967 * (bulkD^2) - 
         0.000484 * (clay^2) - 0.000322 * (silt^2) + 0.001 * (silt^-1) - 
@@ -414,6 +454,21 @@ ptf.wosten <- function(# Wosten et al. 1999 PTF for all Mualem - van Genuchten f
     #
     if( fortran.c )
     {   #
+        if( any( soilprop[,"silt"] == 0 ) )
+        {   #
+            stop( "Some soilprop[,'silt'] values are 0. The PTF does not handle 0% silt content (ln(silt))." ) 
+        }   #
+        #
+        if( any( soilprop[,"om"] == 0 ) )
+        {   #
+            stop( "Some soilprop[,'om'] values are 0. The PTF does not handle 0% om (ln(om))." ) 
+        }   #
+        #
+        if( any( soilprop[,"bulkD"] == 0 ) )
+        {   #
+            stop( "Some soilprop[,'bulkD'] values are 0. The PTF does not handle zero bulkD content (ln(bulkD))." ) 
+        }   #
+        #
         # # If the library hasn't been loaded yet, load it 
         # if( !is.loaded( fortran.lib ) ) 
         # {   #
@@ -431,7 +486,7 @@ ptf.wosten <- function(# Wosten et al. 1999 PTF for all Mualem - van Genuchten f
             chname  = fortran.lib, 
             package = package 
         )   #
-        tmp <- tmp[["path"]] 
+        # tmp <- tmp[["path"]] 
         #
         # empt <- as.double(0)
         #
