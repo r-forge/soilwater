@@ -8,11 +8,11 @@ by Woesten et al. 1999. The code uses either R code or Fortran
 code to do the calculations, and is vectorised (works on several 
 soil samples at a time) }
 \usage{
-ptf.wosten(soilprop, fortran.c = TRUE, fortran.lib = "soilwaterptf.dll", package = "soilwaterptf")
+ptf.wosten(soilprop, units, fortran.c = TRUE, fortran.lib = "soilwaterptf.dll", package = "soilwaterptf")
 }
 \arguments{
   \item{soilprop}{matrix or data.frame, with 5 columns: 
-\enumerate{ 
+\itemize{ 
   \item "clay", Clay content [\%] of each soil layer / horizon. 
         0-2 micrometers.; 
   \item "bulkD", Bulk density [kg.dm-3] of each soil layer / 
@@ -24,6 +24,25 @@ ptf.wosten(soilprop, fortran.c = TRUE, fortran.lib = "soilwaterptf.dll", package
   \item "topSoil", Set to 1 if the layer is a topsoil, and to 
         0 if it is a subsoil, for each layer / horizon.
 } }
+  \item{units}{Vector of 3 character strings. [Volumic water content], [length] 
+and [time] units in which the calculated parameters must be 
+outputed. 
+\itemize{ 
+  \item The fist item is the [Volumic water content] unit, 
+        and its possible values are "-" (m3 of water . m-3 of 
+        bulk soil, between 0 and 1) or "\%" (percent of water, 
+        between 0 and 100). It is used for the thetaS parameter. 
+  \item The second item is the [time] unit, and its possible 
+        values are "mm", "cm" or "m". It is used for the alpha 
+        and kSat parameters. 
+  \item The third item is the [time] unit, and its possible 
+        values are "sec", "min", "hour", "day".
+}
+At the moment, \code{units} must be provided by the user. In 
+the near future, its default value should be set to 
+\code{c("-","cm","day")}, as in Wosten et al. 1999 article.
+Warning: A bug in the code erroneously reported a default kSat 
+unit output in [mm.h-1], while its real unit is [cm.day-1].}
   \item{fortran.c}{Single logical. If TRUE uses fortran code instead od R code 
 (presumably faster).}
   \item{fortran.lib}{Single character string. Internal. Name of the dll that contains 
@@ -33,10 +52,14 @@ contains the dll.}
 }
 
 \value{Returns a matrix with estimated soil physical properties, 
-"thetaS", "alpha", "n", "l" and "kSat", espressed in [m3.m-3], 
-[m-1], [-], [-] and [mm.h-1] respectively. thetaS, alpha, n, 
-l and ksat (validation / calibration?) R2 are 76\%, 20\%, 54\%, 
-12\% and 19\% respectively.}
+"thetaS", "alpha", "n", "l" and "kSat", expressed in [Volumic 
+water content], [length-1], [-], [-] and [length.time-1] 
+respectively, and where [Volumic water content], [length] and 
+[time] are units chosen with the option \code{units}. 
+Warning: A bug in the code erroneously reported a default kSat 
+unit output in [mm.h-1], while its real unit is [cm.day-1]. 
+thetaS, alpha, n, l and ksat (validation / calibration?) R2 
+are 76\%, 20\%, 54\%, 12\% and 19\% respectively.}
 \references{Wosten J.H.M., Lilly A., Nemes A., 
 Le Bas C., 1999. Development and use of a database of hydraulic 
 properties of European soils. Geoderma 90:169-185.}
@@ -68,7 +91,7 @@ tail( dtf )
 # Compute soil hydraulic parameters with Wosten PTFs:
 #   NB: system.time() is used here to time the calculations
 system.time( 
-    res <- ptf.wosten( soilprop = dtf ) 
+    res <- ptf.wosten( soilprop = dtf, units = c("-","cm","day") ) 
 )   #
 
 dim(res) 
@@ -78,7 +101,11 @@ head( res )
 
 # Same, but with the pure R implementation
 system.time( 
-    res2 <- ptf.wosten( soilprop = dtf, fortran.c = FALSE ) 
+    res2 <- ptf.wosten( 
+        soilprop  = dtf, 
+        fortran.c = FALSE, 
+        units     = c("-","cm","day")
+    )   #
 )   # 
 
 dim(res2) 

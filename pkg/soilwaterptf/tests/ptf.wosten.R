@@ -19,7 +19,7 @@ tail( dtf )
 # Compute soil hydraulic parameters with Wosten PTFs:
 #   NB: system.time() is used here to time the calculations
 system.time( 
-    res <- ptf.wosten( soilprop = dtf ) 
+    res <- ptf.wosten( soilprop = dtf, units = c("-","cm","day") ) 
 )   #
 
 dim(res) 
@@ -29,7 +29,11 @@ head( res )
 
 # Same, but with the pure R implementation
 system.time( 
-    res2 <- ptf.wosten( soilprop = dtf, fortran.c = FALSE ) 
+    res2 <- ptf.wosten( 
+        soilprop  = dtf, 
+        fortran.c = FALSE, 
+        units     = c("-","cm","day")
+    )   #
 )   # 
 
 dim(res2) 

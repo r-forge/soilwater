@@ -249,9 +249,25 @@ ptf.wosten.ksat <- function(# Wosten et al. 1999 PTF for soil's saturated hydrau
 ### Vector of numericals. Organic matter content [%] of each soil layer / 
 ### horizon. 
 
- topSoil 
+ topSoil, 
 ### Vector of 0 or 1 integers. Set to 1 if the layer is a topsoil, 
 ### and to 0 if it is a subsoil, for each layer / horizon.
+
+ units 
+### Vector of 2 character strings. [length] and [time] units in 
+### which the calculated parameters must be outputed. 
+### \itemize{ 
+###   \item The second item is the [time] unit, and its possible 
+###         values are "mm", "cm" or "m". It is used for the alpha 
+###         and kSat parameters. 
+###   \item The third item is the [time] unit, and its possible 
+###         values are "sec", "min", "hour", "day".
+### }
+### At the moment, \code{units} must be provided by the user. In 
+### the near future, its default value should be set to 
+### \code{c("cm","day")}, as in Wosten et al. 1999 article.
+### Warning: A bug in the code erroneously reported a default kSat 
+### unit output in [mm.h-1], while its real unit is [cm.day-1].
 
 ){  #
     k.sat.star <- 
@@ -263,11 +279,35 @@ ptf.wosten.ksat <- function(# Wosten et al. 1999 PTF for soil's saturated hydrau
     #
     k.sat <- exp( k.sat.star ) 
     #
+    if( !(units[1] %in% c("mm","cm","m")) )
+    {   #
+        stop( "units[2] can only be 'mm', 'cm' or 'm'" )
+    }   # 
+    #
+    if( !(units[2] %in% c("sec","min","hour","day")) )
+    {   #
+        stop( "units[3] can only be 'sec', 'min', 'hour' or 'day'" )
+    }   # 
+    #
+    length.fact <- c("m"=1,"cm"=100,"mm"=1000) 
+    length.fact <- as.numeric( length.fact[ units[1] ] ) 
+    #
+    time.fact <- c("sec"=24*60*60,"min"=24*60,"hour"=24,"day"=1) 
+    time.fact <- as.numeric( time.fact[ units[2] ] ) 
+    #
+    # kSat is outputed in cm.day-1
+    k.sat <- (k.sat / 100) * length.fact 
+    k.sat <- k.sat / time.fact 
+    #
     return( k.sat ) 
 ### The function returns a vector of K sat values of the same 
 ### length as the vector of value provided to each parameter. 
-### Unit of K sat is [mm.h-1] [Length.Time-1] 
-### ksat (validation / calibration?) R2 is 19%.
+### Unit of K sat is [length.time-1], where length and time are 
+### taken from the option \code{units}. ksat (validation / 
+### calibration?) R2 is 19%.
+### Warning: A bug in the code erroneously reported a default kSat 
+### unit output in [mm.h-1], while its real unit is [cm.day-1].
+
 }   #
 
 
@@ -293,7 +333,7 @@ ptf.wosten <- function(# Wosten et al. 1999 PTF for all Mualem - van Genuchten f
 
  soilprop,
 ### matrix or data.frame, with 5 columns: 
-### \enumerate{ 
+### \itemize{ 
 ###   \item "clay", Clay content [%] of each soil layer / horizon. 
 ###         0-2 micrometers.; 
 ###   \item "bulkD", Bulk density [kg.dm-3] of each soil layer / 
@@ -305,6 +345,27 @@ ptf.wosten <- function(# Wosten et al. 1999 PTF for all Mualem - van Genuchten f
 ###   \item "topSoil", Set to 1 if the layer is a topsoil, and to 
 ###         0 if it is a subsoil, for each layer / horizon.
 ### } 
+
+ units,
+### Vector of 3 character strings. [Volumic water content], [length] 
+### and [time] units in which the calculated parameters must be 
+### outputed. 
+### \itemize{ 
+###   \item The fist item is the [Volumic water content] unit, 
+###         and its possible values are "-" (m3 of water . m-3 of 
+###         bulk soil, between 0 and 1) or "%" (percent of water, 
+###         between 0 and 100). It is used for the thetaS parameter. 
+###   \item The second item is the [time] unit, and its possible 
+###         values are "mm", "cm" or "m". It is used for the alpha 
+###         and kSat parameters. 
+###   \item The third item is the [time] unit, and its possible 
+###         values are "sec", "min", "hour", "day".
+### }
+### At the moment, \code{units} must be provided by the user. In 
+### the near future, its default value should be set to 
+### \code{c("-","cm","day")}, as in Wosten et al. 1999 article.
+### Warning: A bug in the code erroneously reported a default kSat 
+### unit output in [mm.h-1], while its real unit is [cm.day-1].
 
  fortran.c=TRUE,
 ### Single logical. If TRUE uses fortran code instead od R code 
@@ -446,21 +507,57 @@ ptf.wosten <- function(# Wosten et al. 1999 PTF for all Mualem - van Genuchten f
             bulkD   = soilprop[,"bulkD"], 
             silt    = soilprop[,"silt"], 
             om      = soilprop[,"om"], 
-            topSoil = soilprop[,"topSoil"]  
+            topSoil = soilprop[,"topSoil"], 
+            units   = c("cm","day")  #  As before
         )   #
     }   #
     #
     colnames( soilphy ) <- c( "thetaS", "alpha", "n", "l", "kSat" ) 
     #
-    # print( class( soilphy ) ) 
-    # print( storage.mode( soilphy ) ) 
+    if( !(units[1] %in% c("-","%")) )
+    {   #
+        stop( "units[1] can only be '-' or '%'" )
+    }   # 
+    #
+    if( !(units[2] %in% c("mm","cm","m")) )
+    {   #
+        stop( "units[2] can only be 'mm', 'cm' or 'm'" )
+    }   # 
+    #
+    if( !(units[3] %in% c("sec","min","hour","day")) )
+    {   #
+        stop( "units[3] can only be 'sec', 'min', 'hour' or 'day'" )
+    }   # 
+    #
+    wc.fact <- c("-"=1,"%"=100) 
+    wc.fact <- as.numeric( wc.fact[ units[1] ] ) 
+    #
+    length.fact <- c("m"=1,"cm"=100,"mm"=1000) 
+    length.fact <- as.numeric( length.fact[ units[2] ] ) 
+    #
+    time.fact <- c("sec"=24*60*60,"min"=24*60,"hour"=24,"day"=1) 
+    time.fact <- as.numeric( time.fact[ units[3] ] ) 
+    #
+    # alpha is outputed in m-1
+    soilphy[,"alpha"] <- soilphy[,"alpha"] / length.fact 
+    #
+    # kSat is outputed in cm.day-1
+    soilphy[,"kSat"] <- (soilphy[,"kSat"] / 100) * length.fact 
+    soilphy[,"kSat"] <- soilphy[,"kSat"] / time.fact 
+    #
+    # alpha is outputed in m-1
+    soilphy[,"thetaS"] <- soilphy[,"thetaS"] * wc.fact 
     #
     return( soilphy ) 
 ### Returns a matrix with estimated soil physical properties, 
-### "thetaS", "alpha", "n", "l" and "kSat", espressed in [m3.m-3], 
-### [m-1], [-], [-] and [mm.h-1] respectively. thetaS, alpha, n, 
-### l and ksat (validation / calibration?) R2 are 76%, 20%, 54%, 
-### 12% and 19% respectively.
+### "thetaS", "alpha", "n", "l" and "kSat", expressed in [Volumic 
+### water content], [length-1], [-], [-] and [length.time-1] 
+### respectively, and where [Volumic water content], [length] and 
+### [time] are units chosen with the option \code{units}. 
+### Warning: A bug in the code erroneously reported a default kSat 
+### unit output in [mm.h-1], while its real unit is [cm.day-1]. 
+### thetaS, alpha, n, l and ksat (validation / calibration?) R2 
+### are 76%, 20%, 54%, 12% and 19% respectively.
 }   #
 
 
@@ -489,7 +586,7 @@ classPtf.wosten <- function(# Wosten et al. 1999 class PTF for all Mualem - van 
 
  soilprop,
 ### matrix or data.frame, with 2 to 5 columns: 
-### \enumerate{ 
+### \itemize{ 
 ###   \item "textureClass", abbreviation of the texture class according 
 ###         to the FAO texture triangle (with silt-sand limit at 50
 ###         micrometers). These abbreviations must be chosen according 
@@ -519,6 +616,25 @@ classPtf.wosten <- function(# Wosten et al. 1999 class PTF for all Mualem - van 
 ### "VF" > "F" > "M" > "MF" > "C" (which is the order of the classes 
 ### given by 
 ### \code{names( soiltexture:::TT.get("FAO50.TT")[["tt.polygons"]] )}). 
+
+ units,
+### Vector of 3 character strings. [Volumic water content], [length] 
+### and [time] units in which the calculated parameters must be 
+### outputed. 
+### \itemize{ 
+###   \item The fist item is the [Volumic water content] unit, 
+###         and its possible values are "-" (m3 of water . m-3 of 
+###         bulk soil, between 0 and 1) or "%" (percent of water, 
+###         between 0 and 100). It is used for the thetaS parameter. 
+###   \item The second item is the [time] unit, and its possible 
+###         values are "mm", "cm" or "m". It is used for the alpha 
+###         and kSat parameters. 
+###   \item The third item is the [time] unit, and its possible 
+###         values are "sec", "min", "hour", "day".
+### }
+### At the moment, \code{units} must be provided by the user. In 
+### the near future, its default value should be set to 
+### \code{c("-","cm","day")}, as in Wosten et al. 1999 article.
 
  dat.css.ps.lim=NULL,
 ### Vector of 4 numericals. Set this and \code{css.transf} if 
@@ -555,14 +671,19 @@ classPtf.wosten <- function(# Wosten et al. 1999 class PTF for all Mualem - van 
 ### Single logical. See \code{\link[soiltexture]{TT.points.in.classes}} 
 ### for details.
 
- texture2xy=FALSE 
+ texture2xy=FALSE,
 ### Single logical. See \code{\link[soiltexture]{TT.points.in.classes}} 
 ### for details.
+
+ package="soilwaterptf"
+### Single character string. Package in which the lookup table 
+### containing the correspondamce between soil texture classes 
+### and Mualem - van Genuchten parameters will be found.
 
 ){  #
     cnm <- c("textureClass", "isOrganic") 
     #
-    if( !all(colnames( soilprop ) %in% cnm) )
+    if( !all(cnm %in% colnames( soilprop )) )
     {   #
         stop( 
             paste( 
@@ -577,11 +698,14 @@ classPtf.wosten <- function(# Wosten et al. 1999 class PTF for all Mualem - van 
     #
     require( "soiltexture" ) 
     #
-    if( any( is.na( soilProp[,"textureClass"] ) ) ) 
+    testClass <- is.na( soilprop[,"textureClass"] ) & 
+                 soilprop[,"isOrganic"] == 0 
+    #
+    if( any( testClass ) ) 
     {   #
-        cnm <- c(cnn,"clay", "silt","sand") 
+        cnm <- c(cnm,"clay", "silt","sand") 
         #
-        if( !all(colnames( soilprop ) %in% cnm) )
+        if( !all(cnm %in% colnames( soilprop )) )
         {   #
             stop( 
                 paste( 
@@ -595,7 +719,7 @@ classPtf.wosten <- function(# Wosten et al. 1999 class PTF for all Mualem - van 
         }   #
         #
         textureClass <- TT.points.in.classes(
-            tri.data        = soilProp, 
+            tri.data        = soilprop[ testClass, ], 
             class.sys       = "FAO50.TT", 
             PiC.type        = "l", 
             css.names       = c("clay","silt","sand"), 
@@ -613,40 +737,140 @@ classPtf.wosten <- function(# Wosten et al. 1999 class PTF for all Mualem - van 
             texture2xy      = texture2xy  
         )   #
         #
-        soilprop[,"textureClass"] <- unique( 
-            unlist( 
-                apply( 
-                    X      = classif, 
-                    MARGIN = 1, 
-                    FUN    = function(X)
-                    {   #
-                        nm <- (names(X)[ X != 0 ])[ 1 ] 
-                    }   #
-                )   #
-            )   #
-        )   #
-    }else{ 
-        FAO.textureClass <- names( 
-            TT.get("FAO50.TT")[["tt.polygons"]] 
-        )   #
+        textureClass <- unlist( apply( 
+            X      = textureClass, 
+            MARGIN = 1, 
+            FUN    = function(X)
+            {   #
+                nm <- (names(X)[ X != 0 ])[ 1 ] 
+            }   #
+        ) ) #
         #
-        if( !all( soilprop[,"textureClass"] %in% FAO.textureClass ) ) 
-        {   #
-            stop( 
-                paste( 
-                    sep = "", 
-                    "soilprop[,'textureClass'] must take values in: ", 
-                    paste( FAO.textureClass, collapse = "; " ), 
-                    ". Now contains: ", 
-                    paste( soilprop[,"textureClass"], collapse = "; " )  
-                )   #
-            )   #
-        }   #
+        soilprop[ testClass, "textureClass" ] <- textureClass 
     }   #
     #
-    return( "This function is still under development." )
+    FAO.textureClass <- names( 
+        TT.get("FAO50.TT")[["tt.polygons"]] 
+    )   #
+    #
+    FAO.textureClass <- c(FAO.textureClass,NA)
+    #
+    if( !all( soilprop[,"textureClass"] %in% FAO.textureClass ) ) 
+    {   #
+        stop( 
+            paste( 
+                sep = "", 
+                "soilprop[,'textureClass'] must take values in: ", 
+                paste( FAO.textureClass, collapse = "; " ), 
+                ". Now contains: ", 
+                paste( soilprop[,"textureClass"], collapse = "; " )  
+            )   #
+        )   #
+    }   #
+    #
+    # Prepare lookup index in the soil properties:
+    soilprop2 <- soilprop[,c("topSoil","textureClass","isOrganic")]
+    #
+    test.organic <- soilprop2[,"isOrganic"] == 1 
+    #
+    soilprop2[,"topSoil"] <- as.character( soilprop2[,"topSoil"] ) 
+    soilprop2[ 
+        is.na( soilprop2[,"topSoil"] ),
+        "topSoil"
+    ] <- "" 
+    #
+    soilprop2[ 
+        is.na( soilprop2[,"textureClass"] ),
+        "textureClass"
+    ] <- "" 
+    #
+    rowName1 <- paste( 
+        soilprop2[,"topSoil"], 
+        soilprop2[,"textureClass"], 
+        sep = "" 
+    )   #
+    #
+    rowName1[ test.organic ] <- "O"
+    #
+    rm( soilprop2 ) 
+    #
+    # Load the lookup table:
+    data("classPtfWosten",package=package,envir=environment()) 
+    #
+    # Prepare lookup index in the physical properties:
+    classPtfWosten2 <- classPtfWosten[, c("topSoil","textureClass","isOrganic") ] 
+    #
+    test.organic2 <- classPtfWosten2[,"isOrganic"] == 1 
+    #
+    classPtfWosten2[,"topSoil"] <- as.character( classPtfWosten2[,"topSoil"] ) 
+    classPtfWosten2[ 
+        is.na( classPtfWosten2[,"topSoil"] ),
+        "topSoil"
+    ] <- "" 
+    #
+    classPtfWosten2[ 
+        is.na( classPtfWosten2[,"textureClass"] ),
+        "textureClass"
+    ] <- "" 
+    #
+    rowName2 <- paste( 
+        classPtfWosten2[,"topSoil"], 
+        classPtfWosten2[,"textureClass"], 
+        sep = "" 
+    )   #
+    #
+    rowName2[ test.organic2 ] <- "O"
+    # 
+    rownames( classPtfWosten ) <- rowName2 ; rm( classPtfWosten2 ) 
+    #
+    # Get the physical properties values:
+    soilphy <- classPtfWosten[ rowName1, ]
+    #
+    soilphy <- data.frame( 
+        soilprop, 
+        soilphy[, !(colnames(soilphy) %in% c("textureClass","topSoil","isOrganic")) ], 
+        stringsAsFactors = FALSE 
+    )   #
+    #
+    if( !(units[1] %in% c("-","%")) )
+    {   #
+        stop( "units[1] can only be '-' or '%'" )
+    }   # 
+    #
+    if( !(units[2] %in% c("mm","cm","m")) )
+    {   #
+        stop( "units[2] can only be 'mm', 'cm' or 'm'" )
+    }   # 
+    #
+    if( !(units[3] %in% c("sec","min","hour","day")) )
+    {   #
+        stop( "units[3] can only be 'sec', 'min', 'hour' or 'day'" )
+    }   # 
+    #
+    wc.fact <- c("-"=1,"%"=100) 
+    wc.fact <- as.numeric( wc.fact[ units[1] ] ) 
+    #
+    length.fact <- c("m"=1/100,"cm"=1,"mm"=10) 
+    length.fact <- as.numeric( length.fact[ units[2] ] ) 
+    #
+    time.fact <- c("sec"=24*60*60,"min"=24*60,"hour"=24,"day"=1) 
+    time.fact <- as.numeric( time.fact[ units[3] ] ) 
+    #
+    # alpha is outputed in m-1
+    soilphy[,"alpha"] <- soilphy[,"alpha"] / length.fact 
+    #
+    # kSat is outputed in cm.day-1
+    soilphy[,"kSat"] <- soilphy[,"kSat"] * length.fact 
+    soilphy[,"kSat"] <- soilphy[,"kSat"] / time.fact 
+    #
+    # alpha is outputed in m-1
+    soilphy[,"thetaS"] <- soilphy[,"thetaS"] * wc.fact 
+    soilphy[,"thetaR"] <- soilphy[,"thetaR"] * wc.fact 
+    #
+    return( soilphy )
 ### Returns a matrix with estimated soil physical properties, 
-### "thetaS", "alpha", "n", "l" and "kSat", espressed in [m3.m-3], 
-### [m-1], [-], [-] and [mm.h-1] respectively. thetaS, alpha, n, 
-### l and ksat.
+### "thetaS", "alpha", "n", "l" and "kSat", expressed in [Volumic 
+### water content], [length-1], [-], [-] and [length.time-1] 
+### respectively, and where [Volumic water content], [length] and 
+### [time] are units chosen with the option \code{units}. 
 }   #
