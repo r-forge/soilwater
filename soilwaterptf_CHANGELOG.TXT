@@ -1,3 +1,7 @@
+- 2010/11/01 Added Wösten et al. 1999 classes PTFs (physical properties calculated 
+             from texture class instead of clay silt sand, etc.)
+- 2010/11/01 Corrected an important bug: Wösten kSat was reported to be calculated 
+             in [mm.h-1], while it was in fact [cm.day-1]. Sorry for the inconvenience.
 - 2010/08/13 Version 1.0 of the package. Documented.
 - 2010/09/08 Changed the name of the functions options to achieve 
              a more uniform name convention (necessary for fortran integration) 
