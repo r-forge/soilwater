@@ -76,9 +76,9 @@ implemented in the package \pkg{soilwaterfun},
 
 # Create a (big) dummy dataset of soil properties
 dtf <- expand.grid( 
-    "clay"    = seq(33,66,1), 
+    "clay"    = seq(5,50,1), 
     "bulkD"   = seq(1,1.8,.2), 
-    "silt"    = seq(33,66,1), 
+    "silt"    = seq(5,50,1), 
     "om"      = seq(1,3,.2), 
     "topSoil" = 0:1   
 )   #

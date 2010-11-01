@@ -1,3 +1,10 @@
+- 2010/11/01 Benchmarked soilwaterptf:::ptf.wosten calculations agaisnt an 
+             excel spreadsheet made by Henk Wosten to check that the results were 
+             (almost) identical.
+- 2010/11/01 Added an error when the user tries to calculates Wosten et al. 1999 
+             PTFs whith 0 for silt or om or bulk density. The functions contains 
+             ln(silt) and/or ln(om) and/or ln(bulk density) that does not work 
+             with zeros.
 - 2010/11/01 Added Wösten et al. 1999 classes PTFs (physical properties calculated 
              from texture class instead of clay silt sand, etc.)
 - 2010/11/01 Corrected an important bug: Wösten kSat was reported to be calculated 
