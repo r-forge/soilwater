@@ -13,7 +13,7 @@ from basic soil properties (valid for european soils).}
 \details{
 \tabular{ll}{Package: \tab soilwaterfun\cr
 Version: \tab 1.0\cr
-Date: \tab 2010-09-20\cr
+Date: \tab 2010-11-04\cr
 Title: \tab Functions for soil water retention and soil hydraulic conductivity.\cr
 Author: \tab Julien MOEYS <jules_m78-soiltexture@yahoo.fr>\cr
 Maintainer: \tab Julien MOEYS <jules_m78-soiltexture@yahoo.fr>\cr
