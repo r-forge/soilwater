@@ -46,7 +46,7 @@ pkg.build.wrapper(
     r.path   = r.path
 )   #
 
-
+file.remove( file.path(pkg.dir,pkg.name,"src", c("soilwaterptf.dll","soilwaterptf.o") ) )
 
 # Install the package:
 pkg.install.wrapper( 
@@ -55,7 +55,7 @@ pkg.install.wrapper(
     r.path   = r.path
 )   #
 
-
+file.remove( file.path(pkg.dir,pkg.name,"src", c("soilwaterptf.dll","soilwaterptf.o") ) ) 
 
 # Re-install and load the package from the new zip archive 
 # _before_ the tests are conducted
@@ -77,7 +77,7 @@ pkg.check.wrapper(
 )   #
 date() 
 
-
+file.remove( file.path(pkg.dir,pkg.name,"src", c("soilwaterptf.dll","soilwaterptf.o") ) ) 
 
 require( package = pkg.name, character.only = TRUE ) 
 
