@@ -411,7 +411,7 @@ ptf.wosten <- function(# Wosten et al. 1999 PTF for all Mualem - van Genuchten f
 ### Single logical. If TRUE uses fortran code instead od R code 
 ### (presumably faster).
 
- fortran.lib="soilwaterptf.dll",
+ fortran.lib="soilwaterptf",
 ### Single character string. Internal. Name of the dll that contains 
 ### the .Fortran sub-routine.
 
