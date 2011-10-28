@@ -1,0 +1,330 @@
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+% | Document header                                             |
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+
+\documentclass[a4paper]{article}
+
+\title{\texttt{soilwaterptf}, pedotransfer functions for soil % 
+    hydraulic properties} 
+
+\author{Julien Moeys}
+% In case of changes, also change the 'PDF setup' and 
+% 'cited as follow'
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+% | Nodifications of the Sweave style                           |
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+
+% Load Sweave and color, in order to modify 
+% sweave's environments:
+
+\RequirePackage{Sweave,url,hyperref} % ,sweave,color,placeins,rotating,subfig
+\SweaveOpts{width=14,height=14,keep.source=TRUE} 
+% Also modified in the document
+
+% \VignetteIndexEntry{soilwaterptf_vignette} 
+% \VignetteDepends{soilwaterptf,soilwaterfun} 
+% \VignetteKeyword{soil} 
+% \VignetteKeyword{pedotransfer functions} 
+% \VignetteKeyword{hydraulic properties} 
+
+% Modify the definition of the 'Sinput' environment:
+\RecustomVerbatimEnvironment{Sinput}{Verbatim}{%
+    frame       = leftline,         % vert line on the left
+    framerule   = 0.50mm            % width of the vert line
+}   %
+
+% Modify the definition of the 'Scode' environment:
+\RecustomVerbatimEnvironment{Scode}{Verbatim}{%
+    frame       = leftline,         % vert line on the left
+    framerule   = 0.50mm            % width of the vert line
+}   %
+
+% Modify the spacing between R code and R outputs:
+\fvset{listparameters={\setlength{\topsep}{0pt}}} 
+\renewenvironment{Schunk}{\vspace{\topsep}}{\vspace{\topsep}} 
+
+\renewcommand\floatpagefraction{1.0}
+\renewcommand\topfraction{1.0}
+\renewcommand\bottomfraction{1.0}
+\renewcommand\textfraction{0.0}   
+\setcounter{topnumber}{4}
+\setcounter{bottomnumber}{4}
+\setcounter{totalnumber}{12}
+
+
+
+%%% PDF setup -- fill in the title
+% \usepackage[dvipdfm, bookmarks, colorlinks, breaklinks, %
+%     pdftitle={The soil texture wizard:R functions for plotting, classifying, transforming and exploring soil texture data},%
+%     pdfauthor={Julien MOEYS}]{hyperref}  
+% \hypersetup{linkcolor=MidnightBlue, citecolor=MidnightBlue, 
+%     filecolor=MidnightBlue,urlcolor=MidnightBlue} 
+% From: http://malecki.wustl.edu/sweaveTemplate.Rnw
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+% | Beginning of the document                                   |
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+
+% Don't forget to add this to path:
+% C:\Program Files\_SCIENCE\R_PROJECT\share\texmf
+
+\usepackage{Sweave}
+\begin{document}
+\bibliographystyle{plain}
+
+
+% \graphicspath{{INOUT/}} 
+
+
+%INVISIBLY sets a few options for Sweave :: KEEP THIS
+<<echo=FALSE>>= 
+# Set a few Sweave options:
+options( 
+    width       = 65,  # width of R output
+    prompt      = " ", # Sign preceding R input in R-GUI
+    continue    = " "  # same, but after 2nd line
+)   # 
+@ 
+
+% \SweaveOpts{width=14,height=14,keep.source=TRUE}
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+% | Front page TITLE 
+\maketitle
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+% | Edit here                  |
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+% | Table of Content:
+\tableofcontents 
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\section{Forewords} 
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\subsection{What is \texttt{soilwaterptf}?} 
+
+\texttt{soilwaterptf} is an R\cite{RDCT2011} package providing functions 
+that implements W\"{o}sten et al. 1999\cite{WOSTEN99} 
+\href{http://en.wikipedia.org/wiki/Pedotransfer_function}{%
+pedotransfer functions} for predicting the parameters of the Mualem 
+(1976)\cite{MUALEM76} and the van Genuchten (1980)\cite{VG80} 
+\href{http://en.wikipedia.org/wiki/Water_retention_curve}{%
+water retention function} and 
+\href{http://en.wikipedia.org/wiki/Hydraulic_conductivity}{%
+hydraulic conductivity function}.\\
+
+Both class and continuous pedotransfer functions are provided.\\
+
+These functions are used to predict soil hydraulic properties when 
+no measurement are available, apart measured soil physico-chemical 
+properties or soil survey information.\\
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\subsection{Credits and License} 
+
+\texttt{easydb} is licensed under an \href{http://www.gnu.org/licenses/agpl.html}{Affero GNU General Public 
+License Version 3}.\\
+
+\textbf{This package and this document is provided with NO 
+responsibilities, guarantees or automatic supports from the author 
+or his employer} (\href{http://www.slu.se}{SLU} / \href{http://www.slu.se/CKB}{CKB}).\\
+
+
+
+% % +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+% \subsection{Disclaimer} 
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\section{Working with \texttt{soilwaterptf}} 
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\subsection{Install and load \texttt{soilwaterpf}} 
+
+\textbf{Method 1:} If you have the latest R version, open R, 
+and then type:
+
+<<echo=TRUE,eval=FALSE>>= 
+install.packages(
+    pkgs  = "soilwaterptf", 
+    repos = "http://R-Forge.R-project.org" )
+@ 
+
+
+
+\textbf{Method 2:} Otherwise, try to install the package from the 
+binaries. First download the binaries from 
+\url{http://soilwater.r-forge.r-project.org/}. Save the 
+package binaries in your working directory, and then open R and 
+type:
+
+<<echo=TRUE,eval=FALSE>>= 
+install.packages(
+    pkgs  = "soilwaterptf_1.0.1.zip", 
+    repos = NULL )
+@ 
+
+
+
+Then you can load \texttt{soilwaterptf}:
+
+<<echo=TRUE,eval=TRUE>>= 
+library( "soilwaterptf" ) 
+@ 
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\subsection{Dataset of soil properties} 
+
+The package does not come with any dataset of 'real' soil properties. 
+We can create one:
+
+<<echo=TRUE,eval=TRUE>>= 
+# Create a dummy dataset of soil properties
+dtf <- expand.grid( 
+    "bulkD"   = seq(1,1.6,.2), 
+    "om"      = seq(1,3,.25), 
+    "clay"    = seq(10,50,10), 
+    "silt"    = seq(10,50,10), 
+    "topSoil" = 0:1   
+)   #
+#
+# And inspect the result:
+colnames( dtf ) 
+dim( dtf ) 
+head( dtf ) 
+tail( dtf ) 
+@ 
+
+
+
+Notice that it is important that the column names of your table 
+exactly corrrespond to the names used above. Remember R is case 
+sensitive. Additional columns will be ignored.
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\subsection{Predicting soil hydraulic properties} 
+
+Now predicting soil hydraulic properties is fairly easy. We use 
+the function \texttt{ptf.wosten()}:
+
+<<echo=TRUE,eval=TRUE>>= 
+res <- ptf.wosten( soilprop = dtf, units = c("-","m","day") ) 
+@ 
+
+
+
+The \texttt{units} option specify the unit in which the hydraulic 
+conductivity is output:
+
+\begin{itemize} 
+    \item The fist item is the [Volumic water content] unit, 
+        and its possible values are "-" (m3 of water . m-3 of bulk 
+        soil, between 0 and 1) or "\%" (percent of water, between 
+        0 and 100). It is used for the thetaS parameter.
+    \item The second item is the [time] unit, and its possible values 
+        are "mm", "cm" or "m". It is used for the alpha and kSat 
+        parameters.
+    \item The third item is the [time] unit, and its possible values 
+        are "sec", "min", "hour", "day". It is used for the kSat.
+\end{itemize}
+
+
+
+We can have a look at the result table:
+
+<<echo=TRUE,eval=TRUE>>= 
+colnames( res ) 
+dim( res ) 
+head( res ) 
+tail( res ) 
+@ 
+
+Notice that each row in \texttt{dtf} correspond to a set of soil 
+properties (for example a soil core or a soil layer / horizon) and 
+each row in \texttt{res} is the resulting properties.
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\subsection{Plotting soil hydraulic function with the package %
+    \texttt{soilwaterfun}} 
+
+We can now plot the water retention function (van Genuchten 1980
+\cite{VG80}), for one of the soil sample (nb 438):
+
+<<fig=TRUE,echo=TRUE,eval=TRUE>>= 
+# Load soilwaterfun (installed separately):
+library("soilwaterfun") 
+#
+# Look at the soil properties:
+dtf[438,]
+res[438,]
+#
+curve( 
+    fun.vangenuchten.theta.h( 
+        h       = -x,                 # in [meter]
+        alpha   = res[438,"alpha"],   # in [meter-1]
+        n       = res[438,"n"],       # [-]
+        thetaS  = res[438,"thetaS"],  # [-]
+        thetaR  = 0  
+    ),  #
+    xlim = c(0.001,158), 
+    col  = "red", 
+    log  = "x", 
+    xlab = "-h", 
+    ylab = expression( theta ) 
+)   #
+@ 
+
+
+
+And then plot the hydraulic conductivity function (Mualem 1976%
+\cite{MUALEM76}), for the same soil sample:
+
+<<fig=TRUE,echo=TRUE,eval=TRUE>>= 
+curve( 
+    fun.mualem.vangenuchten.K.h( 
+        h       = -x,               # in [meter]
+        Ks      = res[438,"kSat"],  # in [meter.T-1], here T = day
+        alpha   = res[438,"alpha"], # in [meter-1] 
+        n       = res[438,"n"]      # [-] 
+    ),  #
+    xlim = c(0.001,158), 
+    col  = "red", 
+    log  = "xy", 
+    xlab = "-h", 
+    ylab = "K"
+)   #
+@ 
+
+
+
+\bibliography{soilwaterptf_vignette} % no .bib extension here
+\end{document}
+
+
