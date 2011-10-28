@@ -1,11 +1,11 @@
 Package: soilwaterfun
-Version: 1.0
-Date: 2010-11-04
+Version: 1.0.0
+Date: 2011-10-28
 Title: Functions for soil water retention and soil hydraulic conductivity.
 Author: Julien MOEYS <jules_m78-soiltexture@yahoo.fr> 
 Maintainer: Julien MOEYS <jules_m78-soiltexture@yahoo.fr> 
 LazyLoad: yes
-Depends: R (>= 2.4.1), MASS
+Depends: R (>= 2.4.1)
 Suggests: soilwaterptf
 Description: The package implements commonly used functions for soil water retention 
     (water content = f(matrix potential)) and soil hydraulic conductivity (hydraulic 

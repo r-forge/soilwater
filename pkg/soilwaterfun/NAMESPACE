@@ -1,4 +1,4 @@
-import(MASS)
+import()
 
 exportPattern("^[[:alpha:]]+")
 

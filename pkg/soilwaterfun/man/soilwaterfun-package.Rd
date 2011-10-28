@@ -12,13 +12,13 @@ contains pedotransfer function for estimating the parameters of these functions
 from basic soil properties (valid for european soils).}
 \details{
 \tabular{ll}{Package: \tab soilwaterfun\cr
-Version: \tab 1.0\cr
-Date: \tab 2010-11-04\cr
+Version: \tab 1.0.0\cr
+Date: \tab 2011-10-28\cr
 Title: \tab Functions for soil water retention and soil hydraulic conductivity.\cr
 Author: \tab Julien MOEYS <jules_m78-soiltexture@yahoo.fr>\cr
 Maintainer: \tab Julien MOEYS <jules_m78-soiltexture@yahoo.fr>\cr
 LazyLoad: \tab yes\cr
-Depends: \tab R (>= 2.4.1), MASS\cr
+Depends: \tab R (>= 2.4.1)\cr
 Suggests: \tab soilwaterptf\cr
 License: \tab AGPL-3\cr
 URL: \tab http://www.mark.slu.se, http://ckb.slu.se, http://julienmoeys.free.fr\cr}
