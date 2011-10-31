@@ -7,8 +7,8 @@ with the Mualem - Van Genuchten function.}
 fun.mualem.vangenuchten.K.h(h, Ks, alpha, n, a = 2, b = 0.5, cPar = 1)
 }
 \arguments{
-  \item{h}{Vector of numerical. Matrix potential of the soil, in [m]. 
-Values should be negative (suction).}
+  \item{h}{Vector of numerical. Pressure head of the soil, in [m]. Matrix 
+potential values will also work, as in practice abs(h) is used.}
   \item{Ks}{Single numerical. Saturated hydraulic conductivity of the soil 
 in [L.T-1] (unit of length per unit of time). The K result is 
 outputed in the same unit as Ks. Notice that in some case a 
@@ -56,15 +56,15 @@ Catena-Verlag, GeoEcology textbook, Germany. ISBN:
 # Example with the properties of the Footprint soil type P22i, 
 # 3rd layer:
 fun.mualem.vangenuchten.K.h( 
-    h       = -c(0,0.01,0.1,1,10,100,158), 
-    Ks      = 28.27612, 
-    alpha   = 3.561099, 
-    n       = 1.212074  
+    h       = c(0,0.01,0.1,1,10,100,158),  # [m] 
+    Ks      = 0.2827612,                   # [m.day-1] 
+    alpha   = 3.561099,                    # [m-1] 
+    n       = 1.212074                     # [-] 
 )   #
 
 curve( 
     fun.mualem.vangenuchten.K.h( 
-        h       = -x, 
+        h       = x, 
         Ks      = 28.27612, 
         alpha   = 3.561099, 
         n       = 1.212074  
@@ -72,7 +72,7 @@ curve(
     xlim = c(0.001,158), 
     col  = "red", 
     log  = "xy", 
-    xlab = "-h", 
-    ylab = "K"
+    xlab = "h, pressure head [m]", 
+    ylab = "K [m.day-1]" 
 )   #
 }

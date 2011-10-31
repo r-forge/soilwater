@@ -7,8 +7,8 @@ the Van Genuchten water retention function.}
 fun.vangenuchten.theta.h(h, alpha, n, cPar = 1, thetaS, thetaR)
 }
 \arguments{
-  \item{h}{Vector of numerical. Matrix potential of the soil, in [m]. 
-Values should be negative (suction).}
+  \item{h}{Vector of numerical. Pressure head of the soil, in [m]. Matrix 
+potential values will also work, as in practice abs(h) is used.}
   \item{alpha}{Single numerical. alpha (shape) parameter of the Van Genuchten 
 water retention function, in [m-1] (inverse length unit of h).}
   \item{n}{Single numerical. n shape parameter of the Van Genuchten water 
@@ -42,16 +42,16 @@ Catena-Verlag, GeoEcology textbook, Germany. ISBN:
 # Example with the properties of the Footprint soil type P22i, 
 # 3rd layer:
 fun.vangenuchten.theta.h( 
-    h       = -c(0,0.01,0.1,1,10,100,158), 
-    alpha   = 3.561099, 
-    n       = 1.212074, 
-    thetaS  = 0.4162380, 
-    thetaR  = 0  
+    h       = c(0,0.01,0.1,1,10,100,158), # [m]
+    alpha   = 3.561099,                   # [m-1]
+    n       = 1.212074,                   # [-]
+    thetaS  = 0.4162380,                  # [-]
+    thetaR  = 0                           # [-]
 )   #
 
 curve( 
     fun.vangenuchten.theta.h( 
-        h       = -x, 
+        h       = x, 
         alpha   = 3.561099, 
         n       = 1.212074, 
         thetaS  = 0.4162380, 
@@ -60,7 +60,7 @@ curve(
     xlim = c(0.001,158), 
     col  = "red", 
     log  = "x", 
-    xlab = "-h", 
+    xlab = "h, pressure head [m]", 
     ylab = expression( theta ) 
 )   #
 }

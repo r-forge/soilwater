@@ -14,8 +14,8 @@ the hydraulic conductivity.}
 fun.campbell.theta.h(h, hA, thetaS, bPar)
 }
 \arguments{
-  \item{h}{Vector of numerical. Matrix potential of the soil, in [m]. 
-Values should be negative (suction).}
+  \item{h}{Vector of numerical. Pressure head of the soil, in [m]. Matrix 
+potential values will also work, as in practice abs(h) is used.}
   \item{hA}{Single numerical. Matrix potential at the air entry point [m3.m-3]}
   \item{thetaS}{Single numerical. Soil saturated water content [m3.m-3].}
   \item{bPar}{Single numerical. Campbell 'b' (shape) parameter (corresponds 
@@ -28,8 +28,10 @@ values provided.}
 \references{Brooks & Corey, 1964. Hydraulic properties of porous 
 media. Colorado State University, Fort Collins, USA. Hydrology 
 paper, 3; 
+
 Kutilek M. & Nielsen D.R., 1994. Soil hydrology. Catena-Verlag, 
 GeoEcology textbook, Germany. ISBN : 9-923381-26-3., 370 p.
+
 Campbell, 1974. A simple-method for determining 
 unsaturated conductivity from moisture retention data. 
 Soil Science 117:6. pp. 311-314 }
@@ -41,23 +43,22 @@ Soil Science 117:6. pp. 311-314 }
 \examples{require("soilwaterfun") 
 
 fun.campbell.theta.h( 
-    h       = seq(from=0,to=-10,by=-0.1), 
-    hA      = -0.01, 
-    thetaS  = 0.5, 
-    bPar    = 1/3 
+    h       = c(0,0.01,0.1,1,10,100,158),  # [m] 
+    hA      = 0.01,                        # [m]
+    thetaS  = 0.5,                         # [-]
+    bPar    = 1/3                          # [-] 
 )   #
 
 curve( 
     fun.campbell.theta.h( 
-        h       = -x, 
-        hA      = -0.01, 
+        h       = x, 
+        hA      = 0.01, 
         thetaS  = 0.5, 
         bPar    = 1/3 
     ), 
-    xlim = c(0.001,10), 
-    col  = "red", 
+    xlim = c(0.001,158), 
     log  = "x", 
-    xlab = "-h", 
+    xlab = "h, pressure head", 
     ylab = expression( theta )
 )   #
 abline( v = 0.01 )}

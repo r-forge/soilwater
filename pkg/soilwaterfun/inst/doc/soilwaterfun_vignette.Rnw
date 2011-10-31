@@ -20,7 +20,7 @@
 % Load Sweave and color, in order to modify 
 % sweave's environments:
 
-\RequirePackage{Sweave,url,hyperref} % ,sweave,color,placeins,rotating,subfig
+\RequirePackage{Sweave,url,hyperref,amsmath} % ,sweave,color,placeins,rotating,subfig
 \SweaveOpts{width=14,height=14,keep.source=TRUE} 
 % Also modified in the document
 
@@ -201,15 +201,35 @@ library( "soilwaterfun" )
 % +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
 \subsection{van Genuchten 1980} 
 
+Genuchten 1980 function for water retention is the following:
 
+\[ 
+    \theta = S_{e} . ( \theta_{S} - \theta_{R} ) + \theta_{R}
+\]
 
-To predict soil water content from soil matrix potential h, and 
+Where $\theta_{S}$ is the saturated water content [-], $\theta_{R}$ 
+is the residual water content [-] and $S_{e}$, the effective saturation, 
+is defined as:
+
+\[ 
+    S_{e} = 1 / ( ( 1 + ( \alpha . h )^n )^m )
+\]
+
+With $m$ generally defined as $m = 1 - 1/n$, $n$ is a dimensionless shape 
+parameter related to pore size distribution, $\alpha$ another shape parameter 
+[$m^{-1}$], and h is the pressure head [m] (positives). Pressure head is reated 
+to matrix potential (negative) $\psi$ with $\psi = -h$.\\
+
+In practice R implementation of this function uses $|h|$ (\texttt{abs(h)}), 
+so using $h$ or $\psi$ makes no difference.\\
+
+To predict soil water content from soil pressure head h, and 
 from van Genuchten 1980 parameters alpha, n, thetaS and thetaR, 
 follow this example:
 
 <<echo=TRUE,eval=TRUE>>= 
 pTheta <- fun.vangenuchten.theta.h( 
-    h       = -c(0,0.01,0.1,1,10,100,158), # [meter]
+    h       = c(0,0.01,0.1,1,10,100,158),  # [meter]
     alpha   = 3.561099,                    # [meter-1] 
     n       = 1.212074,                    # [-] 
     thetaS  = 0.4162380,                   # [-] 
@@ -221,7 +241,7 @@ pTheta
 
 
 
-To predict the reverse, soil matrix potential h from soil water 
+To predict the reverse, soil pressure head h from soil water 
 content from use the following example, for a rather loamy soil:
 
 <<echo=TRUE,eval=TRUE>>= 
@@ -243,7 +263,7 @@ These functions can be plotted:
 <<fig=TRUE,echo=TRUE,eval=TRUE>>= 
 curve( 
     fun.vangenuchten.theta.h( 
-        h       = -x, 
+        h       = x, 
         alpha   = 3.561099, 
         n       = 1.212074, 
         thetaS  = 0.4162380, 
@@ -252,8 +272,8 @@ curve(
     xlim = c(0.001,158), 
     col  = "red", 
     log  = "x", 
-    xlab = "-h", 
-    ylab = expression( theta ), 
+    xlab = "h, pressure head [m]", 
+    ylab = expression( theta~", water content [-]" ), 
     main = expression( 'van Genuchten 1980: '~theta=='f(h)' ) 
 )   #
 @ 
@@ -274,8 +294,8 @@ curve(
     xlim = c(0,0.5), 
     col  = "red", 
     log  = "y", 
-    xlab = expression( theta ), 
-    ylab = "h", 
+    ylab = "h, pressure head [m]", 
+    xlab = expression( theta~", water content [-]" ), 
     main = expression( 'van Genuchten 1980: '~h=='f('*theta*')' ) 
 )   #
 @ 
@@ -285,16 +305,38 @@ curve(
 % +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
 \subsection{Brooks and Corey 1964} 
 
+Brooks and Corey (1964) model for water retention in soils is 
+the following:
+%%% NB: change the possible values of lambda in the function help
 
+\[ 
+    \theta =  \{ \begin{array}{l l}
+        S_{e} . ( \theta_{S} - \theta_{R} ) + \theta_{R} & \text{when $h > h_{A}$}\\
+        \theta_{S}                                       & \text{when $h <= h_{A}$}
+    \end{array}
+\]
 
-To predict soil water content from soil matrix potential h, and 
+Where $\theta_{S}$ is the saturated water content [-], $\theta_{R}$ 
+is the residual water content [-] and $S_{e}$, the effective saturation, 
+is defined as:
+
+\[ 
+    S_{e} = ( h / h_{A} )^{-\lambda} 
+\]
+
+Where $h$ is the pressure head, $h_{A}$ is the pressure head at the 
+air entry point, and $\lambda$ is a dimensionless parameter related 
+to pore size distribution, which determines the slope of the $\theta(h)$
+relationship on the log scale.\\
+
+To predict soil water content from soil pressure head h, and 
 from Brooks and Corey (1964) parameters hA, thetaS, thetaR and 
 lambda:
 
 <<echo=TRUE,eval=TRUE>>= 
 pTheta <- fun.brooks.corey.theta.h( 
-    h       = -c(0,0.01,0.1,1,10,100,158),  # [meter] 
-    hA      = -0.01,                        # [meter] 
+    h       = c(0,0.01,0.1,1,10,100,158),   # [meter] 
+    hA      = 0.01,                         # [meter] 
     thetaS  = 0.4162380,                    # [-]
     thetaR  = 0,                            # [-]
     lambda  = 0.3                           # [-] 
@@ -310,8 +352,8 @@ This functions can be plotted:
 <<fig=TRUE,echo=TRUE,eval=TRUE>>= 
 curve( 
     fun.brooks.corey.theta.h( 
-        h       = -x, 
-        hA      = -0.01,                    # [meter] 
+        h       = x, 
+        hA      = 0.01,                     # [meter] 
         thetaS  = 0.4162380,                # [-]
         thetaR  = 0,                        # [-]
         lambda  = 0.3                       # [-] 
@@ -319,8 +361,8 @@ curve(
     xlim = c(0.001,158), 
     col  = "red", 
     log  = "x", 
-    xlab = "-h", 
-    ylab = expression( theta ), 
+    xlab = "h, pressure head [m]", 
+    ylab = expression( theta~", water content [-]" ), 
     main = expression( 'Brooks and Corey 1964: '~theta=='f(h)' ) 
 )   #
 abline( v = 0.01 )
@@ -333,16 +375,16 @@ abline( v = 0.01 )
 
 
 
-To predict soil water content from soil matrix potential h, and 
+To predict soil water content from soil pressure head h, and 
 from Campbell 1974 parameters hA, thetaS, thetaR and 
 lambda:
 
 <<echo=TRUE,eval=TRUE>>= 
 pTheta <- fun.campbell.theta.h( 
-    h       = -c(0,0.01,0.1,1,10,100,158),  # [meter] 
-    hA      = -0.01,                        # [meter] 
-    thetaS  = 0.4162380,                    # [-] 
-    bPar    = 3.3                           # [-] 
+    h       = c(0,0.01,0.1,1,10,100,158),  # [meter] 
+    hA      = 0.01,                        # [meter] 
+    thetaS  = 0.4162380,                   # [-] 
+    bPar    = 3.3                          # [-] 
 )   #
 #
 pTheta 
@@ -355,16 +397,16 @@ This functions can be plotted:
 <<fig=TRUE,echo=TRUE,eval=TRUE>>= 
 curve( 
     fun.campbell.theta.h( 
-        h       = -x,                       # [meter] 
-        hA      = -0.01,                    # [meter] 
-        thetaS  = 0.4162380,                # [-] 
-        bPar    = 3.3                       # [-] 
+        h       = x,                       # [meter] 
+        hA      = 0.01,                    # [meter] 
+        thetaS  = 0.4162380,               # [-] 
+        bPar    = 3.3                      # [-] 
     ), 
     xlim = c(0.001,158), 
     col  = "red", 
     log  = "x", 
-    xlab = "-h", 
-    ylab = expression( theta ), 
+    xlab = "h, pressure head [m]", 
+    ylab = expression( theta~", water content [-]" ), 
     main = expression( 'Campbell 1974: '~theta=='f(h)' ) 
 )   #
 abline( v = 0.01 )

@@ -1,7 +1,7 @@
 \name{fun.pF2h}
 \alias{fun.pF2h}
 \title{Converts pF to h}
-\description{Function that converts pF values into a matrix poential (in 
+\description{Function that converts pF values into a pressure head (in 
 meters [m]).}
 \usage{
 fun.pF2h(pF)
@@ -10,8 +10,8 @@ fun.pF2h(pF)
   \item{pF}{Vector of numericals. pF values to be converted.}
 }
 
-\value{Returns a vector of matrix potential value [m] (numericals), 
-negative (succion).}
+\value{Returns a vector of pressure head value [m] (numericals), 
+positive.}
 
 \author{Julien MOEYS <jules_m78-soiltexture@yahoo.fr>}
 

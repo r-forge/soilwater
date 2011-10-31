@@ -24,15 +24,15 @@ fun.campbell.theta.h <- function(# Campbell 1974 function for water retension, t
 ##references<<Brooks & Corey, 1964. Hydraulic properties of porous 
 ## media. Colorado State University, Fort Collins, USA. Hydrology 
 ## paper, 3; 
-## Kutilek M. & Nielsen D.R., 1994. Soil hydrology. Catena-Verlag, 
+##references<<Kutilek M. & Nielsen D.R., 1994. Soil hydrology. Catena-Verlag, 
 ## GeoEcology textbook, Germany. ISBN : 9-923381-26-3., 370 p.
-## Campbell, 1974. A simple-method for determining 
+##references<<Campbell, 1974. A simple-method for determining 
 ## unsaturated conductivity from moisture retention data. 
 ## Soil Science 117:6. pp. 311-314 
 
  h,
-### Vector of numerical. Matrix potential of the soil, in [m]. 
-### Values should be negative (suction).
+### Vector of numerical. Pressure head of the soil, in [m]. Matrix 
+### potential values will also work, as in practice abs(h) is used.
 
  hA,
 ### Single numerical. Matrix potential at the air entry point [m3.m-3]
@@ -74,9 +74,9 @@ fun.campbell.K.theta <- function(# Campbell 1974 function for hydraulic conducti
 ##references<<Brooks & Corey, 1964. Hydraulic properties of porous 
 ## media. Colorado State University, Fort Collins, USA. Hydrology 
 ## paper, 3; 
-## Kutilek M. & Nielsen D.R., 1994. Soil hydrology. Catena-Verlag, 
+##references<<Kutilek M. & Nielsen D.R., 1994. Soil hydrology. Catena-Verlag, 
 ## GeoEcology textbook, Germany. ISBN : 9-923381-26-3., 370 p.
-## Campbell, 1974. A simple-method for determining 
+##references<<Campbell, 1974. A simple-method for determining 
 ## unsaturated conductivity from moisture retention data. 
 ## Soil Science 117:6. pp. 311-314 
 
@@ -122,18 +122,18 @@ fun.campbell.K.h <- function(# Campbell 1974 function for hydraulic conductivity
 ##references<<Brooks & Corey, 1964. Hydraulic properties of porous 
 ## media. Colorado State University, Fort Collins, USA. Hydrology 
 ## paper, 3; 
-## Kutilek M. & Nielsen D.R., 1994. Soil hydrology. Catena-Verlag, 
+##references<<Kutilek M. & Nielsen D.R., 1994. Soil hydrology. Catena-Verlag, 
 ## GeoEcology textbook, Germany. ISBN : 9-923381-26-3., 370 p.
-## Campbell, 1974. A simple-method for determining 
+##references<<Campbell, 1974. A simple-method for determining 
 ## unsaturated conductivity from moisture retention data. 
 ## Soil Science 117:6. pp. 311-314 
 
  h,
-### Vector of numerical. Matrix potential of the soil, in [m]. 
-### Values should be negative (suction).
+### Vector of numerical. Pressure head of the soil, in [m]. Matrix 
+### potential values will also work, as in practice abs(h) is used.
 
  hA,
-### Single numerical. Matrix potential at the air entry point [m3.m-3]
+### Single numerical. Pressure head at the air entry point [m3.m-3]
 
  Ks,
 ### Single numerical. Soil saturated hydraulic conductivity. In 
@@ -145,9 +145,9 @@ fun.campbell.K.h <- function(# Campbell 1974 function for hydraulic conductivity
 ### fun.campbell.theta.h().
 
 ){  #
-    K <- Ks * ( ( h / hA )^-( 2 + 3 / bPar ) ) 
+    K <- Ks * ( ( abs(h) / abs(hA) )^-( 2 + 3 / bPar ) ) 
     #
-    K[ h >= hA ] <- Ks 
+    K[ abs(h) <= abs(hA) ] <- Ks 
     #
     return( K ) 
 ### Returns a vector of numericals, K [L.T-1] for each h 
