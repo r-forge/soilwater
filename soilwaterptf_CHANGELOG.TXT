@@ -1,3 +1,5 @@
+- 2011/10/27 Added a vignette to the package;
+- ?          Create an 'all in one' function for Wosten PTFs;
 - 2010/11/01 Benchmarked soilwaterptf:::ptf.wosten calculations agaisnt an 
              excel spreadsheet made by Henk Wosten to check that the results were 
              (almost) identical.
