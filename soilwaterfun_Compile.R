@@ -2,7 +2,7 @@
 rm(list=ls(all=TRUE)) 
 pkg.dir      <- "C:/_R_PACKAGES/soilwater/pkg" 
 pkg.name     <- "soilwaterfun" 
-pkg.version  <- "1.0.1" 
+pkg.version  <- "1.0.2" 
 pkg.depends  <- NULL  
 pkg.suggests <- NULL 
 RVersion     <- "R (>= 2.4.1)" 
