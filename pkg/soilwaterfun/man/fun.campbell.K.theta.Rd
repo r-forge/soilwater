@@ -25,8 +25,10 @@ values provided.}
 \references{Brooks & Corey, 1964. Hydraulic properties of porous 
 media. Colorado State University, Fort Collins, USA. Hydrology 
 paper, 3; 
+
 Kutilek M. & Nielsen D.R., 1994. Soil hydrology. Catena-Verlag, 
 GeoEcology textbook, Germany. ISBN : 9-923381-26-3., 370 p.
+
 Campbell, 1974. A simple-method for determining 
 unsaturated conductivity from moisture retention data. 
 Soil Science 117:6. pp. 311-314 }
@@ -38,10 +40,10 @@ Soil Science 117:6. pp. 311-314 }
 \examples{require("soilwaterfun") 
 
 fun.campbell.K.theta( 
-    theta   = seq(from=0,to=0.5,by=0.1), 
-    thetaS  = 0.5, 
-    Ks      = 10, 
-    bPar    = 1/3 
+    theta   = seq(from=0,to=0.5,by=0.1),   # [-]
+    thetaS  = 0.5,                         # [-]
+    Ks      = 0.10,                        # [m.d-1]
+    bPar    = 1/3                          # [-]
 )   #
 
 curve( 

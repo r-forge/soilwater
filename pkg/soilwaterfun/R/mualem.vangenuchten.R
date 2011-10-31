@@ -22,8 +22,8 @@ fun.vangenuchten.se.h <- function(# van Genuchten 1980's function for soil relat
 ## 9-923381-26-3., 370 p.
 
  h,
-### Vector of numerical. Matrix potential of the soil, in [m]. 
-### Values should be negative (suction).
+### Vector of numerical. Pressure head of the soil, in [m]. Matrix 
+### potential values will also work, as in practice abs(h) is used.
 
  alpha,
 ### Single numerical. alpha (shape) parameter of the Van Genuchten 
@@ -43,7 +43,7 @@ fun.vangenuchten.se.h <- function(# van Genuchten 1980's function for soil relat
 ){  #
     m <- (1 - (cPar / n)) 
     #
-    return( 1 / ( ( 1 + ( alpha * -h )^n )^m ) ) 
+    return( 1 / ( ( 1 + ( alpha * abs(h) )^n )^m ) ) 
 ### The function returns the relative water content (degree of 
 ### saturation, Se, [-]).
 }   #
@@ -64,8 +64,8 @@ fun.vangenuchten.theta.h <- function(# van Genuchten 1980's function theta(h) (w
 ## 9-923381-26-3., 370 p.
 
  h,
-### Vector of numerical. Matrix potential of the soil, in [m]. 
-### Values should be negative (suction).
+### Vector of numerical. Pressure head of the soil, in [m]. Matrix 
+### potential values will also work, as in practice abs(h) is used.
 
  alpha,
 ### Single numerical. alpha (shape) parameter of the Van Genuchten 
@@ -211,8 +211,8 @@ fun.mualem.vangenuchten.K.h <- function(# Mualem (1976) & van Genuchten (1980)'s
 ## 9-923381-26-3., 370 p.
 
  h,
-### Vector of numerical. Matrix potential of the soil, in [m]. 
-### Values should be negative (suction).
+### Vector of numerical. Pressure head of the soil, in [m]. Matrix 
+### potential values will also work, as in practice abs(h) is used.
 
  Ks, 
 ### Single numerical. Saturated hydraulic conductivity of the soil 
@@ -255,7 +255,7 @@ fun.mualem.vangenuchten.K.h <- function(# Mualem (1976) & van Genuchten (1980)'s
         h     = h, 
         alpha = alpha, 
         n     = n,
-        cPar = cPar  
+        cPar  = cPar  
     )   #
     #
     m  <- (1 - (cPar / n)) 

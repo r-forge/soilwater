@@ -1,10 +1,10 @@
 require("soilwaterfun") 
 
 fun.campbell.K.theta( 
-    theta   = seq(from=0,to=0.5,by=0.1), 
-    thetaS  = 0.5, 
-    Ks      = 10, 
-    bPar    = 1/3 
+    theta   = seq(from=0,to=0.5,by=0.1),   # [-]
+    thetaS  = 0.5,                         # [-]
+    Ks      = 0.10,                        # [m.d-1]
+    bPar    = 1/3                          # [-]
 )   #
 
 curve( 

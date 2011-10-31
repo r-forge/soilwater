@@ -1,13 +1,14 @@
 \name{fun.h2pF}
 \alias{fun.h2pF}
 \title{Converts h to pF}
-\description{Function that converts matrix potential values [m] into pF values}
+\description{Function that converts pressure head values [m] into pF values}
 \usage{
 fun.h2pF(h)
 }
 \arguments{
-  \item{h}{Vector of numericals. Matrix potential values to be converted [m]
-(negative values. Succion).}
+  \item{h}{Vector of numericals. Pressure head to be converted [m]. In 
+practice, matrix potential can also be used, as it abs(h) is 
+used internally.}
 }
 
 \value{Returns a vector of pF values (numericals) }
