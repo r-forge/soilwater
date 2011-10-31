@@ -1,3 +1,8 @@
-- 2010/08/13 Version 1.0 of the package. Documented.
+- 2011/10/31 Corrected several inconsistencies between h and psi usage in some
+             functions description.
+- 2011/10/31 Corrected an inconsistency between h and psi usage in the functions 
+             fun.pF2h() and fun.h2pF().
+- 2011/10/28 Started to write a package vignette;
 - 2010/09/08 Changed the name of the functions options to achieve 
-             a more uniform name convention (necessary for fortran integration) 
+             a more uniform name convention (necessary for fortran integration);
+- 2010/08/13 Version 1.0 of the package. Documented.
