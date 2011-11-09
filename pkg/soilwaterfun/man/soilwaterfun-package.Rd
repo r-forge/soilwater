@@ -12,8 +12,8 @@ contains pedotransfer function for estimating the parameters of these functions
 from basic soil properties (valid for european soils).}
 \details{
 \tabular{ll}{Package: \tab soilwaterfun\cr
-Version: \tab 1.0.2\cr
-Date: \tab 2011-10-31\cr
+Version: \tab 1.0.3\cr
+Date: \tab 2011-11-09\cr
 Title: \tab Functions for soil water retention and soil hydraulic conductivity.\cr
 Author: \tab Julien MOEYS <jules_m78-soiltexture@yahoo.fr>\cr
 Maintainer: \tab Julien MOEYS <jules_m78-soiltexture@yahoo.fr>\cr
