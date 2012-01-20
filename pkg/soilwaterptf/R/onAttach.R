@@ -3,8 +3,8 @@
  pkgname  
 ){  #
     packageStartupMessage( 
-        c(  paste( "'", pkgname, "' package loaded.\n", sep = "" ), 
-            paste( "\tType help( package='", pkgname, "') to get started.", sep = "" ) 
+        c(  paste( "'", pkgname, "' package loaded. ", sep = "" ), 
+            paste( "Type help( package='", pkgname, "') to get started.", sep = "" ) 
         )   #
     )   #
 }   #
