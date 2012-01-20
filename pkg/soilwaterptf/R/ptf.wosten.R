@@ -415,8 +415,12 @@ ptf.wosten <- function(# Wosten et al. 1999 PTF for all Mualem - van Genuchten f
 ### Single character string. Internal. Name of the dll that contains 
 ### the .Fortran sub-routine.
 
- package="soilwaterptf"
+ package="soilwaterptf", 
 ### Single character string. Internal. Name of the package that 
+### contains the dll.
+
+ lib.loc=installed.packages()["soilwaterptf","LibPath"] 
+### Single character string. Internal. Location of the package that 
 ### contains the dll.
 
 ){  #
@@ -484,7 +488,8 @@ ptf.wosten <- function(# Wosten et al. 1999 PTF for all Mualem - van Genuchten f
         #
         tmp <- library.dynam( 
             chname  = fortran.lib, 
-            package = package 
+            package = package, 
+            lib.loc = lib.loc  
         )   #
         # tmp <- tmp[["path"]] 
         #
