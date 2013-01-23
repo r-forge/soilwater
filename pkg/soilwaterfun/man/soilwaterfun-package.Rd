@@ -1,5 +1,6 @@
 \name{soilwaterfun-package}
 \alias{soilwaterfun-package}
+\alias{soilwaterfun}
 \docType{package}
 \title{Functions for soil water retention and soil hydraulic conductivity.}
 \description{The package implements commonly used functions for soil water retention
@@ -13,7 +14,7 @@ from basic soil properties (valid for european soils).}
 \details{
 \tabular{ll}{Package: \tab soilwaterfun\cr
 Version: \tab 1.0.3\cr
-Date: \tab 2012-01-20\cr
+Date: \tab 2013-01-10\cr
 Title: \tab Functions for soil water retention and soil hydraulic conductivity.\cr
 Author: \tab Julien MOEYS <jules_m78-soiltexture@yahoo.fr>\cr
 Maintainer: \tab Julien MOEYS <jules_m78-soiltexture@yahoo.fr>\cr

@@ -1,6 +1,6 @@
 # source( "C:/_R_PACKAGES/easydb/soilwaterfun.R", echo = TRUE, verbose = FALSE ) 
 rm(list=ls(all=TRUE)) 
-pkg.dir      <- "C:/_R_PACKAGES/soilwater/pkg" 
+pkg.dir      <- "D:/Users/julienm/Documents/_WORKS/_PROJECTS/r_packages/soilwater/pkg" 
 pkg.name     <- "soilwaterfun" 
 pkg.version  <- "1.0.3" 
 pkg.depends  <- NULL  

@@ -3,9 +3,7 @@
 \title{Converts pF to h}
 \description{Function that converts pF values into a pressure head (in 
 meters [m]).}
-\usage{
-fun.pF2h(pF)
-}
+\usage{fun.pF2h(pF)}
 \arguments{
   \item{pF}{Vector of numericals. pF values to be converted.}
 }

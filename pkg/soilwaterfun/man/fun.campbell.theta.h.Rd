@@ -10,12 +10,7 @@ and theta = thetaS when hA <= h < 0
 The advantage of Campbell's model is that it uses the same 
 bPar parameter for both the water retention curve and 
 the hydraulic conductivity.}
-\usage{
-fun.campbell.theta.h(h,
-hA,
-thetaS,
-bPar)
-}
+\usage{fun.campbell.theta.h(h, hA, thetaS, bPar)}
 \arguments{
   \item{h}{Vector of numerical. Pressure head of the soil, in [m]. Matrix 
 potential values will also work, as in practice abs(h) is used.}
