@@ -11,12 +11,7 @@ The advantage of Campbell's model is that it uses the same
 bPar parameter for both the water retention curve and 
 the hydraulic conductivity. 'm' parameter in Brooks & Corey's 
 model is equal to 2+3/bPar.}
-\usage{
-fun.campbell.K.h(h,
-hA,
-Ks,
-bPar)
-}
+\usage{fun.campbell.K.h(h, hA, Ks, bPar)}
 \arguments{
   \item{h}{Vector of numerical. Pressure head of the soil, in [m]. Matrix 
 potential values will also work, as in practice abs(h) is used.}

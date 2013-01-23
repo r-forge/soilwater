@@ -7,12 +7,7 @@ The model is: K = Ks * ((theta/thetaS)^(2*bPar + 3))
 The advantage of Campbell's model is that it uses the same 
 bPar parameter for both the water retention curve and 
 the hydraulic conductivity.}
-\usage{
-fun.campbell.K.theta(theta,
-thetaS,
-Ks,
-bPar)
-}
+\usage{fun.campbell.K.theta(theta, thetaS, Ks, bPar)}
 \arguments{
   \item{theta}{Vector of numerical. Soil water content(s) in [m3.m-3].}
   \item{thetaS}{Single numerical. Soil saturated water content [m3.m-3].}

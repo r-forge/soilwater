@@ -1,6 +1,6 @@
-c:
-cd \
-cd "_R_PACKAGES\soilwater\pkg" 
-R CMD check --no-tests --no-examples soilwaterfun
-REM --no-examples --no-vignettes
+set pkgname=soilwaterfun
+cd /D "%rPackagesDir%\soilwater\pkg" 
+
+R CMD check --no-tests %pkgname%
+@REM --no-examples --no-vignettes
 pause

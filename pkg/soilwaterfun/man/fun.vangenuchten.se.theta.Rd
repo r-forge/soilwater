@@ -4,11 +4,7 @@
 \description{Calculate the relative saturation Se of a soil at a given 
 water content theta with the Van Genuchten water retention 
 function.}
-\usage{
-fun.vangenuchten.se.theta(theta,
-thetaR,
-thetaS)
-}
+\usage{fun.vangenuchten.se.theta(theta, thetaR, thetaS)}
 \arguments{
   \item{theta}{Vector of numerical. Water of the soil, in [m3.m-3]. }
   \item{thetaR}{Vector of numerical. Residual water content of the soil for 

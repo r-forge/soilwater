@@ -4,12 +4,7 @@
 \description{Brooks and Corey 1964 model for soil hydraulic conductivity. 
 The model is: K / Ks = (h/hA)^-m when h < hA 
 and K = Ks when hA <= h < 0}
-\usage{
-fun.brooks.corey.K.h(h,
-hA,
-Ks,
-m)
-}
+\usage{fun.brooks.corey.K.h(h, hA, Ks, m)}
 \arguments{
   \item{h}{Vector of numerical. Pressure head of the soil, in [m]. Matrix 
 potential values will also work, as in practice abs(h) is used.}

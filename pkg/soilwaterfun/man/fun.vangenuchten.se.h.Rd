@@ -3,12 +3,7 @@
 \title{van Genuchten 1980's function for soil relative saturation.}
 \description{Calculate the relative saturation Se of a soil at a given 
 tension h with the Van Genuchten water retention function.}
-\usage{
-fun.vangenuchten.se.h(h,
-alpha,
-n,
-cPar = 1)
-}
+\usage{fun.vangenuchten.se.h(h, alpha, n, cPar = 1)}
 \arguments{
   \item{h}{Vector of numerical. Pressure head of the soil, in [m]. Matrix 
 potential values will also work, as in practice abs(h) is used.}

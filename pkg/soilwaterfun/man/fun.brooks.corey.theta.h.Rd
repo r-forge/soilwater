@@ -5,13 +5,7 @@
 The model is: theta.e = (h/hA)^-lambda with 
 theta.e = (theta - thetaR) / (thetaS - thetaR) when h < hA 
 and theta = thetaS when hA <= h < 0}
-\usage{
-fun.brooks.corey.theta.h(h,
-hA,
-thetaS,
-thetaR,
-lambda)
-}
+\usage{fun.brooks.corey.theta.h(h, hA, thetaS, thetaR, lambda)}
 \arguments{
   \item{h}{Vector of numerical. Pressure head of the soil, in [m]. Matrix 
 potential values will also work, as in practice abs(h) is used.}
