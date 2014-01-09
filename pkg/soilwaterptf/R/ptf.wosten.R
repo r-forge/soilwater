@@ -755,9 +755,9 @@ classPtf.wosten <- function(# Wosten et al. 1999 class PTF for all Mualem - van 
             )   #
         )   #
     }   #
-    #
-    require( "soiltexture" ) 
-    #
+    
+    # require( "soiltexture" ) 
+    
     testClass <- is.na( soilprop[,"textureClass"] ) & 
                  soilprop[,"isOrganic"] == 0 
     #
