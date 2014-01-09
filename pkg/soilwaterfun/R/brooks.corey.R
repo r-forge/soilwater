@@ -95,3 +95,5 @@ fun.brooks.corey.K.h <- function(# Brooks & Corey 1964 function for hydraulic co
 ### Returns a vector of numericals, K values [L.T-1] (same unit as 
 ### Ks) for each h values provided.
 }   #
+
+

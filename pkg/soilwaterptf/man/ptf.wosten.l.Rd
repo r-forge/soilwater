@@ -5,12 +5,7 @@
 of the Van Genuchten water retention function 
 of a soil after its clay and silt content, bulk density and 
 organic matter content.}
-\usage{
-ptf.wosten.l(clay,
-bulkD,
-silt,
-om)
-}
+\usage{ptf.wosten.l(clay, bulkD, silt, om)}
 \arguments{
   \item{clay}{Vector of numericals. Clay content [\%] of each soil layer / 
 horizon. 0-2 micrometers.}

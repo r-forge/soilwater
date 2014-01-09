@@ -1,11 +1,11 @@
 Package: soilwaterptf
-Version: 1.0.4
-Date: 2012-01-20
+Version: 1.0.5
+Date: 2013-04-29
 Title: Wosten et al. 1999 pedotransfer functions for soil hydraulic properties.
 Author: Julien MOEYS <jules_m78-soiltexture@yahoo.fr> 
 Maintainer: Julien MOEYS <jules_m78-soiltexture@yahoo.fr> 
-Depends: R (>= 2.4.1), soiltexture
-Suggests: soilwaterfun
+Depends: R (>= 3.0.0), soiltexture
+Suggests: 
 Description: Pedotransfer functions (PTFs) for estimating the physical parameters of soil 
     water retention and hydraulic conductivity functions from easily available soil 
     properties (typically soil texture, organic matter content, bulk density). The 

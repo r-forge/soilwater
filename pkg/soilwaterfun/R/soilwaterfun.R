@@ -41,3 +41,5 @@ fun.h2pF <- function(# Converts h to pF
     return( log10(abs(h)*100) ) 
 ### Returns a vector of pF values (numericals) 
 }   #
+
+

@@ -497,7 +497,7 @@ ptf.wosten <- function(# Wosten et al. 1999 PTF for all Mualem - van Genuchten f
         #
         #Call Fortran
         res = .Fortran( 
-            name      = "ptfWosten", 
+            "ptfWosten", 
             nbrow     = nr, 
             soilprop  = soilprop, 
             soilphy   = soilphy, 
@@ -934,3 +934,5 @@ classPtf.wosten <- function(# Wosten et al. 1999 class PTF for all Mualem - van 
 ### respectively, and where [Volumic water content], [length] and 
 ### [time] are units chosen with the option \code{units}. 
 }   #
+
+
