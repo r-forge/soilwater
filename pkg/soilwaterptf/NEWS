@@ -1,9 +1,13 @@
- o version 1.0.4 
+VERSION 1.0.6
+
+    2014/01/09  Compiled with R 3.0.2
+
+VERSION 1.0.4 
  
    2012/01/20 Fixed lib.loc value in library.dynam() in 
               ptf.wosten() 
  
- o version <= 1.0.3
+VERSION <= 1.0.3
 
    2011/10/27 Added a vignette to the package;
    

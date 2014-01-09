@@ -1,4 +1,6 @@
+
 rm(list=ls(all=TRUE)) 
+
 pkgName     <- "soilwaterfun"
 pkgDir      <- file.path( "D:/Users/julienm/Documents/_WORKS/_PROJECTS/r_packages/soilwater/pkg" ) 
 
@@ -14,7 +16,7 @@ source( file.path( pkgDir, "..", "packageUtilities.R" ) )
 pkgDescription( 
     pkgName     = pkgName, 
     pkgDir      = pkgDir, 
-    pkgVersion  = "1.0.4", 
+    pkgVersion  = "1.0.5", 
     pkgDepends  = NULL, 
     pkgSuggests = NULL, 
     RVersion    = NULL   
