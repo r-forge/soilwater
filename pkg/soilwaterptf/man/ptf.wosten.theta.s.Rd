@@ -5,13 +5,7 @@
 water content (THETA_S) of a soil after its clay and silt 
 content, bulk density, organic matter content and topsoil or 
 subsoil qualifier. }
-\usage{
-ptf.wosten.theta.s(clay,
-bulkD,
-silt,
-om,
-topSoil)
-}
+\usage{ptf.wosten.theta.s(clay, bulkD, silt, om, topSoil)}
 \arguments{
   \item{clay}{Vector of numericals. Clay content [\%] of each soil layer / 
 horizon. 0-2 micrometers. }

@@ -7,15 +7,9 @@ conductivity functions using the complete set of PTFs created
 by Woesten et al. 1999. The code uses either R code or Fortran 
 code to do the calculations, and is vectorised (works on several 
 soil samples at a time) }
-\usage{
-ptf.wosten(soilprop,
-units,
-fortran.c = TRUE,
-fortran.lib = "soilwaterptf",
-package = "soilwaterptf",
-lib.loc = installed.packages()["soilwaterptf",
-"LibPath"])
-}
+\usage{ptf.wosten(soilprop, units, fortran.c = TRUE, fortran.lib = "soilwaterptf", 
+    package = "soilwaterptf", lib.loc = installed.packages()["soilwaterptf", 
+        "LibPath"])}
 \arguments{
   \item{soilprop}{matrix or data.frame, with 5 columns: 
 \itemize{ 

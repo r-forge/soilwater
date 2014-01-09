@@ -1,39 +1,32 @@
-# source( "C:/_R_PACKAGES/easydb/soilwaterfun.R", echo = TRUE, verbose = FALSE ) 
 rm(list=ls(all=TRUE)) 
-pkg.dir      <- "C:/_R_PACKAGES/soilwater/pkg" 
-pkg.name     <- "soilwaterptf" 
-pkg.version  <- "1.0.4" 
-pkg.depends  <- "soiltexture"  
-pkg.suggests <- NULL 
-RVersion     <- "R (>= 2.4.1)" 
-# r.path       <- "C:/Program Files/_SCIENCE/R_PROJECT_2-4-1/bin" 
-r.path       <- ""  #  Use curent R version
+pkgName     <- "soilwaterptf"
+pkgDir      <- file.path( "D:/Users/julienm/Documents/_WORKS/_PROJECTS/r_packages/soilwater/pkg" ) 
 
 
+library( "inlinedocs" )
 
 
-require( "rcmdwrapper" ) 
-
+# Source some utility functions
+source( file.path( pkgDir, "..", "packageUtilities.R" ) ) 
 
 
 # Change the description file:
-pkg.description( 
-    pkg.name     = pkg.name, 
-    pkg.dir      = pkg.dir, 
-    pkg.version  = pkg.version, 
-    pkg.depends  = pkg.depends, 
-    pkg.suggests = pkg.suggests, 
-    RVersion     = RVersion  
-)   #
+pkgDescription( 
+    pkgName     = pkgName, 
+    pkgDir      = pkgDir, 
+    pkgVersion  = "1.0.5", 
+    pkgDepends  = "soiltexture", 
+    pkgSuggests = NULL, 
+    RVersion    = NULL   
+)   
 
 
 
 package.skeleton.dx( 
-    pkgdir      = file.path( pkg.dir, pkg.name ), 
+    pkgdir      = file.path( pkgDir, pkgName ), 
     namespace   = TRUE  
-)   #
+)   
 
 
-
-pkg.remove.wrapper( pkg.name = pkg.name ) 
+pkgRemove( pkgName = pkgName ) 
 

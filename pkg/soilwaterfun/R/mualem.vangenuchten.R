@@ -266,3 +266,5 @@ fun.mualem.vangenuchten.K.h <- function(# Mualem (1976) & van Genuchten (1980)'s
 ### Returns K, the hydraulic conductivity (in [L.T-1], same unit 
 ### as Ks), for each h value provided.
 }   #
+
+

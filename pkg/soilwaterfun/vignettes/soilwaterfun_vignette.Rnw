@@ -1,0 +1,437 @@
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+% | Document header                                             |
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+
+\documentclass[a4paper]{article}
+
+\title{\texttt{soilwaterfun}, water rentiention and hydraulic 
+    conductivity functions} 
+
+\author{Julien Moeys}
+% In case of changes, also change the 'PDF setup' and 
+% 'cited as follow'
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+% | Nodifications of the Sweave style                           |
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+
+% Load Sweave and color, in order to modify 
+% sweave's environments:
+
+\RequirePackage{Sweave,url,hyperref,amsmath} % ,sweave,color,placeins,rotating,subfig
+\SweaveOpts{width=14,height=14,keep.source=TRUE} 
+% Also modified in the document
+
+% \VignetteIndexEntry{soilwaterptf_vignette} 
+% \VignetteDepends{soilwaterfun} 
+% \VignetteKeyword{soil} 
+% \VignetteKeyword{water rentention function} 
+% \VignetteKeyword{hydraulic conductivity function} 
+
+% Modify the definition of the 'Sinput' environment:
+\RecustomVerbatimEnvironment{Sinput}{Verbatim}{%
+    frame       = leftline,         % vert line on the left
+    framerule   = 0.50mm            % width of the vert line
+}   %
+
+% Modify the definition of the 'Scode' environment:
+\RecustomVerbatimEnvironment{Scode}{Verbatim}{%
+    frame       = leftline,         % vert line on the left
+    framerule   = 0.50mm            % width of the vert line
+}   %
+
+% Modify the spacing between R code and R outputs:
+\fvset{listparameters={\setlength{\topsep}{0pt}}} 
+\renewenvironment{Schunk}{\vspace{\topsep}}{\vspace{\topsep}} 
+
+\renewcommand\floatpagefraction{1.0}
+\renewcommand\topfraction{1.0}
+\renewcommand\bottomfraction{1.0}
+\renewcommand\textfraction{0.0}   
+\setcounter{topnumber}{4}
+\setcounter{bottomnumber}{4}
+\setcounter{totalnumber}{12}
+
+
+
+%%% PDF setup -- fill in the title
+% \usepackage[dvipdfm, bookmarks, colorlinks, breaklinks, %
+%     pdftitle={The soil texture wizard:R functions for plotting, classifying, transforming and exploring soil texture data},%
+%     pdfauthor={Julien MOEYS}]{hyperref}  
+% \hypersetup{linkcolor=MidnightBlue, citecolor=MidnightBlue, 
+%     filecolor=MidnightBlue,urlcolor=MidnightBlue} 
+% From: http://malecki.wustl.edu/sweaveTemplate.Rnw
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+% | Beginning of the document                                   |
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+
+% Don't forget to add this to path:
+% C:\Program Files\_SCIENCE\R_PROJECT\share\texmf
+
+\usepackage{Sweave}
+\begin{document}
+\bibliographystyle{plain}
+
+
+% \graphicspath{{INOUT/}} 
+
+
+%INVISIBLY sets a few options for Sweave :: KEEP THIS
+<<echo=FALSE>>= 
+# Set a few Sweave options:
+options( 
+    width       = 65,  # width of R output
+    prompt      = " ", # Sign preceding R input in R-GUI
+    continue    = " "  # same, but after 2nd line
+)   # 
+@ 
+
+% \SweaveOpts{width=14,height=14,keep.source=TRUE}
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+% | Front page TITLE 
+\maketitle
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+% | Edit here                  |
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+% | Table of Content:
+\tableofcontents 
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\section{Forewords} 
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\subsection{What is \texttt{soilwaterfun}?} 
+
+\texttt{soilwaterfun} is an R\cite{RDCT2011} package providing functions 
+that implements the van Genuchten (1980)\cite{VG80} 
+\href{http://en.wikipedia.org/wiki/Water_retention_curve}{%
+water retention function}, the van Genuchten / Mualem (1976)\cite{MUALEM76} 
+\href{http://en.wikipedia.org/wiki/Hydraulic_conductivity}{%
+hydraulic conductivity function}, Brooks and Corey (1964) 
+\cite{BROOKSCOREY64} water retention and hydraulic conductivity 
+functions, and Campbell (1974)\cite{CAMPBELL74} water retention 
+and hydraulic conductivity functions.\\
+
+This package show how to use these functions and how to plot them. 
+It mostly present the same content as the help page of each function, 
+in a sligtly more friendly way.\\
+
+If you are interested in this package, you may well be interested 
+in the package \texttt{soilwaterptf} that provides pedotransfer 
+functions for both van Genuchten (1980) and van Genuchten / Mualem 
+(1976) functions. This package is not presented in this vignette.
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\subsection{Credits and License} 
+
+\texttt{easydb} is licensed under an \href{http://www.gnu.org/licenses/agpl.html}{Affero GNU General Public 
+License Version 3}.\\
+
+\textbf{This package and this document is provided with NO 
+responsibilities, guarantees or automatic supports from the author 
+or his employer} (\href{http://www.slu.se}{SLU} / \href{http://www.slu.se/CKB}{CKB}).\\
+
+
+
+% % +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+% \subsection{Disclaimer} 
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\section{Install and load \texttt{soilwaterfun}} 
+
+\textbf{Method 1:} If you have the latest R version, open R, 
+and then type:
+
+<<echo=TRUE,eval=FALSE>>= 
+install.packages(
+    pkgs  = "soilwaterfun", 
+    repos = "http://R-Forge.R-project.org" )
+@ 
+
+
+
+\textbf{Method 2:} Otherwise, try to install the package from the 
+binaries. First download the binaries from 
+\url{http://soilwater.r-forge.r-project.org/}. Save the 
+package binaries in your working directory, and then open R and 
+type:
+
+<<echo=TRUE,eval=FALSE>>= 
+install.packages(
+    pkgs  = "soilwaterfun_1.0.0.zip", 
+    repos = NULL )
+@ 
+
+
+
+Then you can load \texttt{soilwaterfun}:
+
+<<echo=TRUE,eval=TRUE>>= 
+library( "soilwaterfun" ) 
+@ 
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\section{Water Rentention functions} 
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\subsection{van Genuchten 1980} 
+
+Genuchten 1980 function for water retention is the following:
+
+\[ 
+    \theta = S_{e} . ( \theta_{S} - \theta_{R} ) + \theta_{R}
+\]
+
+Where $\theta_{S}$ is the saturated water content [-], $\theta_{R}$ 
+is the residual water content [-] and $S_{e}$, the effective saturation, 
+is defined as:
+
+\[ 
+    S_{e} = 1 / ( ( 1 + ( \alpha . h )^n )^m )
+\]
+
+With $m$ generally defined as $m = 1 - 1/n$, $n$ is a dimensionless shape 
+parameter related to pore size distribution, $\alpha$ another shape parameter 
+[$m^{-1}$], and h is the pressure head [m] (positives). Pressure head is reated 
+to matrix potential (negative) $\psi$ with $\psi = -h$.\\
+
+In practice R implementation of this function uses $|h|$ (\texttt{abs(h)}), 
+so using $h$ or $\psi$ makes no difference.\\
+
+To predict soil water content from soil pressure head h, and 
+from van Genuchten 1980 parameters alpha, n, thetaS and thetaR, 
+follow this example:
+
+<<echo=TRUE,eval=TRUE>>= 
+pTheta <- fun.vangenuchten.theta.h( 
+    h       = c(0,0.01,0.1,1,10,100,158),  # [meter]
+    alpha   = 3.561099,                    # [meter-1] 
+    n       = 1.212074,                    # [-] 
+    thetaS  = 0.4162380,                   # [-] 
+    thetaR  = 0                            # [-] 
+)   #
+#
+pTheta 
+@ 
+
+
+
+To predict the reverse, soil pressure head h from soil water 
+content from use the following example, for a rather loamy soil:
+
+<<echo=TRUE,eval=TRUE>>= 
+ph <- fun.vangenuchten.h.theta( 
+    theta   = pTheta, 
+    alpha   = 3.561099,                    # [meter-1] 
+    n       = 1.212074,                    # [-] 
+    thetaS  = 0.4162380,                   # [-] 
+    thetaR  = 0                            # [-] 
+)   #
+#
+ph
+@ 
+
+
+
+These functions can be plotted:
+
+<<fig=TRUE,echo=TRUE,eval=TRUE>>= 
+curve( 
+    fun.vangenuchten.theta.h( 
+        h       = x, 
+        alpha   = 3.561099, 
+        n       = 1.212074, 
+        thetaS  = 0.4162380, 
+        thetaR  = 0  
+    ),  #
+    xlim = c(0.001,158), 
+    col  = "red", 
+    log  = "x", 
+    xlab = "h, pressure head [m]", 
+    ylab = expression( theta~", water content [-]" ), 
+    main = expression( 'van Genuchten 1980: '~theta=='f(h)' ) 
+)   #
+@ 
+
+
+
+and for $h(theta)$
+
+<<fig=TRUE,echo=TRUE,eval=TRUE>>= 
+curve( 
+    fun.vangenuchten.h.theta( 
+        theta   = x, 
+        alpha   = 3.561099, 
+        n       = 1.212074, 
+        thetaS  = 0.4162380, 
+        thetaR  = 0  
+    ),  #
+    xlim = c(0,0.5), 
+    col  = "red", 
+    log  = "y", 
+    ylab = "h, pressure head [m]", 
+    xlab = expression( theta~", water content [-]" ), 
+    main = expression( 'van Genuchten 1980: '~h=='f('*theta*')' ) 
+)   #
+@ 
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\subsection{Brooks and Corey 1964} 
+
+Brooks and Corey (1964) model for water retention in soils is 
+the following:
+%%% NB: change the possible values of lambda in the function help
+
+\[ 
+    \theta =  \{ \begin{array}{l l}
+        S_{e} . ( \theta_{S} - \theta_{R} ) + \theta_{R} & \text{when $h > h_{A}$}\\
+        \theta_{S}                                       & \text{when $h <= h_{A}$}
+    \end{array}
+\]
+
+Where $\theta_{S}$ is the saturated water content [-], $\theta_{R}$ 
+is the residual water content [-] and $S_{e}$, the effective saturation, 
+is defined as:
+
+\[ 
+    S_{e} = ( h / h_{A} )^{-\lambda} 
+\]
+
+Where $h$ is the pressure head, $h_{A}$ is the pressure head at the 
+air entry point, and $\lambda$ is a dimensionless parameter related 
+to pore size distribution, which determines the slope of the $\theta(h)$
+relationship on the log scale.\\
+
+To predict soil water content from soil pressure head h, and 
+from Brooks and Corey (1964) parameters hA, thetaS, thetaR and 
+lambda:
+
+<<echo=TRUE,eval=TRUE>>= 
+pTheta <- fun.brooks.corey.theta.h( 
+    h       = c(0,0.01,0.1,1,10,100,158),   # [meter] 
+    hA      = 0.01,                         # [meter] 
+    thetaS  = 0.4162380,                    # [-]
+    thetaR  = 0,                            # [-]
+    lambda  = 0.3                           # [-] 
+)   #
+#
+pTheta 
+@ 
+
+
+
+This functions can be plotted:
+
+<<fig=TRUE,echo=TRUE,eval=TRUE>>= 
+curve( 
+    fun.brooks.corey.theta.h( 
+        h       = x, 
+        hA      = 0.01,                     # [meter] 
+        thetaS  = 0.4162380,                # [-]
+        thetaR  = 0,                        # [-]
+        lambda  = 0.3                       # [-] 
+    ), 
+    xlim = c(0.001,158), 
+    col  = "red", 
+    log  = "x", 
+    xlab = "h, pressure head [m]", 
+    ylab = expression( theta~", water content [-]" ), 
+    main = expression( 'Brooks and Corey 1964: '~theta=='f(h)' ) 
+)   #
+abline( v = 0.01 )
+@ 
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\subsection{Campbell 1974} 
+
+
+
+To predict soil water content from soil pressure head h, and 
+from Campbell 1974 parameters hA, thetaS, thetaR and 
+lambda:
+
+<<echo=TRUE,eval=TRUE>>= 
+pTheta <- fun.campbell.theta.h( 
+    h       = c(0,0.01,0.1,1,10,100,158),  # [meter] 
+    hA      = 0.01,                        # [meter] 
+    thetaS  = 0.4162380,                   # [-] 
+    bPar    = 3.3                          # [-] 
+)   #
+#
+pTheta 
+@ 
+
+
+
+This functions can be plotted:
+
+<<fig=TRUE,echo=TRUE,eval=TRUE>>= 
+curve( 
+    fun.campbell.theta.h( 
+        h       = x,                       # [meter] 
+        hA      = 0.01,                    # [meter] 
+        thetaS  = 0.4162380,               # [-] 
+        bPar    = 3.3                      # [-] 
+    ), 
+    xlim = c(0.001,158), 
+    col  = "red", 
+    log  = "x", 
+    xlab = "h, pressure head [m]", 
+    ylab = expression( theta~", water content [-]" ), 
+    main = expression( 'Campbell 1974: '~theta=='f(h)' ) 
+)   #
+abline( v = 0.01 )
+@ 
+
+The function is actually the same as Brooks and Corey 1964, but 
+the parameter bPar (equal to $1/lambda$) is also used in the 
+hydraulic conductivity function, which reduce the number of 
+parameters to measure / estimate.
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\section{Hydraulic conductivity functions} 
+
+
+
+% +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+\subsection{Mualem (1976) + van Genuchten 1980} 
+
+[TO BE WRITTEN -- WORK ON PROGRESS]
+
+
+
+\bibliography{soilwaterfun_vignette} % no .bib extension here
+\end{document}
+
+

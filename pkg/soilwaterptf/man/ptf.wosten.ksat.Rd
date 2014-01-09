@@ -6,14 +6,7 @@ hydraulic conductivity, K sat, of the Mualem (1976) & van
 Genuchten (1980) water retention function of a soil after its 
 clay and silt content, bulk density, organic matter content 
 and topsoil or subsoil qualifier. }
-\usage{
-ptf.wosten.ksat(clay,
-bulkD,
-silt,
-om,
-topSoil,
-units)
-}
+\usage{ptf.wosten.ksat(clay, bulkD, silt, om, topSoil, units)}
 \arguments{
   \item{clay}{Vector of numericals. Clay content [\%] of each soil layer / 
 horizon. 0-2 micrometers.}

@@ -1,15 +1,43 @@
+detach( package:soilwaterfun ) 
 rm(list=ls(all=TRUE)) 
 
-setwd( "C:/_R_PACKAGES/soilwater/pkg/soilwaterfun/inst/doc" ) 
+
+
+setwd( "D:/Users/julienm/Documents/_WORKS/_PROJECTS/r_packages/soilwater/pkg/soilwaterfun/vignettes" ) 
 
 Stangle( "soilwaterfun_vignette.Rnw" ) 
 
 Sweave( "soilwaterfun_vignette.Rnw" ) 
 
-msg <- tools::texi2dvi( 
-    file        = "soilwaterfun_vignette.tex", 
-    pdf         = TRUE, 
-    clean       = TRUE, 
-    texinputs   = getwd() 
-)   # 
+for( clean in c(FALSE,FALSE,TRUE) ){ 
+    msg <- tools::texi2dvi( 
+        file        = "soilwaterfun_vignette.tex", 
+        pdf         = TRUE, 
+        clean       = clean, 
+        texinputs   = getwd() 
+    )   
+    
+    # if( !clean ){ 
+    #     detach( package:soiltexture ) 
+    # }   
+}   
+
+
+
+## Copy the vignette's pdf into the 'doc' folder
+file.copy( 
+    from      = "soilwaterfun_vignette.pdf", 
+    to        = "../inst/doc/soilwaterfun_vignette.pdf", 
+    overwrite = TRUE )    
+
+# file.remove( "soilwaterfun_vignette.pdf" ) 
+
+
+
+for( ext in c( "\\.tex$", "\\.bib.bak$", "\\.R$", "\\.aux$", 
+    "\\.bbl$", "\\.blg$", "\\.log$", "\\.out$", "\\.toc$", "\\.pdf$" ) ){ 
+    
+    file.remove( list.files( getwd(), ext, full.names = TRUE ) ) 
+}   
+
 
