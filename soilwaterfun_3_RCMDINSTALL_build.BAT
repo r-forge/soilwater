@@ -1,7 +1,8 @@
 set pkgname=soilwaterfun
+set version=1.0.6
 
 cd /D "%rPackagesDir%\soilwater\pkg" 
 
-R CMD INSTALL --build --compile-both --compact-docs --byte-compile %pkgname%_1.0.5.tar.gz
+R CMD INSTALL --build --compile-both --compact-docs --byte-compile %pkgname%_%version%.tar.gz
 
 pause
