@@ -1,8 +1,15 @@
-VERSION 1.0.5
+
+    package: soilwaterfun
+    
+CHANGES IN VERSION 1.0.6
+    
+    2014/07/16  Now welcome message shows the SVN version too
+    
+CHANGES IN VERSION 1.0.5
 
     2014/01/09  Compiled for R 3.0.2
     
-VERSION < 1.0.5
+CHANGES IN VERSION < 1.0.5
 
     2011/10/31  Corrected several inconsistencies between h and psi usage in some
                 functions description.

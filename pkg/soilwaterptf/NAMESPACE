@@ -1,4 +1,4 @@
-import(soiltexture)
+import(soiltexture, soilwaterfun)
 
 exportPattern("^[[:alpha:]]+")
 
