@@ -19,9 +19,9 @@ ptf.wosten.theta.s <- function(# Wosten et al. 1999 PTF for soil's saturated wat
 
 ##seealso<<\code{\link{ptf.wosten}}, 
 
-##references<< Wosten J.H.M., Lilly A., Nemes A., 
-## Le Bas C., 1999. Development and use of a database of hydraulic 
-## properties of European soils. Geoderma 90:169-185.
+##references<< Rawls WJ, Brakensiek DL (1985) Prediction of Soil 
+##  Water Properties for Hydrologic Modeling. Watershed Management 
+##   in the Eighties, ASCE, pp. 293-299.
 
  clay,
 ### Vector of numericals. Clay content [%] of each soil layer / 

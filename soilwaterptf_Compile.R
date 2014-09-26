@@ -16,7 +16,7 @@ source( file.path( pkgDir, "..", "packageUtilities.R" ) )
 pkgDescription( 
     pkgName     = pkgName, 
     pkgDir      = pkgDir, 
-    pkgVersion  = "1.0.7", 
+    pkgVersion  = "1.1.0", 
     pkgDepends  = c( "soiltexture", "soilwaterfun" ), 
     pkgSuggests = NULL, 
     RVersion    = NULL   
