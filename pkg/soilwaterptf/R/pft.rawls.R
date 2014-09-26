@@ -32,7 +32,7 @@ pft.rawls <- function(# PTFs of Rawls and Brakensiek
 ##  In: Maidment DR(ed): Handbook of Hydrology, pp. 5.1-5.51. 
 ##  McGraw-Hill, New York, USA.
 
-##authors<< Till Francke <francke AT uni-potsdam.de>
+##author<< Till Francke <francke AT uni-potsdam.de>
 
 ##seealso<< \code{\link[soilwaterptf]{ptf.wosten}}.
 

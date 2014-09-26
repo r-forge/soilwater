@@ -1,8 +1,8 @@
 Package: soilwaterptf
 Version: 1.1.0
-Date: 2014-09-25
+Date: 2014-09-26
 Title: Wosten et al. 1999 pedotransfer functions for soil hydraulic properties.
-Author: Julien MOEYS <jules_m78-soiltexture@yahoo.fr> 
+Author: Julien MOEYS <jules_m78-soiltexture@yahoo.fr>, with contributions from Till Francke <francke@uni-potsdam.de> (Rawls and Brakensiek PTFs)
 Maintainer: Julien MOEYS <jules_m78-soiltexture@yahoo.fr> 
 Depends: R (>= 3.1.1), soiltexture, soilwaterfun
 Suggests: 
