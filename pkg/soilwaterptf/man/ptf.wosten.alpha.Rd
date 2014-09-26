@@ -26,7 +26,7 @@ alpha (validation / calibration?) R2 is 20\%.}
 \references{Wosten J.H.M., Lilly A., Nemes A., 
 Le Bas C., 1999. Development and use of a database of hydraulic 
 properties of European soils. Geoderma 90:169-185.}
-\author{Julien MOEYS <jules_m78-soiltexture@yahoo.fr>}
+\author{Julien MOEYS <jules_m78-soiltexture@yahoo.fr>, with contributions from Till Francke <francke@uni-potsdam.de> (Rawls and Brakensiek PTFs)}
 
 
 
