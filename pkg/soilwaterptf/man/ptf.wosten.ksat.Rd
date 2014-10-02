@@ -44,7 +44,7 @@ unit output in [mm.h-1], while its real unit is [cm.day-1].}
 \references{Wosten J.H.M., Lilly A., Nemes A., 
 Le Bas C., 1999. Development and use of a database of hydraulic 
 properties of European soils. Geoderma 90:169-185.}
-\author{Julien MOEYS <jules_m78-soiltexture@yahoo.fr>, with contributions from Till Francke <francke@uni-potsdam.de> (Rawls and Brakensiek PTFs)}
+\author{Julien Moeys [aut, cre], Till Francke [ctb] <francke@uni-potsdam.de>}
 
 
 
