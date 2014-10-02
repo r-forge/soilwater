@@ -1,5 +1,5 @@
 set pkgname=soilwaterfun
-set version=1.0.7
+set version=1.0.8
 
 cd /D "%rPackagesDir%\soilwater\pkg" 
 
