@@ -1,6 +1,12 @@
 
-    package: soilwaterptf
+    Package: soilwaterptf
 
+CHANGES IN VERSION 1.1.1
+
+    2014/10/02  Added the field Authors@R in DESCRIPTION
+    
+        Package dependencies moved to the Imports field in DESCRIPTION
+    
 CHANGES IN VERSION 1.1.0
 
     2014/09/25  Added the PTFs of Rawls and Brakensiek, a courtesy 

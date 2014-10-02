@@ -16,9 +16,10 @@ source( file.path( pkgDir, "..", "packageUtilities.R" ) )
 pkgDescription( 
     pkgName     = pkgName, 
     pkgDir      = pkgDir, 
-    pkgVersion  = "1.1.0", 
-    pkgDepends  = c( "soiltexture", "soilwaterfun" ), 
+    pkgVersion  = "1.1.1", 
+    pkgDepends  = "soilwaterfun", 
     pkgSuggests = NULL, 
+    pkgImports  = "soiltexture", 
     RVersion    = NULL   
 )   
 
@@ -26,7 +27,7 @@ pkgDescription(
 
 package.skeleton.dx( 
     pkgdir      = file.path( pkgDir, pkgName ), 
-    namespace   = TRUE  
+    namespace   = FALSE  
 )   
 
 

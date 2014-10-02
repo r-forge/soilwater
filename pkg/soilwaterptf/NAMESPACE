@@ -1,4 +1,5 @@
-import(soiltexture, soilwaterfun)
 
 exportPattern("^[[:alpha:]]+")
-
+import(soilwaterfun)
+importFrom(soiltexture,TT.points.in.classes)
+importFrom(soiltexture,TT.get)
