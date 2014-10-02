@@ -11,7 +11,7 @@ meters [m]).}
 \value{Returns a vector of pressure head value [m] (numericals), 
 positive.}
 
-\author{Julien MOEYS <jules_m78-soiltexture@yahoo.fr>}
+\author{Julien Moeys <jules_m78-soiltexture@yahoo.fr> [aut, cre]}
 
 
 

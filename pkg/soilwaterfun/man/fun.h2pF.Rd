@@ -11,7 +11,7 @@ used internally.}
 
 \value{Returns a vector of pF values (numericals) }
 
-\author{Julien MOEYS <jules_m78-soiltexture@yahoo.fr>}
+\author{Julien Moeys <jules_m78-soiltexture@yahoo.fr> [aut, cre]}
 
 
 
