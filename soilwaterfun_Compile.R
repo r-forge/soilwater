@@ -16,7 +16,7 @@ source( file.path( pkgDir, "..", "packageUtilities.R" ) )
 pkgDescription( 
     pkgName     = pkgName, 
     pkgDir      = pkgDir, 
-    pkgVersion  = "1.0.7", 
+    pkgVersion  = "1.0.8", 
     pkgDepends  = NULL, 
     pkgSuggests = NULL, 
     RVersion    = NULL   
