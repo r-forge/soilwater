@@ -33,7 +33,7 @@ GeoEcology textbook, Germany. ISBN : 9-923381-26-3., 370 p.
 Campbell, 1974. A simple-method for determining 
 unsaturated conductivity from moisture retention data. 
 Soil Science 117:6. pp. 311-314 }
-\author{Julien MOEYS <jules_m78-soiltexture@yahoo.fr>}
+\author{Julien Moeys <jules_m78-soiltexture@yahoo.fr> [aut, cre]}
 
 
 

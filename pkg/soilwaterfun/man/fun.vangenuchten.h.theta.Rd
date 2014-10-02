@@ -30,7 +30,7 @@ Soil Science Society of America Journal, 44:892-898.
 Kutilek M. & Nielsen D.R., 1994. Soil hydrology. 
 Catena-Verlag, GeoEcology textbook, Germany. ISBN: 
 9-923381-26-3., 370 p.}
-\author{Julien MOEYS <jules_m78-soiltexture@yahoo.fr>}
+\author{Julien Moeys <jules_m78-soiltexture@yahoo.fr> [aut, cre]}
 
 
 

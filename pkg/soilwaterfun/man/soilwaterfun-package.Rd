@@ -9,14 +9,14 @@
 Version: \tab 1.0.8\cr
 Date: \tab 2014-10-02\cr
 Title: \tab Functions for soil water retention and soil hydraulic conductivity.\cr
-Author: \tab Julien MOEYS <jules_m78-soiltexture@yahoo.fr>\cr
+Author: \tab Julien Moeys <jules_m78-soiltexture@yahoo.fr> [aut, cre]\cr
 Authors@R: \tab c( person( "Julien", "Moeys", role = c("aut", "cre"), email = "jules_m78-soiltexture@yahoo.fr" ) )\cr
-Maintainer: \tab Julien MOEYS <jules_m78-soiltexture@yahoo.fr>\cr
+Maintainer: \tab Julien Moeys <jules_m78-soiltexture@yahoo.fr>\cr
 Depends: \tab R (>= 3.1.1)\cr
 License: \tab AGPL-3\cr
 URL: \tab http://www.mark.slu.se, http://ckb.slu.se, http://julienmoeys.free.fr\cr}
 }
-\author{Julien MOEYS <jules_m78-soiltexture@yahoo.fr>}
+\author{Julien Moeys <jules_m78-soiltexture@yahoo.fr> [aut, cre]}
 
 \keyword{ package }
 
