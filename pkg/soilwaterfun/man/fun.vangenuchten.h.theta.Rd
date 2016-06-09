@@ -3,7 +3,8 @@
 \title{van Genuchten 1980's function h(theta) (water retension). }
 \description{Calculate the soilwater tension h at a given water content theta 
 with the Van Genuchten water retention function.}
-\usage{fun.vangenuchten.h.theta(theta, alpha, n, cPar = 1, thetaS, thetaR)}
+\usage{fun.vangenuchten.h.theta(theta, alpha, n, cPar = 1, 
+    thetaS, thetaR)}
 \arguments{
   \item{theta}{Vector of numerical. Water of the soil, in [m3.m-3]. }
   \item{alpha}{Single numerical. alpha (shape) parameter of the Van Genuchten 
