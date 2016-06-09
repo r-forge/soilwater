@@ -3,8 +3,8 @@
 \title{Mualem (1976) & van Genuchten (1980)'s function K(h) (hydraulic conductivity). }
 \description{Calculate soil hydraulic conductivity at a given tension h 
 with the Mualem - Van Genuchten function.}
-\usage{fun.mualem.vangenuchten.K.h(h, Ks, alpha, n, a = 2, b = 0.5, 
-    cPar = 1)}
+\usage{fun.mualem.vangenuchten.K.h(h, Ks, alpha, n, a = 2, 
+    b = 0.5, cPar = 1)}
 \arguments{
   \item{h}{Vector of numerical. Pressure head of the soil, in [m]. Matrix 
 potential values will also work, as in practice abs(h) is used.}

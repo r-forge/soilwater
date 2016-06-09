@@ -2,3 +2,4 @@ import()
 
 exportPattern("^[[:alpha:]]+")
 
+importFrom(utils,packageVersion)

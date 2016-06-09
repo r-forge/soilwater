@@ -3,7 +3,8 @@
 \title{van Genuchten 1980's function theta(h) (water retension). }
 \description{Calculate the water content theta at a given tension h with 
 the Van Genuchten water retention function.}
-\usage{fun.vangenuchten.theta.h(h, alpha, n, cPar = 1, thetaS, thetaR)}
+\usage{fun.vangenuchten.theta.h(h, alpha, n, cPar = 1, thetaS, 
+    thetaR)}
 \arguments{
   \item{h}{Vector of numerical. Pressure head of the soil, in [m]. Matrix 
 potential values will also work, as in practice abs(h) is used.}

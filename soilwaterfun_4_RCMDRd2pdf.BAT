@@ -1,6 +1,6 @@
 set project=soilwater
 set pkgname=soilwaterfun
-set version=1.0.9
+set version=1.0.10
 
 cd /D "%rPackagesDir%\%project%\pkg" 
 
