@@ -88,7 +88,7 @@ pft.rawls <- function(# PTFs of Rawls and Brakensiek
     dimnames(rawls_coefs)[[2]]=c("head_cm",letters[1:5])
     
     #interpolate coefficients for intermediate heads  
-    coefs=apply(rawls_coefs[,-1], MARGIN=2, FUN=approx, x=rawls_coefs[,"head_cm"], xout=h)
+    coefs=apply(rawls_coefs[,-1], MARGIN=2, FUN=stats::approx, x=rawls_coefs[,"head_cm"], xout=h)
     coefs=unlist(coefs)[(1:5)*2] #reshape output
     names(coefs)=letters[1:5]
     theta = coefs["a"] + coefs["b"]*sa + coefs["c"]* soilprop$clay + 

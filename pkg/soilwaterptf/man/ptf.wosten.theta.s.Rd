@@ -26,7 +26,7 @@ thetaS (validation / calibration?) R2 is 76\%.}
 \references{Rawls WJ, Brakensiek DL (1985) Prediction of Soil 
 Water Properties for Hydrologic Modeling. Watershed Management 
 in the Eighties, ASCE, pp. 293-299.}
-\author{Julien Moeys [aut, cre], Till Francke [ctb] <francke@uni-potsdam.de>}
+\author{Julien Moeys [aut, cre], Till Francke [ctb]}
 
 
 

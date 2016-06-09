@@ -10,10 +10,10 @@ FAO texture triangle. Texture classes abbreviation can either
 be provided directly by the user or calculated from the clay, 
 silt and sand content. The code is vectorised (works on several 
 soil samples at a time).}
-\usage{classPtf.wosten(soilprop, units, dat.css.ps.lim = NULL, css.transf = FALSE, 
-    text.transf.fun = NULL, trsf.add.opt1 = NULL, trsf.add.opt2 = NULL, 
-    text.tol = NULL, tri.sum.tst = NULL, tri.pos.tst = NULL, 
-    texture2xy = FALSE, package = "soilwaterptf")}
+\usage{classPtf.wosten(soilprop, units, dat.css.ps.lim = NULL, 
+    css.transf = FALSE, text.transf.fun = NULL, trsf.add.opt1 = NULL, 
+    trsf.add.opt2 = NULL, text.tol = NULL, tri.sum.tst = NULL, 
+    tri.pos.tst = NULL, texture2xy = FALSE, package = "soilwaterptf")}
 \arguments{
   \item{soilprop}{matrix or data.frame, with 2 to 5 columns: 
 \itemize{ 
@@ -97,7 +97,7 @@ respectively, and where [Volumic water content], [length] and
 \references{Wosten J.H.M., Lilly A., Nemes A., 
 Le Bas C., 1999. Development and use of a database of hydraulic 
 properties of European soils. Geoderma 90:169-185.}
-\author{Julien Moeys [aut, cre], Till Francke [ctb] <francke@uni-potsdam.de>}
+\author{Julien Moeys [aut, cre], Till Francke [ctb]}
 
 
 

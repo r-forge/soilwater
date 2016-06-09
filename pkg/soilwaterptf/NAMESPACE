@@ -1,5 +1,12 @@
 
 exportPattern("^[[:alpha:]]+")
 import(soilwaterfun)
+
 importFrom(soiltexture,TT.points.in.classes)
 importFrom(soiltexture,TT.get)
+
+importFrom(utils,packageVersion)
+importFrom(utils,data)
+importFrom(utils,installed.packages)
+
+importFrom(stats,approx)

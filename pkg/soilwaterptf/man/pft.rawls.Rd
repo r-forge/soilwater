@@ -51,7 +51,7 @@ Rawls WJ et. al (1993) Infiltration and Soil Water movement.
 In: Maidment DR(ed): Handbook of Hydrology, pp. 5.1-5.51. 
 McGraw-Hill, New York, USA.}
 \author{Till Francke <francke AT uni-potsdam.de>
-Julien Moeys [aut, cre], Till Francke [ctb] <francke@uni-potsdam.de>}
+Julien Moeys [aut, cre], Till Francke [ctb]}
 
 
 
