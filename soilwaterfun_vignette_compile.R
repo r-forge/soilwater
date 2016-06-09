@@ -3,7 +3,9 @@ rm(list=ls(all=TRUE))
 
 
 
-setwd( "D:/Users/julienm/Documents/_WORKS/_PROJECTS/r_packages/soilwater/pkg/soilwaterfun/vignettes" ) 
+setwd( sprintf( 
+    "%s/soilwater/pkg/soilwaterfun/vignettes", 
+    Sys.getenv("rPackagesDir") ) ) 
 
 Stangle( "soilwaterfun_vignette.Rnw" ) 
 

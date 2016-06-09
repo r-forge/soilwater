@@ -1,8 +1,10 @@
 
 rm(list=ls(all=TRUE)) 
 
-pkgName     <- "soilwaterfun"
-pkgDir      <- file.path( "D:/Users/julienm/Documents/_WORKS/_PROJECTS/r_packages/soilwater/pkg" ) 
+pkgName     <- "soilwaterptf"
+pkgDir      <- file.path( sprintf( 
+    "%s/soilwater/pkg", 
+    Sys.getenv("rPackagesDir") ) ) 
 
 
 library( "inlinedocs" )
@@ -16,9 +18,10 @@ source( file.path( pkgDir, "..", "packageUtilities.R" ) )
 pkgDescription( 
     pkgName     = pkgName, 
     pkgDir      = pkgDir, 
-    pkgVersion  = "1.0.9", 
-    pkgDepends  = NULL, 
+    pkgVersion  = "1.1.2", 
+    pkgDepends  = "soilwaterfun", 
     pkgSuggests = NULL, 
+    pkgImports  = "soiltexture", 
     RVersion    = NULL   
 )   
 
@@ -26,10 +29,9 @@ pkgDescription(
 
 package.skeleton.dx( 
     pkgdir      = file.path( pkgDir, pkgName ), 
-    namespace   = TRUE  
+    namespace   = FALSE  
 )   
 
 
 pkgRemove( pkgName = pkgName ) 
-
 

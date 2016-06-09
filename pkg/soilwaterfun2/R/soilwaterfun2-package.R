@@ -18,7 +18,7 @@
 #' <jules_m78-soiltexture@yahoo.fr>\cr Maintainer: \tab Julien MOEYS
 #' <jules_m78-soiltexture@yahoo.fr>\cr Depends: \tab R (>= 3.0.2)\cr Suggests:
 #' \tab \cr License: \tab AGPL-3\cr URL: \tab http://www.mark.slu.se,
-#' http://ckb.slu.se, http://julienmoeys.free.fr\cr}
+#' http://ckb.slu.se, http://julienmoeys.info\cr}
 #' 
 #' @name soilwaterfun-package
 #' @aliases soilwaterfun-package soilwaterfun

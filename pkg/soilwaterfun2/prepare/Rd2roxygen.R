@@ -1,5 +1,5 @@
 
-setwd( wd <- "D:/Users/julienm/Documents/_WORKS/_PROJECTS/r_packages/soilwater/pkg/soilwaterfun2" ) 
+setwd( wd <- sprintf( "%s/soilwater/pkg/soilwaterfun2", Sys.getenv("rPackagesDir") ) ) 
 
 library( "Rd2roxygen" )
 
