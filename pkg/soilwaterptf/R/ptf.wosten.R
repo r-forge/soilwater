@@ -1,4 +1,4 @@
-# source( "C:/_SOILWATER/pkg/soilwaterptf/R/ptf.wosten.R" ) 
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 # Language & Software environment: R. 
@@ -419,7 +419,7 @@ ptf.wosten <- function(# Wosten et al. 1999 PTF for all Mualem - van Genuchten f
 ### Single character string. Internal. Name of the package that 
 ### contains the dll.
 
- lib.loc=installed.packages()["soilwaterptf","LibPath"] 
+ lib.loc=utils::installed.packages()["soilwaterptf","LibPath"] 
 ### Single character string. Internal. Location of the package that 
 ### contains the dll.
 
@@ -855,7 +855,7 @@ classPtf.wosten <- function(# Wosten et al. 1999 class PTF for all Mualem - van 
     rm( soilprop2 ) 
     #
     # Load the lookup table:
-    data("classPtfWosten",package=package,envir=environment()) 
+    utils::data("classPtfWosten",package=package,envir=environment()) 
     #
     # Prepare lookup index in the physical properties:
     classPtfWosten2 <- classPtfWosten[, c("topSoil","textureClass","isOrganic") ] 

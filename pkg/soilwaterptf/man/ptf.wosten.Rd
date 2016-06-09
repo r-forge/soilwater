@@ -65,7 +65,7 @@ are 76\%, 20\%, 54\%, 12\% and 19\% respectively.}
 \references{Wosten J.H.M., Lilly A., Nemes A., 
 Le Bas C., 1999. Development and use of a database of hydraulic 
 properties of European soils. Geoderma 90:169-185.}
-\author{Julien Moeys [aut, cre], Till Francke [ctb] <francke@uni-potsdam.de>}
+\author{Julien Moeys [aut, cre], Till Francke [ctb]}
 
 
 
