@@ -1,20 +1,20 @@
-\name{pft.rawls}
-\alias{pft.rawls}
+\name{ptf.rawls}
+\alias{ptf.rawls}
 \title{PTFs of Rawls and Brakensiek}
 \description{estimate soil hydraulic properties (water content for different 
 heads, Brooks-Corey parameters) using pedo-transfer functions 
 of Rawls et al (multiple publications)}
-\usage{pft.rawls(soilprop, parameters = NULL, h = NULL)}
+\usage{ptf.rawls(soilprop, parameters = NULL, h = NULL)}
 \arguments{
   \item{soilprop}{matrix or data.frame, with 5 columns: 
 \itemize{ 
-\item "clay", Clay content [\\%] of each soil layer / horizon. 
+\item "clay", Clay content [\%] of each soil layer / horizon. 
 0-2 micrometers.; 
 \item "bulkD", Bulk density [kg.dm-3] of each soil layer / 
 horizon;  
-\item "silt", Silt content [\\%] of each soil layer / horizon. 
+\item "silt", Silt content [\%] of each soil layer / horizon. 
 2-50 micrometers; 
-\item "om", Organic matter content [\\%] of each soil layer / 
+\item "om", Organic matter content [\%] of each soil layer / 
 horizon
 }}
   \item{parameters}{Vector of up to character strings "theta", "S_f", "theta_r", 
@@ -24,7 +24,7 @@ the Green-Ampt-parameters are to be returned.}
   \item{h}{Vector of suction heads to compute corresponding water content. 
 Use positive value in cm.}
 }
-\details{The second order PFTs are applied to produce the requested 
+\details{The second order ptfs are applied to produce the requested 
 output. In case of "theta", values between those given in the 
 literature are interpolated. In this case, both [1] (40-100 cm) 
 and [2] (200 - 15000 cm) are used because [2] does not contain 
@@ -68,5 +68,5 @@ dtf <- expand.grid(
   "topSoil" = 0:1   #ignored
 )   #
 
-res <- pft.rawls( soilprop = dtf, parameter = c( "theta_r", "theta" ), 
+res <- ptf.rawls( soilprop = dtf, parameter = c( "theta_r", "theta" ), 
     h = 200 ) }
