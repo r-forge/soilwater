@@ -1,6 +1,6 @@
 Package: soilwaterptf
-Version: 1.1.3
-Date: 2016-06-09
+Version: 1.1.4
+Date: 2018-04-10
 Title: Pedotransfer Functions for Soil Hydraulic Properties
 Author: Julien Moeys [aut, cre], Till Francke [ctb]
 Authors@R: c( person( "Julien", "Moeys", role = c("aut", "cre"), email = "jules_m78-soiltexture@yahoo.fr" ), person( "Till",   "Francke", role = "ctb", email = "francke@uni-potsdam.de" ) )

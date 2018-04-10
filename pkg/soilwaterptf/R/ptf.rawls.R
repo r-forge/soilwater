@@ -2,12 +2,12 @@
 
 
 
-pft.rawls <- function(# PTFs of Rawls and Brakensiek
+ptf.rawls <- function(# PTFs of Rawls and Brakensiek
 ### estimate soil hydraulic properties (water content for different 
 ### heads, Brooks-Corey parameters) using pedo-transfer functions 
 ### of Rawls et al (multiple publications)
 
-##details<< The second order PFTs are applied to produce the requested 
+##details<< The second order PTFs are applied to produce the requested 
 ##  output. In case of "theta", values between those given in the 
 ##  literature are interpolated. In this case, both [1] (40-100 cm) 
 ##  and [2] (200 - 15000 cm) are used because [2] does not contain 

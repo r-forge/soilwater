@@ -10,5 +10,5 @@ dtf <- expand.grid(
   "topSoil" = 0:1   #ignored
 )   #
 
-res <- pft.rawls( soilprop = dtf, parameter = c( "theta_r", "theta" ), 
+res <- ptf.rawls( soilprop = dtf, parameter = c( "theta_r", "theta" ), 
     h = 200 ) 

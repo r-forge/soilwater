@@ -1,6 +1,6 @@
 \name{ptf.rawls}
 \alias{ptf.rawls}
-\title{PTFs of Rawls and Brakensiek}
+\title{Rawls and Brakensiek (1985) PTFs for water content at specified suction, the suction at wetting front or Green-Ampt-parameters}
 \description{estimate soil hydraulic properties (water content for different 
 heads, Brooks-Corey parameters) using pedo-transfer functions 
 of Rawls et al (multiple publications)}
@@ -9,11 +9,11 @@ of Rawls et al (multiple publications)}
   \item{soilprop}{matrix or data.frame, with 5 columns: 
 \itemize{ 
 \item "clay", Clay content [\%] of each soil layer / horizon. 
-0-2 micrometers.; 
+(clay: 0-2 micrometers); 
 \item "bulkD", Bulk density [kg.dm-3] of each soil layer / 
 horizon;  
 \item "silt", Silt content [\%] of each soil layer / horizon. 
-2-50 micrometers; 
+(silt: 2-50 micrometers); 
 \item "om", Organic matter content [\%] of each soil layer / 
 horizon
 }}
