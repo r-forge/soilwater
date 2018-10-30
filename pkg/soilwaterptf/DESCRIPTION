@@ -1,12 +1,17 @@
 Package: soilwaterptf
-Version: 1.1.4
-Date: 2018-04-10
+Version: 1.1.5
+Date: 2018-10-30
 Title: Pedotransfer Functions for Soil Hydraulic Properties
 Author: Julien Moeys [aut, cre], Till Francke [ctb]
 Authors@R: c( person( "Julien", "Moeys", role = c("aut", "cre"), email = "jules_m78-soiltexture@yahoo.fr" ), person( "Till",   "Francke", role = "ctb", email = "francke@uni-potsdam.de" ) )
 Maintainer: Julien Moeys <jules_m78-soiltexture@yahoo.fr>
-Depends: R (>= 3.3.0), soilwaterfun
+Depends: 
+    R (>= 3.1.0),
+    soilwaterfun
 Description: Pedotransfer functions (PTFs) for estimating the physical parameters of soil water retention and hydraulic conductivity functions from easily available soil properties (typically soil texture, organic matter content, bulk density). The pedotransfer function(s) implemented is (are): (1) Wosten et al. 1999 (Geoderma 90:169-185) pedotransfer functions for estimating the parameters of van-Genuchten (1980) Mualem (1976) water retention and hydraulic conductivity functions (valid for European soils).
 License: AGPL-3
-URL: http://soilwater.r-forge.r-project.org/
-Imports: soiltexture, utils, stats
+URL: https://github.com/julienmoeys/soilwater
+Imports: 
+    soiltexture,
+    utils,
+    stats
