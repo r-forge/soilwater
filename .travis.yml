@@ -11,15 +11,19 @@ sudo: false
 
 warnings_are_errors: false
 
-#   Subdirectories containing R packages to be compiled
-env:
-  - PACK_DIR=soilwaterptf
+jobs:
+  include:
+    - stage: soilwaterfun
+      env:
+        - PACK_DIR=soilwaterfun
+    - stage: soilwaterptf
+      env:
+        - PACK_DIR=soilwaterptf
+      r_github_packages: julienmoeys/soilwater/pkg/soilwaterfun
 
 r:
   - release
-  - 3.1
-
-r_github_packages: julienmoeys/soilwater/pkg/soilwaterfun 
+  - 3.1 
 
 before_install:
   - cd pkg/$PACK_DIR
