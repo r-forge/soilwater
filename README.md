@@ -1,4 +1,4 @@
-Linux: [![Linux Build Status (Travis CI)](https://travis-ci.org/julienmoeys/soilwater.svg?branch=master)](https://travis-ci.org/julienmoeys/soiltexture). 
+Linux: [![Linux Build Status (Travis CI)](https://travis-ci.org/julienmoeys/soilwater.svg?branch=master)](https://travis-ci.org/julienmoeys/soilwater). 
 
 
 
