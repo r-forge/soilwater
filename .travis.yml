@@ -13,16 +13,6 @@ warnings_are_errors: false
 
 jobs:
   include:
-    - stage: soilwaterfun_r_3.1
-      env:
-        - PACK_DIR=pkg/soilwaterfun
-      r:
-        - 3.1
-    - stage: soilwaterfun_r_release
-      env:
-        - PACK_DIR=pkg/soilwaterfun
-      r:
-        - release
     - stage: soilwaterptf_r_3.1
       env:
         - PACK_DIR=pkg/soilwaterptf
@@ -36,6 +26,17 @@ jobs:
         - release
       r_github_packages: julienmoeys/soilwater/pkg/soilwaterfun
 
+    # - stage: soilwaterfun_r_3.1
+      # env:
+        # - PACK_DIR=pkg/soilwaterfun
+      # r:
+        # - 3.1
+    # - stage: soilwaterfun_r_release
+      # env:
+        # - PACK_DIR=pkg/soilwaterfun
+      # r:
+        # - release
+      
 before_install:
   - cd $PACK_DIR
 
