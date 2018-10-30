@@ -28,14 +28,16 @@ jobs:
         - PACK_DIR=pkg/soilwaterptf
       r:
         - 3.1
-      r_github_packages: julienmoeys/soilwater/pkg/soilwaterfun
     - stage: soilwaterptf_r_release
       env:
         - PACK_DIR=pkg/soilwaterptf
       r:
         - release
-      r_github_packages: julienmoeys/soilwater/pkg/soilwaterfun
 
+r_github_packages: 
+  - julienmoeys/soilwater/pkg/soilwaterfun
+    if: env(PACK_DIR)=pkg/soilwaterptf
+      
 before_install:
   - cd $PACK_DIR
 
