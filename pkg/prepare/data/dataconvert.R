@@ -1,4 +1,11 @@
-setwd("C:/_SOILWATER/pkg/prepare/data") 
+
+rm(list=ls(all=TRUE)) 
+
+prjName  <- "soilwater"
+
+pkgDir <- file.path( Sys.getenv(x = "rPackagesDir" ), prjName, "pkg" )
+
+setwd( file.path( pkgDir, "prepare", "data" ) )
 
 # See http://139.191.1.96/ESDB_Archive/ESDBv2/popup/hy_param.htm
 classPtfWosten <- read.csv( 
