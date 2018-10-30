@@ -1,0 +1,44 @@
+
+# Exclude specific files
+# ----------------------
+
+
+
+# Package tar.gz source, zip binaries 
+# and pdf manual
+# -----------------------------------
+
+/pkg/*.gz
+/pkg/*.zip
+/pkg/*.pdf
+
+# R CMD CHECK residuals
+# ---------------------
+
+/pkg/soilwaterfun.Rcheck
+/pkg/soilwaterfun/soilwaterfun-Ex.R
+/pkg/soilwaterptf.Rcheck
+/pkg/soilwaterptf/soilwaterptf-Ex.R
+
+# Linux backup files
+# ------------------
+
+*.R~
+*.TXT~
+*.sh~
+*.gitignore~
+/pkg/soilwaterfun/NEWS~
+
+/pkg/binaryArchive
+/pkg/soilwaterfun/inst/doc/*.html
+/pkg/soilwaterfun/inst/doc/*.pdf
+/pkg/soilwaterptf/inst/doc/*.html
+/pkg/soilwaterptf/inst/doc/*.pdf
+
+*.pdf
+*.aux
+*.bbl
+*.log
+*.blg
+*.tex
+*.toc
