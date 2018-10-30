@@ -13,22 +13,31 @@ warnings_are_errors: false
 
 jobs:
   include:
-    - stage: soilwaterfun
+    - stage: soilwaterfun_r_3.1
       env:
-        - PACK_DIR=soilwaterfun
+        - PACK_DIR=pkg/soilwaterfun
+      r:
+        - 3.1
+    - stage: soilwaterfun_r_release
+      env:
+        - PACK_DIR=pkg/soilwaterfun
       r:
         - release
-        - 3.1
-    - stage: soilwaterptf
+    - stage: soilwaterptf_r_3.1
       env:
-        - PACK_DIR=soilwaterptf
+        - PACK_DIR=pkg/soilwaterptf
+      r:
+        - 3.1
       r_github_packages: julienmoeys/soilwater/pkg/soilwaterfun
+    - stage: soilwaterptf_r_release
+      env:
+        - PACK_DIR=pkg/soilwaterptf
       r:
         - release
-        - 3.1
+      r_github_packages: julienmoeys/soilwater/pkg/soilwaterfun
 
 before_install:
-  - cd pkg/$PACK_DIR
+  - cd $PACK_DIR
 
 after_failure:
   - ./travis-tool.sh dump_logs
