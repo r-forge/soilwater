@@ -2,7 +2,7 @@
 
 
 
-ptf.rawls <- function(# PTFs of Rawls and Brakensiek
+ptf.rawls <- function(# Rawls and Brakensiek (1985) PTFs for water content at specified suction, the suction at wetting front or Green-Ampt-parameters
 ### estimate soil hydraulic properties (water content for different 
 ### heads, Brooks-Corey parameters) using pedo-transfer functions 
 ### of Rawls et al (multiple publications)
@@ -39,12 +39,12 @@ ptf.rawls <- function(# PTFs of Rawls and Brakensiek
  soilprop, 
 ### matrix or data.frame, with 5 columns: 
 ### \itemize{ 
-###     \item "clay", Clay content [\%] of each soil layer / horizon. 
-###         0-2 micrometers.; 
+###     \item "clay", Clay content [\%] of each soil layer / horizon 
+###         (clay: 0-2 micrometers); 
 ###     \item "bulkD", Bulk density [kg.dm-3] of each soil layer / 
 ###         horizon;  
 ### \item "silt", Silt content [\%] of each soil layer / horizon. 
-###     2-50 micrometers; 
+###     (silt: 2-50 micrometers); 
 ### \item "om", Organic matter content [\%] of each soil layer / 
 ###     horizon
 ### }
