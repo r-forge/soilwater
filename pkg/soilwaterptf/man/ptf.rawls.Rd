@@ -8,31 +8,31 @@ of Rawls et al (multiple publications)}
 \arguments{
   \item{soilprop}{matrix or data.frame, with 5 columns: 
 \itemize{ 
-\item "clay", Clay content [\%] of each soil layer / horizon. 
+\item "clay": Clay content [\%] of each soil layer / horizon. 
 (clay: 0-2 micrometers); 
-\item "bulkD", Bulk density [kg.dm-3] of each soil layer / 
+\item "bulkD": Bulk density [kg.dm-3] of each soil layer / 
 horizon;  
-\item "silt", Silt content [\%] of each soil layer / horizon. 
+\item "silt": Silt content [\%] of each soil layer / horizon. 
 (silt: 2-50 micrometers); 
-\item "om", Organic matter content [\%] of each soil layer / 
+\item "om": Organic matter content [\%] of each soil layer / 
 horizon
 }}
-  \item{parameters}{Vector of up to character strings "theta", "S_f", "theta_r", 
+  \item{parameters}{Vector of up to five character strings "theta", "S_f", "theta_r", 
 "h_b", "lambda", determining if the water content at 
-specified suction \code{h}, the suction at wetting front or 
+specified suction \code{h}, the suction at wetting front and/or 
 the Green-Ampt-parameters are to be returned.}
   \item{h}{Vector of suction heads to compute corresponding water content. 
-Use positive value in cm.}
+Use positive value in cm. Only necessary when \code{parameters} contains "theta".}
 }
-\details{The second order ptfs are applied to produce the requested 
-output. In case of "theta", values between those given in the 
+\details{The second order PTFs of Rawls & Brakensiek are applied to produce the requested 
+output. In the case of "theta", values between those given in the 
 literature are interpolated. In this case, both [1] (40-100 cm) 
 and [2] (200 - 15000 cm) are used because [2] does not contain 
 low water contents, whereas [2] includes bulk density, which 
 is not the case for [1]}
-\value{data frame containing the columns "theta" [-], "S_f" [cm], 
+\value{matrix containing the named columns "theta" [-], "S_f" [cm], 
 "theta_r" [-], "h_b" [cm], "lambda" [-], depending on value of 
-\code{parameter}.}
+\code{parameters}.}
 \references{Rawls WJ, Brakensiek DL (1985) Prediction of Soil 
 Water Properties for Hydrologic Modeling. Watershed Management 
 in the Eighties, ASCE, pp. 293-299. Taken from: Rawls WJ et. al 
