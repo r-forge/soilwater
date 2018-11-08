@@ -1,11 +1,17 @@
 
     Package: soilwaterptf
 
+CHANGES IN VERSION 1.1.5
+
+	2018/10/30	Project moved to Github, 
+				Compiled and tested on R 3.5.1 (2018-07-02)
+				Update utility scripts for building the packages
+	
 CHANGES IN VERSION 1.1.4
     
     2018/04/10  Corrected typo "pft.rawls" to "ptf.rawls". Updated docu.
 
-	CHANGES IN VERSION 1.1.3
+CHANGES IN VERSION 1.1.3
     
     2016/06/09  Compiled for R 3.3.0
     

@@ -1,0 +1,50 @@
+# Sample .travis.yml for R projects.
+#
+# See README.md for instructions, or for more configuration options,
+# see the wiki:
+#   https://github.com/craigcitro/r-travis/wiki
+
+language: r
+cache: packages
+
+sudo: false
+
+warnings_are_errors: false
+
+jobs:
+  include:
+    - stage: soilwaterfun_r_3.1
+      env:
+        - PACK_DIR=pkg/soilwaterfun
+      r:
+        - release
+    - stage: soilwaterfun_r_release
+      env:
+        - PACK_DIR=pkg/soilwaterfun
+      r:
+        - 3.1
+    - stage: soilwaterptf_r_3.1
+      env:
+        - PACK_DIR=pkg/soilwaterptf
+      r:
+        - release
+      r_github_packages: julienmoeys/soilwater/pkg/soilwaterfun
+    - stage: soilwaterptf_r_release
+      env:
+        - PACK_DIR=pkg/soilwaterptf
+      r:
+        - 3.1
+      r_github_packages: julienmoeys/soilwater/pkg/soilwaterfun
+
+      
+before_install:
+  - cd $PACK_DIR
+
+after_failure:
+  - ./travis-tool.sh dump_logs
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+ 
